@@ -1,0 +1,1157 @@
+{
+  "version": 1,
+  "dashboards": [
+    {
+      "widgets": [
+        {
+          "unique_key": "a778b0f4-f64f-4397-9789-01e90d38c7c1",
+          "location": {
+            "x": 6,
+            "y": 0,
+            "cols": 6,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "8c021a3a-b1ea-436f-89c3-13c3d0a67f91",
+          "location": {
+            "x": 6,
+            "y": 2,
+            "cols": 6,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "3a66bb1e-ebd9-494a-9b3c-884cc8361a02",
+          "location": {
+            "x": 0,
+            "y": 0,
+            "cols": 6,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "7773b5cd-963c-4724-8cf6-3b891014bfbe",
+          "location": {
+            "x": 0,
+            "y": 2,
+            "cols": 6,
+            "rows": 2
+          },
+          "reference": false
+        }
+      ],
+      "parent": null,
+      "unique_key": "c99a3f1e-2aa9-410a-b230-2cdb6ffd76d4",
+      "name": "Overall Status Breakdown",
+      "private": null
+    }
+  ],
+  "widgets": [
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Down",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 2",
+                "dataFields": [
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Status",
+                    "label": "Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Status Description",
+                    "label": "Status Description",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Details URL",
+                    "label": "Node Details URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Vendor Name",
+                    "label": "Vendor Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "System Vendor Icon",
+                    "label": "System Vendor Icon",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "CPULoad",
+                    "label": "CPULoad",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Response Time",
+                    "label": "Response Time",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Memory Usge",
+                    "label": "Memory Usge",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Packet Loss",
+                    "label": "Packet Loss",
+                    "dataType": "System.Double"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 2",
+                    "dataFields": [
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Status",
+                        "label": "Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Status Description",
+                        "label": "Status Description",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Details URL",
+                        "label": "Node Details URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Vendor Name",
+                        "label": "Vendor Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "System Vendor Icon",
+                        "label": "System Vendor Icon",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "CPULoad",
+                        "label": "CPULoad",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Response Time",
+                        "label": "Response Time",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Memory Usge",
+                        "label": "Memory Usge",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Packet Loss",
+                        "label": "Packet Loss",
+                        "dataType": "System.Double"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_3f2463b1-6409-4dee-994d-d7dc80259a93",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Status",
+                        "vendor": null,
+                        "link": "Node Details URL",
+                        "value": "Node Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                },
+                {
+                  "id": "column_3044848c-e764-45ac-a149-7c30168d67c8",
+                  "label": "System Vendor",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": null,
+                        "vendor": "System Vendor Icon",
+                        "link": "Node Details URL",
+                        "value": "Vendor Name"
+                      },
+                      "iconFormat": "vendor",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_4968708a-8575-4962-8b51-a532f2addf42",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Status Description"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Status Description"
+                },
+                {
+                  "id": "column_0886bea7-4cdc-4433-bf36-fef4828c8b53",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "CPULoad",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.CpuLoad",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "CPULoad"
+                },
+                {
+                  "id": "column_8090ab3a-020c-4b80-9509-af8384075405",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Memory Usge",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.PercentMemoryUsed",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Memory Usge"
+                },
+                {
+                  "id": "column_e491e05f-37f8-4cf1-a4c5-f9005a3649da",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Response Time",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.ResponseTime",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Response Time"
+                },
+                {
+                  "id": "column_9f99d453-55c6-45fe-8d7b-270a7ecf6272",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Packet Loss",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.PercentLoss",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Packet Loss"
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_3f2463b1-6409-4dee-994d-d7dc80259a93",
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "a778b0f4-f64f-4397-9789-01e90d38c7c1",
+      "name": "Down",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Warning",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 3",
+                "dataFields": [
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Status",
+                    "label": "Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Status Description",
+                    "label": "Status Description",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Details URL",
+                    "label": "Node Details URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Vendor Name",
+                    "label": "Vendor Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "System Vendor Icon",
+                    "label": "System Vendor Icon",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "CPULoad",
+                    "label": "CPULoad",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Response Time",
+                    "label": "Response Time",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Memory Usge",
+                    "label": "Memory Usge",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Packet Loss",
+                    "label": "Packet Loss",
+                    "dataType": "System.Double"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 3",
+                    "dataFields": [
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Status",
+                        "label": "Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Status Description",
+                        "label": "Status Description",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Details URL",
+                        "label": "Node Details URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Vendor Name",
+                        "label": "Vendor Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "System Vendor Icon",
+                        "label": "System Vendor Icon",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "CPULoad",
+                        "label": "CPULoad",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Response Time",
+                        "label": "Response Time",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Memory Usge",
+                        "label": "Memory Usge",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Packet Loss",
+                        "label": "Packet Loss",
+                        "dataType": "System.Double"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_f0bc6fc1-dc51-42a6-be4c-94f3121eca8d",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Status",
+                        "vendor": null,
+                        "link": "Node Details URL",
+                        "value": "Node Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                },
+                {
+                  "id": "column_8c1fb45d-b292-449b-afbb-5b821e3a1d4b",
+                  "label": "System Vendor",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": null,
+                        "vendor": "System Vendor Icon",
+                        "link": "Node Details URL",
+                        "value": "Vendor Name"
+                      },
+                      "iconFormat": "vendor",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_43c3b44c-b467-4107-b93b-229d8e8d1508",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Status Description"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Status Description"
+                },
+                {
+                  "id": "column_2002d67a-56b7-4300-8fe9-a6a84d6e5525",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "CPULoad",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.CpuLoad",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "CPULoad"
+                },
+                {
+                  "id": "column_49430beb-a096-4e06-968a-95a948734813",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Memory Usge",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.PercentMemoryUsed",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Memory Usge"
+                },
+                {
+                  "id": "column_274a8cbe-3f64-4ce4-b41e-c14e13e3b75d",
+                  "label": "Response Time",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Response Time",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.ResponseTime",
+                      "visualization": "barChart"
+                    }
+                  }
+                },
+                {
+                  "id": "column_e88a1edd-824f-44da-88f9-8c9b9b1edbd1",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Packet Loss",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.PercentLoss",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Packet Loss"
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "8c021a3a-b1ea-436f-89c3-13c3d0a67f91",
+      "name": "Warning",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Up",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 1",
+                "dataFields": [
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Status",
+                    "label": "Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Status Description",
+                    "label": "Status Description",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Details URL",
+                    "label": "Node Details URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Vendor Name",
+                    "label": "Vendor Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "System Vendor Icon",
+                    "label": "System Vendor Icon",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "CPULoad",
+                    "label": "CPULoad",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Response Time",
+                    "label": "Response Time",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Memory Usge",
+                    "label": "Memory Usge",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Packet Loss",
+                    "label": "Packet Loss",
+                    "dataType": "System.Double"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 1",
+                    "dataFields": [
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Status",
+                        "label": "Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Status Description",
+                        "label": "Status Description",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Details URL",
+                        "label": "Node Details URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Vendor Name",
+                        "label": "Vendor Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "System Vendor Icon",
+                        "label": "System Vendor Icon",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "CPULoad",
+                        "label": "CPULoad",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Response Time",
+                        "label": "Response Time",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Memory Usge",
+                        "label": "Memory Usge",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Packet Loss",
+                        "label": "Packet Loss",
+                        "dataType": "System.Double"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_ce57d1f4-b4b6-490a-9c44-e010b318c93c",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Status",
+                        "vendor": null,
+                        "link": "Node Details URL",
+                        "value": "Node Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                },
+                {
+                  "id": "column_48492fb8-9c6f-4e5d-8925-4d3d77c90b5c",
+                  "label": "System Vendor",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": null,
+                        "vendor": "System Vendor Icon",
+                        "link": "Node Details URL",
+                        "value": "Vendor Name"
+                      },
+                      "iconFormat": "vendor",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_2fc58713-8d83-43e9-92d8-826841d2e6aa",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "CPULoad",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.CpuLoad",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "CPULoad"
+                },
+                {
+                  "id": "column_e53e7f97-31aa-4535-9794-73439aa11157",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Memory Usge",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.PercentMemoryUsed",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Memory Usge"
+                },
+                {
+                  "id": "column_b14db2d6-3bfa-42c5-9db9-c2228cbf69a7",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Response Time",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.ResponseTime",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Response Time"
+                },
+                {
+                  "id": "column_33f5e757-4950-4191-9c11-f8bb4a15d997",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Packet Loss",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.PercentLoss",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Packet Loss"
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_ce57d1f4-b4b6-490a-9c44-e010b318c93c",
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "3a66bb1e-ebd9-494a-9b3c-884cc8361a02",
+      "name": "Up",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Critical",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 14",
+                "dataFields": [
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Status",
+                    "label": "Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Status Description",
+                    "label": "Status Description",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Details URL",
+                    "label": "Node Details URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Vendor Name",
+                    "label": "Vendor Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "System Vendor Icon",
+                    "label": "System Vendor Icon",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "CPULoad",
+                    "label": "CPULoad",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Response Time",
+                    "label": "Response Time",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Memory Usge",
+                    "label": "Memory Usge",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Packet Loss",
+                    "label": "Packet Loss",
+                    "dataType": "System.Double"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 14",
+                    "dataFields": [
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Status",
+                        "label": "Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Status Description",
+                        "label": "Status Description",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Details URL",
+                        "label": "Node Details URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Vendor Name",
+                        "label": "Vendor Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "System Vendor Icon",
+                        "label": "System Vendor Icon",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "CPULoad",
+                        "label": "CPULoad",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Response Time",
+                        "label": "Response Time",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Memory Usge",
+                        "label": "Memory Usge",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Packet Loss",
+                        "label": "Packet Loss",
+                        "dataType": "System.Double"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_6185fef4-f29f-4e0d-ab59-e4641d3de1bc",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Status",
+                        "vendor": null,
+                        "link": "Node Details URL",
+                        "value": "Node Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                },
+                {
+                  "id": "column_142219d1-787a-4fbf-bee1-86b75ccaf5f1",
+                  "label": "System Vendor",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": null,
+                        "vendor": "System Vendor Icon",
+                        "link": "Node Details URL",
+                        "value": "Vendor Name"
+                      },
+                      "iconFormat": "vendor",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_a5e820db-6019-4d3f-9e71-8fa7f40886de",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Status Description"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Status Description"
+                },
+                {
+                  "id": "column_28a9ce5b-e1af-4b96-806f-269b98312926",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "CPULoad",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.CpuLoad",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "CPULoad"
+                },
+                {
+                  "id": "column_00c329f4-8c83-4ff2-9d98-ae91ec41d832",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Memory Usge",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.PercentMemoryUsed",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Memory Usge"
+                },
+                {
+                  "id": "column_c47a94d3-4e35-40d2-b524-59fa4ff86d8f",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Response Time",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.ResponseTime",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Response Time"
+                },
+                {
+                  "id": "column_d882540c-aa4b-489c-97d7-f597f30c100e",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Packet Loss",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.PercentLoss",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Packet Loss"
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "",
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "7773b5cd-963c-4724-8cf6-3b891014bfbe",
+      "name": "Critical",
+      "private": false
+    }
+  ],
+  "remove": null
+}

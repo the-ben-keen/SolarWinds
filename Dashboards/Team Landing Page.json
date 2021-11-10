@@ -1,0 +1,1131 @@
+{
+  "version": 1,
+  "dashboards": [
+    {
+      "widgets": [
+        {
+          "unique_key": "1182ed30-6e41-471e-921a-390d7910f0a0",
+          "location": {
+            "x": 8,
+            "y": 3,
+            "cols": 4,
+            "rows": 3
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "f4c74926-35af-4044-b921-dc2468e81c58",
+          "location": {
+            "x": 2,
+            "y": 0,
+            "cols": 8,
+            "rows": 3
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "d2653a3b-6214-4ff5-8dce-190ff9e3cb15",
+          "location": {
+            "x": 0,
+            "y": 3,
+            "cols": 8,
+            "rows": 3
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "86896097-44a9-4a0d-b302-5c2af5caaf21",
+          "location": {
+            "x": 0,
+            "y": 0,
+            "cols": 2,
+            "rows": 3
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "317a61bf-04ff-4e02-a6c1-6c841309a085",
+          "location": {
+            "x": 10,
+            "y": 0,
+            "cols": 2,
+            "rows": 1
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "e3ea71e7-972a-428a-bfd6-548c7582c3b5",
+          "location": {
+            "x": 10,
+            "y": 1,
+            "cols": 2,
+            "rows": 2
+          },
+          "reference": false
+        }
+      ],
+      "parent": null,
+      "unique_key": "3c3cfe60-90d9-4baa-a72f-b54b4db8750d",
+      "name": "Team Landing Page",
+      "private": null
+    }
+  ],
+  "widgets": [
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Down Device or Application Events",
+            "subtitle": "Past Week ",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "content": {
+          "properties": {
+            "isEditable": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT ToLocal(E.EventTime) as [EventTime], E.Nodes.Caption as [Server], E.Message, '/Orion/NetPerfMon/NodeDetails.aspx?NetObject=N%3a' + ToString(E.Nodes.NodeID) AS [_LinkFor_Server]\nFROM Orion.Events E\n\nWhere \n(\n(E.NetObjectType like 'n%' and (E.EventType = 1 or E.EventType = 5 or E.EventType = 14  or E.EventType = 513 or E.EventType = 5000)) \nOr\n\t( E.NetObjectType like 'AA%' and (E.EventType = 505 or E.EventType = 5000 ))\nOr \n\t( E.NetObjectType like 'AB%' and E.EventType = 505 )\nOr\n\t( E.NetObjectType like 'I%' and E.EventType = 10)\nOr\n\t( E.NetObjectType like 'VVM%' and E.EventType = 5000)\n)\nand E.message not like '%unknown%'\nand E.message not like '%path error%'\nand daydiff(E.eventtime, getdate())<8\n\nOrder By E.EventTime desc",
+                "dataFields": [
+                  {
+                    "id": "EventTime",
+                    "label": "EventTime",
+                    "dataType": "System.DateTime"
+                  },
+                  {
+                    "id": "Server",
+                    "label": "Server",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Message",
+                    "label": "Message",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "_LinkFor_Server",
+                    "label": "_LinkFor_Server",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT ToLocal(E.EventTime) as [EventTime], E.Nodes.Caption as [Server], E.Message, '/Orion/NetPerfMon/NodeDetails.aspx?NetObject=N%3a' + ToString(E.Nodes.NodeID) AS [_LinkFor_Server]\nFROM Orion.Events E\n\nWhere \n(\n(E.NetObjectType like 'n%' and (E.EventType = 1 or E.EventType = 5 or E.EventType = 14  or E.EventType = 513 or E.EventType = 5000)) \nOr\n\t( E.NetObjectType like 'AA%' and (E.EventType = 505 or E.EventType = 5000 ))\nOr \n\t( E.NetObjectType like 'AB%' and E.EventType = 505 )\nOr\n\t( E.NetObjectType like 'I%' and E.EventType = 10)\nOr\n\t( E.NetObjectType like 'VVM%' and E.EventType = 5000)\n)\nand E.message not like '%unknown%'\nand E.message not like '%path error%'\nand daydiff(E.eventtime, getdate())<8\n\nOrder By E.EventTime desc",
+                    "dataFields": [
+                      {
+                        "id": "EventTime",
+                        "label": "EventTime",
+                        "dataType": "System.DateTime"
+                      },
+                      {
+                        "id": "Server",
+                        "label": "Server",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Message",
+                        "label": "Message",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "_LinkFor_Server",
+                        "label": "_LinkFor_Server",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_947cfd14-0349-4b05-aa78-3fc268721f15",
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Server",
+                        "link": "_LinkFor_Server"
+                      }
+                    }
+                  },
+                  "label": "Server",
+                  "isActive": true,
+                  "width": ""
+                },
+                {
+                  "id": "column_b07ab348-7364-4a9e-96cb-07f4b91f9320",
+                  "label": "Event Time",
+                  "isActive": true,
+                  "width": "",
+                  "formatter": {
+                    "componentType": "DatetimeFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "EventTime"
+                      },
+                      "option": 0,
+                      "replaceDate": true
+                    }
+                  }
+                },
+                {
+                  "id": "column_519f1425-c3d6-4abb-b2c9-5d5c8ac440dd",
+                  "label": "Event",
+                  "isActive": true,
+                  "width": "",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Message"
+                      }
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_b07ab348-7364-4a9e-96cb-07f4b91f9320",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true
+            }
+          }
+        }
+      },
+      "subtitle": "Past Week ",
+      "description": "",
+      "unique_key": "1182ed30-6e41-471e-921a-390d7910f0a0",
+      "name": "Down Device or Application Events",
+      "private": true
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Active Alerts",
+            "subtitle": "All Current Active Alerts",
+            "url": "/orion/netperfmon/alerts.aspx",
+            "description": "All Active Alerts sorted by most recent trigger time with search",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT [AlertObjects].AlertConfigurations.Name AS [Name]\n\t,'/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:' + TOSTRING([AlertObjects].AlertObjectID) AS [Name_URL]\n\t,[AlertObjects].AlertConfigurations.Severity AS [Name_Severity]\n\t,[AlertObjects].EntityCaption AS [Object]\n\t,[AlertObjects].Node.Status AS [Object_Status]\n,[AlertObjects].EntitYDetailsUrl AS [Object_URL]\n\t,CASE \n\t\tWHEN [AlertObjects].RelatedNodeCaption = EntityCaption\n\t\t\tTHEN '[Self]'\n\t\tELSE [AlertObjects].RelatedNodeCaption\n\t\tEND AS [Related Node]\n\t,[AlertObjects].RelatedNodeDetailsURL AS [Related Node_URL]\n\t,[AlertObjects].Node.Status AS [Related Node_Status]\n\t,TOSTRING(TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime)) AS [Time]\n\t,TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime) AS [Time_SORT]\n\t,CASE \n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 1440 -- More than 1 Day (1440 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 1440.0, 1)) + ' Days')\n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 60  -- More than 1 Hour (60 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 60.0, 1)) + ' Hours')\n\t\tELSE (TOSTRING(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE())) + ' Minutes')\n\t\tEND AS [Active]\n\t,CASE\n        WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 7 -- More than 7 Day (1440 minutes)\n            THEN 14\n\t\t WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) < 2 -- Less than 2 Day\n\t\t \tTHEN 1\n        ELSE 3\n        END AS [ActiveIcon]\n\t     , CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN 'Unacknowledged'\n         ELSE CONCAT([AlertObjects].AlertActive.AcknowledgedBy, ' (', TOLOCAL([AlertObjects].AlertActive.AcknowledgedDateTime), ')')\n       END AS [Acknowledge]\n\t, CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN CONCAT('/Orion/NetPerfMon/AckAlert.aspx?AlertDefID=', [AlertObjects].AlertObjectID)\n         ELSE CONCAT('/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:', [AlertObjects].AlertObjectID)\n       END AS [Acknowledge_URL]\nFROM Orion.AlertObjects AS [AlertObjects]\n-- Mandatory JOINS needed if you want to filter via nodes custom properties\n--LEFT JOIN Orion.NodesCustomProperties AS [NodeCP]\n--  ON [AlertObjects].RelatedNodeID = NodeCP.NodeID\n--LEFT JOIN Orion.Nodes AS [Nodes]\n--  ON [AlertObjects].RelatedNodeID = Nodes.NodeID\nWHERE [AlertObjects].AlertActive.AlertActiveID > 0\n-- AND [AlertObjects].Node.CustomProperties.[CP_Name] = 'CP_Value'\nGROUP BY [AlertObjects].AlertActive.AlertActiveID",
+                "dataFields": [
+                  {
+                    "id": "Name",
+                    "label": "Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Name_URL",
+                    "label": "Name_URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Name_Severity",
+                    "label": "Name_Severity",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Object",
+                    "label": "Object",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Object_Status",
+                    "label": "Object_Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Object_URL",
+                    "label": "Object_URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Related Node",
+                    "label": "Related Node",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Related Node_URL",
+                    "label": "Related Node_URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Related Node_Status",
+                    "label": "Related Node_Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Time",
+                    "label": "Time",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Time_SORT",
+                    "label": "Time_SORT",
+                    "dataType": "System.DateTime"
+                  },
+                  {
+                    "id": "Active",
+                    "label": "Active",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "ActiveIcon",
+                    "label": "ActiveIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Acknowledge",
+                    "label": "Acknowledge",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Acknowledge_URL",
+                    "label": "Acknowledge_URL",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT [AlertObjects].AlertConfigurations.Name AS [Name]\n\t,'/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:' + TOSTRING([AlertObjects].AlertObjectID) AS [Name_URL]\n\t,[AlertObjects].AlertConfigurations.Severity AS [Name_Severity]\n\t,[AlertObjects].EntityCaption AS [Object]\n\t,[AlertObjects].Node.Status AS [Object_Status]\n,[AlertObjects].EntitYDetailsUrl AS [Object_URL]\n\t,CASE \n\t\tWHEN [AlertObjects].RelatedNodeCaption = EntityCaption\n\t\t\tTHEN '[Self]'\n\t\tELSE [AlertObjects].RelatedNodeCaption\n\t\tEND AS [Related Node]\n\t,[AlertObjects].RelatedNodeDetailsURL AS [Related Node_URL]\n\t,[AlertObjects].Node.Status AS [Related Node_Status]\n\t,TOSTRING(TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime)) AS [Time]\n\t,TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime) AS [Time_SORT]\n\t,CASE \n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 1440 -- More than 1 Day (1440 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 1440.0, 1)) + ' Days')\n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 60  -- More than 1 Hour (60 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 60.0, 1)) + ' Hours')\n\t\tELSE (TOSTRING(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE())) + ' Minutes')\n\t\tEND AS [Active]\n\t,CASE\n        WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 7 -- More than 7 Day (1440 minutes)\n            THEN 14\n\t\t WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) < 2 -- Less than 2 Day\n\t\t \tTHEN 1\n        ELSE 3\n        END AS [ActiveIcon]\n\t     , CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN 'Unacknowledged'\n         ELSE CONCAT([AlertObjects].AlertActive.AcknowledgedBy, ' (', TOLOCAL([AlertObjects].AlertActive.AcknowledgedDateTime), ')')\n       END AS [Acknowledge]\n\t, CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN CONCAT('/Orion/NetPerfMon/AckAlert.aspx?AlertDefID=', [AlertObjects].AlertObjectID)\n         ELSE CONCAT('/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:', [AlertObjects].AlertObjectID)\n       END AS [Acknowledge_URL]\nFROM Orion.AlertObjects AS [AlertObjects]\n-- Mandatory JOINS needed if you want to filter via nodes custom properties\n--LEFT JOIN Orion.NodesCustomProperties AS [NodeCP]\n--  ON [AlertObjects].RelatedNodeID = NodeCP.NodeID\n--LEFT JOIN Orion.Nodes AS [Nodes]\n--  ON [AlertObjects].RelatedNodeID = Nodes.NodeID\nWHERE [AlertObjects].AlertActive.AlertActiveID > 0\n-- AND [AlertObjects].Node.CustomProperties.[CP_Name] = 'CP_Value'\nGROUP BY [AlertObjects].AlertActive.AlertActiveID",
+                    "dataFields": [
+                      {
+                        "id": "Name",
+                        "label": "Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Name_URL",
+                        "label": "Name_URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Name_Severity",
+                        "label": "Name_Severity",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Object",
+                        "label": "Object",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Object_Status",
+                        "label": "Object_Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Object_URL",
+                        "label": "Object_URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Related Node",
+                        "label": "Related Node",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Related Node_URL",
+                        "label": "Related Node_URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Related Node_Status",
+                        "label": "Related Node_Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Time",
+                        "label": "Time",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Time_SORT",
+                        "label": "Time_SORT",
+                        "dataType": "System.DateTime"
+                      },
+                      {
+                        "id": "Active",
+                        "label": "Active",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "ActiveIcon",
+                        "label": "ActiveIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Acknowledge",
+                        "label": "Acknowledge",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Acknowledge_URL",
+                        "label": "Acknowledge_URL",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_d889a5eb-0974-4e14-8ea8-b7af4f2388b7",
+                  "label": "Severity",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "SeverityFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Name_Severity"
+                      },
+                      "visualization": "iconWithLabel"
+                    }
+                  }
+                },
+                {
+                  "id": "column_d480947f-52a8-49f6-9b0d-63e308cef296",
+                  "label": "Alert Name",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Name",
+                        "link": "Name_URL"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_a70f1623-afdd-4ba0-92da-185c26ed3372",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Object_Status",
+                        "vendor": null,
+                        "link": "Object_URL",
+                        "value": "Object"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Object"
+                },
+                {
+                  "id": "column_70f83ef3-e0f6-4ed5-9ca2-c2398df13849",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Related Node_Status",
+                        "vendor": null,
+                        "link": "Related Node_URL",
+                        "value": "Related Node"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Related Node"
+                },
+                {
+                  "id": "column_742e4002-a3c6-4de7-baa2-3ccbaf272324",
+                  "label": "Triggered Time",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Time"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_f3126cf5-8f3a-48c8-9d77-d4b3c8b27d95",
+                  "label": "Time Active",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "ActiveIcon",
+                        "vendor": null,
+                        "link": "Name_URL",
+                        "value": "Active"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_ea1cc932-af43-48ef-95c2-7341314e7aa6",
+                  "label": "Acknowledge Status",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Acknowledge",
+                        "link": "Acknowledge_URL"
+                      }
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_742e4002-a3c6-4de7-baa2-3ccbaf272324",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "All Current Active Alerts",
+      "description": "All Active Alerts sorted by most recent trigger time with search",
+      "unique_key": "f4c74926-35af-4044-b921-dc2468e81c58",
+      "name": "Active Alerts",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Server Performance",
+            "subtitle": "Summary of Teams Servers",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT\n\n\t N.caption AS [Server Name]\n\t, n.Status AS [Server Status]\n\t, n.detailsurl as [_linkfor_Server Name]\n\t, N. IP_address\n\t, CPULOAD AS [CPUStatusIcon]\n\t, n.PercentMemoryUsed AS [MemoryUsed]\n\t, n.ResponseTime\n\t, n.PercentLoss AS [Packets Loss]\n\nFROM orion.nodes n \n\n\tLEFT JOIN (SELECT count(NodeID) as [CPU Count], nodeid \n               FROM Orion.CPUMultiLoadCurrent  \n               GROUP BY nodeid) cpu on cpu.nodeid=n.nodeid \n",
+                "dataFields": [
+                  {
+                    "id": "Server Name",
+                    "label": "Server Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Server Status",
+                    "label": "Server Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "_linkfor_Server Name",
+                    "label": "_linkfor_Server Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "IP_address",
+                    "label": "IP_address",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "CPUStatusIcon",
+                    "label": "CPUStatusIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "MemoryUsed",
+                    "label": "MemoryUsed",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "ResponseTime",
+                    "label": "ResponseTime",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Packets Loss",
+                    "label": "Packets Loss",
+                    "dataType": "System.Double"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT\n\n\t N.caption AS [Server Name]\n\t, n.Status AS [Server Status]\n\t, n.detailsurl as [_linkfor_Server Name]\n\t, N. IP_address\n\t, CPULOAD AS [CPUStatusIcon]\n\t, n.PercentMemoryUsed AS [MemoryUsed]\n\t, n.ResponseTime\n\t, n.PercentLoss AS [Packets Loss]\n\nFROM orion.nodes n \n\n\tLEFT JOIN (SELECT count(NodeID) as [CPU Count], nodeid \n               FROM Orion.CPUMultiLoadCurrent  \n               GROUP BY nodeid) cpu on cpu.nodeid=n.nodeid \n",
+                    "dataFields": [
+                      {
+                        "id": "Server Name",
+                        "label": "Server Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Server Status",
+                        "label": "Server Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "_linkfor_Server Name",
+                        "label": "_linkfor_Server Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "IP_address",
+                        "label": "IP_address",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "CPUStatusIcon",
+                        "label": "CPUStatusIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "MemoryUsed",
+                        "label": "MemoryUsed",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "ResponseTime",
+                        "label": "ResponseTime",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Packets Loss",
+                        "label": "Packets Loss",
+                        "dataType": "System.Double"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_64c34580-04f1-4dca-95dd-c70b5c9be36b",
+                  "label": "Node Name",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Server Status",
+                        "vendor": null,
+                        "link": "_linkfor_Server Name",
+                        "value": "Server Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_ed4046b0-8414-4ff7-84f3-4d9903122742",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "IP_address"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "IP_address"
+                },
+                {
+                  "id": "column_7c290eff-692a-4a66-b567-c7dbdbc934fa",
+                  "label": "CPU Load",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "CPUStatusIcon",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.CpuLoad",
+                      "visualization": "barChart"
+                    }
+                  }
+                },
+                {
+                  "id": "column_3b215a42-0973-4d59-b6ce-185619d873b5",
+                  "label": "Memory Used",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "MemoryUsed",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.PercentMemoryUsed",
+                      "visualization": "barChart"
+                    }
+                  }
+                },
+                {
+                  "id": "column_5a9e7822-ea72-4580-a2c4-43f749a413af",
+                  "label": "Response Time",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "ResponseTime",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.ResponseTime",
+                      "visualization": "barChart"
+                    }
+                  }
+                },
+                {
+                  "id": "column_d3610940-f201-4eb1-9744-daf9d97cd446",
+                  "label": "Packet Loss",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Packets Loss",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.PercentLoss",
+                      "visualization": "barChart"
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_64c34580-04f1-4dca-95dd-c70b5c9be36b",
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "Summary of Teams Servers",
+      "description": "",
+      "unique_key": "d2653a3b-6214-4ff5-8dce-190ff9e3cb15",
+      "name": "Server Performance",
+      "private": false
+    },
+    {
+      "type": "proportional",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Device Breakdown",
+            "subtitle": "Top 10 by count",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "content": {
+          "properties": {
+            "isEditable": true
+          }
+        },
+        "chart": {
+          "providers": {
+            "dataSource": {
+              "providerId": "ProportionalSwqlDatasourceService",
+              "properties": {
+                "dataFields": [
+                  {
+                    "id": "Type",
+                    "label": "Type",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Amount",
+                    "label": "Amount",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "swql": "SELECT Top 10\n    Case \n        When N.MachineType like 'NET netUX1000' Then 'Sonus Gateway'\n        When N.MachineType like 'net-snmp - Linux' Then 'Linux'\n        When N.MachineType like 'Windows 2012 R2 Domain Controller' or N.MachineType like 'Windows 2012 R2 Server' Then 'Windows 2012 R2 Server'\n        When N.MachineType like 'IBM PowerPC' Then 'IBM AIX'\n    Else N.MachineType\n    End as [Type]\n    , Count(N.NodeID) as [Amount]\nFROM Orion.Nodes N \nGroup By N.MachineType\nOrder by Count(N.NodeID) Desc",
+                "categoryField": "Type",
+                "valueField": "Amount",
+                "dataFormat": "custom",
+                "iconMappingField": "",
+                "colorMappingField": "",
+                "type": "hand-edit",
+                "editor": {}
+              }
+            },
+            "adapter": {
+              "providerId": "NOVA_DATASOURCE_ADAPTER",
+              "properties": {
+                "componentId": "chart",
+                "propertyPath": "widgetData",
+                "dataSource": {
+                  "properties": {
+                    "dataFields": [
+                      {
+                        "id": "Type",
+                        "label": "Type",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Amount",
+                        "label": "Amount",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "swql": "SELECT Top 10\n    Case \n        When N.MachineType like 'NET netUX1000' Then 'Sonus Gateway'\n        When N.MachineType like 'net-snmp - Linux' Then 'Linux'\n        When N.MachineType like 'Windows 2012 R2 Domain Controller' or N.MachineType like 'Windows 2012 R2 Server' Then 'Windows 2012 R2 Server'\n        When N.MachineType like 'IBM PowerPC' Then 'IBM AIX'\n    Else N.MachineType\n    End as [Type]\n    , Count(N.NodeID) as [Amount]\nFROM Orion.Nodes N \nGroup By N.MachineType\nOrder by Count(N.NodeID) Desc",
+                    "categoryField": "Type",
+                    "valueField": "Amount",
+                    "dataFormat": "custom",
+                    "iconMappingField": "",
+                    "colorMappingField": "",
+                    "type": "hand-edit",
+                    "editor": {}
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "chartOptions": {
+                "type": "HorizontalBarChart",
+                "legendPlacement": "Bottom",
+                "legendFormatter": {
+                  "componentType": "GenericValueFormatterComponent"
+                }
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "Top 10 by count",
+      "description": "",
+      "unique_key": "86896097-44a9-4a0d-b302-5c2af5caaf21",
+      "name": "Device Breakdown",
+      "private": true
+    },
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Volume Free Space Summary",
+            "subtitle": "Low 5-10%, Critical < 5% & 5GB Free (Alerts will match)",
+            "url": "https://orion.columbuschildrens.net/Orion/Report.aspx?ReportID=2028",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "content": {
+          "properties": {
+            "isEditable": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_c82b48ef-3371-49af-a77f-29ecbaae2452",
+              "kpi_49316b94-6a16-4f3d-b006-b20e9f2fb428"
+            ]
+          }
+        },
+        "kpi_c82b48ef-3371-49af-a77f-29ecbaae2452": {
+          "id": "kpi_c82b48ef-3371-49af-a77f-29ecbaae2452",
+          "componentType": "KpiComponent",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT Count(V.VolumeID) as [Disks over 90%]\nFROM Orion.Volumes V\nWhere \n    V.Type like 'Fixed Disk' \nand V.VolumePercentAvailable < 10",
+                "dataFields": [
+                  {
+                    "id": "Disks over 90%",
+                    "label": "Disks over 90%",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "providerId": "NOVA_KPI_DATASOURCE_ADAPTER",
+              "properties": {
+                "componentId": "kpi_c82b48ef-3371-49af-a77f-29ecbaae2452",
+                "propertyPath": "widgetData",
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT Count(V.VolumeID) as [Disks over 90%]\nFROM Orion.Volumes V\nWhere \n    V.Type like 'Fixed Disk' \nand V.VolumePercentAvailable < 10",
+                    "dataFields": [
+                      {
+                        "id": "Disks over 90%",
+                        "label": "Disks over 90%",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 100000,
+                  "warningThresholdValue": 1,
+                  "showThresholds": true,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Warning",
+              "backgroundColor": "var(--nui-color-bg-secondary)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_49316b94-6a16-4f3d-b006-b20e9f2fb428": {
+          "id": "kpi_49316b94-6a16-4f3d-b006-b20e9f2fb428",
+          "componentType": "KpiComponent",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT Count(V.VolumeID) as [Disks over 90%]\nFROM Orion.Volumes V\n\nWhere \n    V.Type like 'Fixed Disk' \nand V.VolumePercentAvailable <  5\n",
+                "dataFields": [
+                  {
+                    "id": "Disks over 90%",
+                    "label": "Disks over 90%",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "providerId": "NOVA_KPI_DATASOURCE_ADAPTER",
+              "properties": {
+                "componentId": "kpi_49316b94-6a16-4f3d-b006-b20e9f2fb428",
+                "propertyPath": "widgetData",
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT Count(V.VolumeID) as [Disks over 90%]\nFROM Orion.Volumes V\n\nWhere \n    V.Type like 'Fixed Disk' \nand V.VolumePercentAvailable <  5\n",
+                    "dataFields": [
+                      {
+                        "id": "Disks over 90%",
+                        "label": "Disks over 90%",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 1,
+                  "warningThresholdValue": 0.5,
+                  "showThresholds": true,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Critical",
+              "backgroundColor": "var(--nui-color-chart-three)",
+              "units": ""
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "Low 5-10%, Critical < 5% & 5GB Free (Alerts will match)",
+      "description": "",
+      "unique_key": "317a61bf-04ff-4e02-a6c1-6c841309a085",
+      "name": "Volume Free Space Summary",
+      "private": true
+    },
+    {
+      "type": "proportional",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Device Status",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "content": {
+          "properties": {
+            "isEditable": true
+          }
+        },
+        "chart": {
+          "providers": {
+            "dataSource": {
+              "providerId": "ProportionalSwqlDatasourceService",
+              "properties": {
+                "dataFields": [
+                  {
+                    "id": "Quanity",
+                    "label": "Quanity",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Node Status",
+                    "label": "Node Status",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "swql": "SELECT COUNT ([N].NodeID) AS Quanity\n    , [N].Status AS [Node Status]\nFROM Orion.Nodes AS [N]\nGROUP BY [N].Status\nORDER BY [N].Status",
+                "categoryField": "Node Status",
+                "valueField": "Quanity",
+                "dataFormat": "orion-statuses",
+                "iconMappingField": "",
+                "colorMappingField": "",
+                "type": "hand-edit",
+                "editor": {}
+              }
+            },
+            "adapter": {
+              "providerId": "NOVA_DATASOURCE_ADAPTER",
+              "properties": {
+                "componentId": "chart",
+                "propertyPath": "widgetData",
+                "dataSource": {
+                  "properties": {
+                    "dataFields": [
+                      {
+                        "id": "Quanity",
+                        "label": "Quanity",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Node Status",
+                        "label": "Node Status",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "swql": "SELECT COUNT ([N].NodeID) AS Quanity\n    , [N].Status AS [Node Status]\nFROM Orion.Nodes AS [N]\nGROUP BY [N].Status\nORDER BY [N].Status",
+                    "categoryField": "Node Status",
+                    "valueField": "Quanity",
+                    "dataFormat": "orion-statuses",
+                    "iconMappingField": "",
+                    "colorMappingField": "",
+                    "type": "hand-edit",
+                    "editor": {}
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "chartOptions": {
+                "type": "PieChart",
+                "legendPlacement": "Right",
+                "legendFormatter": {
+                  "componentType": "GenericValueFormatterComponent"
+                }
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "e3ea71e7-972a-428a-bfd6-548c7582c3b5",
+      "name": "Device Status",
+      "private": true
+    }
+  ],
+  "remove": null
+}

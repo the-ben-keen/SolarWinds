@@ -1,0 +1,750 @@
+{
+  "version": 1,
+  "dashboards": [
+    {
+      "widgets": [
+        {
+          "unique_key": "f4c74926-35af-4044-b921-dc2468e81c58",
+          "location": {
+            "x": 0,
+            "y": 0,
+            "cols": 12,
+            "rows": 3
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "c08e0a6d-062f-42ac-9be2-2f0c3946583c",
+          "location": {
+            "x": 0,
+            "y": 3,
+            "cols": 6,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "19ab5a40-1d58-4f75-b905-275f8fe0ea94",
+          "location": {
+            "x": 6,
+            "y": 3,
+            "cols": 6,
+            "rows": 2
+          },
+          "reference": false
+        }
+      ],
+      "parent": null,
+      "unique_key": "c91e6be3-142f-4395-a9d0-69e2336513cf",
+      "name": "Alert Dashboard",
+      "private": null
+    }
+  ],
+  "widgets": [
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Active Alerts",
+            "subtitle": "All Current Active Alerts",
+            "url": "/orion/netperfmon/alerts.aspx",
+            "description": "All Active Alerts sorted by most recent trigger time with search",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT [AlertObjects].AlertConfigurations.Name AS [Name]\n\t,'/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:' + TOSTRING([AlertObjects].AlertObjectID) AS [Name_URL]\n\t,[AlertObjects].AlertConfigurations.Severity AS [Name_Severity]\n\t,[AlertObjects].EntityCaption AS [Object]\n\t,[AlertObjects].Node.Status AS [Object_Status]\n,[AlertObjects].EntitYDetailsUrl AS [Object_URL]\n\t,CASE \n\t\tWHEN [AlertObjects].RelatedNodeCaption = EntityCaption\n\t\t\tTHEN '[Self]'\n\t\tELSE [AlertObjects].RelatedNodeCaption\n\t\tEND AS [Related Node]\n\t,[AlertObjects].RelatedNodeDetailsURL AS [Related Node_URL]\n\t,[AlertObjects].Node.Status AS [Related Node_Status]\n\t,TOSTRING(TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime)) AS [Time]\n\t,TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime) AS [Time_SORT]\n\t,CASE \n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 1440 -- More than 1 Day (1440 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 1440.0, 1)) + ' Days')\n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 60  -- More than 1 Hour (60 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 60.0, 1)) + ' Hours')\n\t\tELSE (TOSTRING(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE())) + ' Minutes')\n\t\tEND AS [Active]\n\t,CASE\n        WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 7 -- More than 7 Day (1440 minutes)\n            THEN 14\n\t\t WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) < 2 -- Less than 2 Day\n\t\t \tTHEN 1\n        ELSE 3\n        END AS [ActiveIcon]\n\t     , CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN 'Unacknowledged'\n         ELSE CONCAT([AlertObjects].AlertActive.AcknowledgedBy, ' (', TOLOCAL([AlertObjects].AlertActive.AcknowledgedDateTime), ')')\n       END AS [Acknowledge]\n\t, CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN CONCAT('/Orion/NetPerfMon/AckAlert.aspx?AlertDefID=', [AlertObjects].AlertObjectID)\n         ELSE CONCAT('/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:', [AlertObjects].AlertObjectID)\n       END AS [Acknowledge_URL]\nFROM Orion.AlertObjects AS [AlertObjects]\n-- Mandatory JOINS needed if you want to filter via nodes custom properties\n--LEFT JOIN Orion.NodesCustomProperties AS [NodeCP]\n--  ON [AlertObjects].RelatedNodeID = NodeCP.NodeID\n--LEFT JOIN Orion.Nodes AS [Nodes]\n--  ON [AlertObjects].RelatedNodeID = Nodes.NodeID\nWHERE [AlertObjects].AlertActive.AlertActiveID > 0\n-- AND [AlertObjects].Node.CustomProperties.[CP_Name] = 'CP_Value'\nGROUP BY [AlertObjects].AlertActive.AlertActiveID",
+                "dataFields": [
+                  {
+                    "id": "Name",
+                    "label": "Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Name_URL",
+                    "label": "Name_URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Name_Severity",
+                    "label": "Name_Severity",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Object",
+                    "label": "Object",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Object_Status",
+                    "label": "Object_Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Object_URL",
+                    "label": "Object_URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Related Node",
+                    "label": "Related Node",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Related Node_URL",
+                    "label": "Related Node_URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Related Node_Status",
+                    "label": "Related Node_Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Time",
+                    "label": "Time",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Time_SORT",
+                    "label": "Time_SORT",
+                    "dataType": "System.DateTime"
+                  },
+                  {
+                    "id": "Active",
+                    "label": "Active",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "ActiveIcon",
+                    "label": "ActiveIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Acknowledge",
+                    "label": "Acknowledge",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Acknowledge_URL",
+                    "label": "Acknowledge_URL",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT [AlertObjects].AlertConfigurations.Name AS [Name]\n\t,'/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:' + TOSTRING([AlertObjects].AlertObjectID) AS [Name_URL]\n\t,[AlertObjects].AlertConfigurations.Severity AS [Name_Severity]\n\t,[AlertObjects].EntityCaption AS [Object]\n\t,[AlertObjects].Node.Status AS [Object_Status]\n,[AlertObjects].EntitYDetailsUrl AS [Object_URL]\n\t,CASE \n\t\tWHEN [AlertObjects].RelatedNodeCaption = EntityCaption\n\t\t\tTHEN '[Self]'\n\t\tELSE [AlertObjects].RelatedNodeCaption\n\t\tEND AS [Related Node]\n\t,[AlertObjects].RelatedNodeDetailsURL AS [Related Node_URL]\n\t,[AlertObjects].Node.Status AS [Related Node_Status]\n\t,TOSTRING(TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime)) AS [Time]\n\t,TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime) AS [Time_SORT]\n\t,CASE \n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 1440 -- More than 1 Day (1440 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 1440.0, 1)) + ' Days')\n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 60  -- More than 1 Hour (60 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 60.0, 1)) + ' Hours')\n\t\tELSE (TOSTRING(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE())) + ' Minutes')\n\t\tEND AS [Active]\n\t,CASE\n        WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 7 -- More than 7 Day (1440 minutes)\n            THEN 14\n\t\t WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) < 2 -- Less than 2 Day\n\t\t \tTHEN 1\n        ELSE 3\n        END AS [ActiveIcon]\n\t     , CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN 'Unacknowledged'\n         ELSE CONCAT([AlertObjects].AlertActive.AcknowledgedBy, ' (', TOLOCAL([AlertObjects].AlertActive.AcknowledgedDateTime), ')')\n       END AS [Acknowledge]\n\t, CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN CONCAT('/Orion/NetPerfMon/AckAlert.aspx?AlertDefID=', [AlertObjects].AlertObjectID)\n         ELSE CONCAT('/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:', [AlertObjects].AlertObjectID)\n       END AS [Acknowledge_URL]\nFROM Orion.AlertObjects AS [AlertObjects]\n-- Mandatory JOINS needed if you want to filter via nodes custom properties\n--LEFT JOIN Orion.NodesCustomProperties AS [NodeCP]\n--  ON [AlertObjects].RelatedNodeID = NodeCP.NodeID\n--LEFT JOIN Orion.Nodes AS [Nodes]\n--  ON [AlertObjects].RelatedNodeID = Nodes.NodeID\nWHERE [AlertObjects].AlertActive.AlertActiveID > 0\n-- AND [AlertObjects].Node.CustomProperties.[CP_Name] = 'CP_Value'\nGROUP BY [AlertObjects].AlertActive.AlertActiveID",
+                    "dataFields": [
+                      {
+                        "id": "Name",
+                        "label": "Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Name_URL",
+                        "label": "Name_URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Name_Severity",
+                        "label": "Name_Severity",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Object",
+                        "label": "Object",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Object_Status",
+                        "label": "Object_Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Object_URL",
+                        "label": "Object_URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Related Node",
+                        "label": "Related Node",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Related Node_URL",
+                        "label": "Related Node_URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Related Node_Status",
+                        "label": "Related Node_Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Time",
+                        "label": "Time",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Time_SORT",
+                        "label": "Time_SORT",
+                        "dataType": "System.DateTime"
+                      },
+                      {
+                        "id": "Active",
+                        "label": "Active",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "ActiveIcon",
+                        "label": "ActiveIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Acknowledge",
+                        "label": "Acknowledge",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Acknowledge_URL",
+                        "label": "Acknowledge_URL",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_d889a5eb-0974-4e14-8ea8-b7af4f2388b7",
+                  "label": "Severity",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "SeverityFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Name_Severity"
+                      },
+                      "visualization": "iconWithLabel"
+                    }
+                  }
+                },
+                {
+                  "id": "column_d480947f-52a8-49f6-9b0d-63e308cef296",
+                  "label": "Alert Name",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Name",
+                        "link": "Name_URL"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_a70f1623-afdd-4ba0-92da-185c26ed3372",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Object_Status",
+                        "vendor": null,
+                        "link": "Object_URL",
+                        "value": "Object"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Object"
+                },
+                {
+                  "id": "column_70f83ef3-e0f6-4ed5-9ca2-c2398df13849",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Related Node_Status",
+                        "vendor": null,
+                        "link": "Related Node_URL",
+                        "value": "Related Node"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Related Node"
+                },
+                {
+                  "id": "column_742e4002-a3c6-4de7-baa2-3ccbaf272324",
+                  "label": "Triggered Time",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Time"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_f3126cf5-8f3a-48c8-9d77-d4b3c8b27d95",
+                  "label": "Time Active",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "ActiveIcon",
+                        "vendor": null,
+                        "link": "Name_URL",
+                        "value": "Active"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_ea1cc932-af43-48ef-95c2-7341314e7aa6",
+                  "label": "Acknowledge Status",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Acknowledge",
+                        "link": "Acknowledge_URL"
+                      }
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_742e4002-a3c6-4de7-baa2-3ccbaf272324",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "All Current Active Alerts",
+      "description": "All Active Alerts sorted by most recent trigger time with search",
+      "unique_key": "f4c74926-35af-4044-b921-dc2468e81c58",
+      "name": "Active Alerts",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Most Frequent Alerts by Device",
+            "subtitle": "Last 30 Days",
+            "url": "",
+            "description": "Most frequently triggered alerts by object and related object.  Useful for spotting systems which cause alert floods.",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT([History].AlertHistoryID) AS [Alert Count]\n     , [History].AlertObjects.AlertConfigurations.Name AS [AlertName]\n     , [History].AlertObjects.AlertConfigurations.Severity AS [AlertSeverity]\n     , CONCAT( '/Orion/Alerts/Add/Default.aspx?AlertWizardGuid=', [History].AlertObjects.AlertConfigurations.AlertRefID, '&AlertID=', [History].AlertObjects.AlertConfigurations.AlertID ) AS [AlertEdit_URL]\n     , [History].AlertObjects.EntityCaption AS [Entity]\n     , [History].AlertObjects.EntityDetailsUrl AS [Entity_URL]\n     , [History].AlertObjects.Node.VendorInfo.Icon AS [Entity_Vendor]\n     , CASE\n         WHEN [History].AlertObjects.EntityCaption = [History].AlertObjects.RelatedNodeCaption THEN '[Self]'\n         ELSE [History].AlertObjects.RelatedNodeCaption\n       END AS [RelatedNode]\n     , [History].AlertObjects.RelatedNodeDetailsUrl AS [RelatedNode_Url]\nFROM Orion.AlertHistory AS [History]\nWHERE [History].TimeStamp >= GETDATE() - 30\n  AND [History].EventType = 0 -- looks to be 'alert triggered'\n  AND [History].AlertObjects.AlertConfigurations.Name IS NOT NULL\nGROUP BY [History].AlertObjects.AlertConfigurations.Name\n       , [History].AlertObjects.EntityCaption\n       , [History].AlertObjects.RelatedNodeCaption\nORDER BY COUNT([History].AlertHistoryID) DESC",
+                "dataFields": [
+                  {
+                    "id": "Alert Count",
+                    "label": "Alert Count",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "AlertName",
+                    "label": "AlertName",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "AlertSeverity",
+                    "label": "AlertSeverity",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "AlertEdit_URL",
+                    "label": "AlertEdit_URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Entity",
+                    "label": "Entity",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Entity_URL",
+                    "label": "Entity_URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Entity_Vendor",
+                    "label": "Entity_Vendor",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "RelatedNode",
+                    "label": "RelatedNode",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "RelatedNode_Url",
+                    "label": "RelatedNode_Url",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT([History].AlertHistoryID) AS [Alert Count]\n     , [History].AlertObjects.AlertConfigurations.Name AS [AlertName]\n     , [History].AlertObjects.AlertConfigurations.Severity AS [AlertSeverity]\n     , CONCAT( '/Orion/Alerts/Add/Default.aspx?AlertWizardGuid=', [History].AlertObjects.AlertConfigurations.AlertRefID, '&AlertID=', [History].AlertObjects.AlertConfigurations.AlertID ) AS [AlertEdit_URL]\n     , [History].AlertObjects.EntityCaption AS [Entity]\n     , [History].AlertObjects.EntityDetailsUrl AS [Entity_URL]\n     , [History].AlertObjects.Node.VendorInfo.Icon AS [Entity_Vendor]\n     , CASE\n         WHEN [History].AlertObjects.EntityCaption = [History].AlertObjects.RelatedNodeCaption THEN '[Self]'\n         ELSE [History].AlertObjects.RelatedNodeCaption\n       END AS [RelatedNode]\n     , [History].AlertObjects.RelatedNodeDetailsUrl AS [RelatedNode_Url]\nFROM Orion.AlertHistory AS [History]\nWHERE [History].TimeStamp >= GETDATE() - 30\n  AND [History].EventType = 0 -- looks to be 'alert triggered'\n  AND [History].AlertObjects.AlertConfigurations.Name IS NOT NULL\nGROUP BY [History].AlertObjects.AlertConfigurations.Name\n       , [History].AlertObjects.EntityCaption\n       , [History].AlertObjects.RelatedNodeCaption\nORDER BY COUNT([History].AlertHistoryID) DESC",
+                    "dataFields": [
+                      {
+                        "id": "Alert Count",
+                        "label": "Alert Count",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "AlertName",
+                        "label": "AlertName",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "AlertSeverity",
+                        "label": "AlertSeverity",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "AlertEdit_URL",
+                        "label": "AlertEdit_URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Entity",
+                        "label": "Entity",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Entity_URL",
+                        "label": "Entity_URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Entity_Vendor",
+                        "label": "Entity_Vendor",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "RelatedNode",
+                        "label": "RelatedNode",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "RelatedNode_Url",
+                        "label": "RelatedNode_Url",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_951c9cce-7c79-4dc5-939e-404a6b92f456",
+                  "label": "Count",
+                  "isActive": true,
+                  "width": 110,
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Alert Count"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": ""
+                    }
+                  }
+                },
+                {
+                  "id": "column_3ecee52f-fc20-4f99-9e3d-c42f72e962aa",
+                  "label": "Name",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "AlertName",
+                        "link": "AlertEdit_URL"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_79c86178-cd0d-4275-a22f-f4bbab31e57f",
+                  "label": "Object",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": null,
+                        "vendor": "Entity_Vendor",
+                        "link": "Entity_URL",
+                        "value": "Entity"
+                      },
+                      "iconFormat": "vendor",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_f4508922-37b9-49ff-9c36-ad8b000d1fbd",
+                  "label": "Related Node",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "RelatedNode",
+                        "link": "RelatedNode_Url"
+                      }
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_951c9cce-7c79-4dc5-939e-404a6b92f456",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true
+            }
+          }
+        }
+      },
+      "subtitle": "Last 30 Days",
+      "description": "Most frequently triggered alerts by object and related object.  Useful for spotting systems which cause alert floods.",
+      "unique_key": "c08e0a6d-062f-42ac-9be2-2f0c3946583c",
+      "name": "Most Frequent Alerts by Device",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Most Triggered Alerts",
+            "subtitle": "Last 30 Days",
+            "url": "",
+            "description": "Count of the most triggered alerts in the last 30 days",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT([History].AlertHistoryID) AS [Trigger Count]\n     , [History].AlertObjects.AlertConfigurations.Name AS [Alert_Name]\n     , CONCAT( '/Orion/Alerts/Add/Default.aspx?AlertWizardGuid=', [History].AlertObjects.AlertConfigurations.AlertRefID, '&AlertID=', [History].AlertObjects.AlertConfigurations.AlertID ) AS [AlertEdit_URL]\n     , [History].AlertObjects.AlertConfigurations.Severity AS [Alert_Severity]\n     , [History].AlertObjects.AlertConfigurations.Frequency AS [Frequency]\nFROM Orion.AlertHistory AS [History]\nWHERE [History].EventType = 0\n  AND [History].Message <> 'Node deleted'\n  AND [History].AlertObjects.EntityCaption IS NOT NULL\n  AND [History].AlertObjects.RelatedNodeCaption IS NOT NULL\n  AND [History].TimeStamp >= GETDATE() - 30\nGROUP BY [History].AlertObjects.AlertConfigurations.AlertID",
+                "dataFields": [
+                  {
+                    "id": "Trigger Count",
+                    "label": "Trigger Count",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Alert_Name",
+                    "label": "Alert_Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "AlertEdit_URL",
+                    "label": "AlertEdit_URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Alert_Severity",
+                    "label": "Alert_Severity",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Frequency",
+                    "label": "Frequency",
+                    "dataType": "System.Int64"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT([History].AlertHistoryID) AS [Trigger Count]\n     , [History].AlertObjects.AlertConfigurations.Name AS [Alert_Name]\n     , CONCAT( '/Orion/Alerts/Add/Default.aspx?AlertWizardGuid=', [History].AlertObjects.AlertConfigurations.AlertRefID, '&AlertID=', [History].AlertObjects.AlertConfigurations.AlertID ) AS [AlertEdit_URL]\n     , [History].AlertObjects.AlertConfigurations.Severity AS [Alert_Severity]\n     , [History].AlertObjects.AlertConfigurations.Frequency AS [Frequency]\nFROM Orion.AlertHistory AS [History]\nWHERE [History].EventType = 0\n  AND [History].Message <> 'Node deleted'\n  AND [History].AlertObjects.EntityCaption IS NOT NULL\n  AND [History].AlertObjects.RelatedNodeCaption IS NOT NULL\n  AND [History].TimeStamp >= GETDATE() - 30\nGROUP BY [History].AlertObjects.AlertConfigurations.AlertID",
+                    "dataFields": [
+                      {
+                        "id": "Trigger Count",
+                        "label": "Trigger Count",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Alert_Name",
+                        "label": "Alert_Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "AlertEdit_URL",
+                        "label": "AlertEdit_URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Alert_Severity",
+                        "label": "Alert_Severity",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Frequency",
+                        "label": "Frequency",
+                        "dataType": "System.Int64"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_785b9f72-7517-49e0-8cd2-944eceaf9f93",
+                  "label": "Count",
+                  "isActive": true,
+                  "width": 75,
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Trigger Count"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": ""
+                    }
+                  }
+                },
+                {
+                  "id": "column_a05ebb06-2530-4e29-9906-7bbc875d5d5a",
+                  "label": "Severity",
+                  "isActive": true,
+                  "width": 75,
+                  "formatter": {
+                    "componentType": "SeverityFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Alert_Severity"
+                      },
+                      "visualization": "iconWithLabel"
+                    }
+                  }
+                },
+                {
+                  "id": "column_8a099bcf-7fac-449e-ad18-6ac3aa575391",
+                  "label": "Name",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Alert_Name",
+                        "link": "AlertEdit_URL"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_368dd207-23bd-4077-806a-2ac12243362d",
+                  "label": "Frequency",
+                  "isActive": true,
+                  "width": 70,
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Frequency"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": "s"
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_785b9f72-7517-49e0-8cd2-944eceaf9f93",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true
+            }
+          }
+        }
+      },
+      "subtitle": "Last 30 Days",
+      "description": "Count of the most triggered alerts in the last 30 days",
+      "unique_key": "19ab5a40-1d58-4f75-b905-275f8fe0ea94",
+      "name": "Most Triggered Alerts",
+      "private": false
+    }
+  ],
+  "remove": null
+}
