@@ -4,7 +4,7 @@
     {
       "widgets": [
         {
-          "unique_key": "a778b0f4-f64f-4397-9789-01e90d38c7c1",
+          "unique_key": "e5a0311f-018a-467c-985c-e9a90d582097",
           "location": {
             "x": 6,
             "y": 0,
@@ -14,7 +14,7 @@
           "reference": false
         },
         {
-          "unique_key": "8c021a3a-b1ea-436f-89c3-13c3d0a67f91",
+          "unique_key": "67314c82-0332-41fb-85de-cda8e804ce97",
           "location": {
             "x": 6,
             "y": 2,
@@ -24,7 +24,7 @@
           "reference": false
         },
         {
-          "unique_key": "3a66bb1e-ebd9-494a-9b3c-884cc8361a02",
+          "unique_key": "2282a77d-bbce-4a5d-948b-41b992597b80",
           "location": {
             "x": 0,
             "y": 0,
@@ -34,7 +34,7 @@
           "reference": false
         },
         {
-          "unique_key": "7773b5cd-963c-4724-8cf6-3b891014bfbe",
+          "unique_key": "c38b0285-8d64-483b-9b11-c41eac2f44e9",
           "location": {
             "x": 0,
             "y": 2,
@@ -45,7 +45,7 @@
         }
       ],
       "parent": null,
-      "unique_key": "c99a3f1e-2aa9-410a-b230-2cdb6ffd76d4",
+      "unique_key": "38899432-7bb8-4227-8123-6ed403893368",
       "name": "Overall Status Breakdown",
       "private": null
     }
@@ -69,7 +69,7 @@
             "dataSource": {
               "providerId": "TableSwqlDatasourceService",
               "properties": {
-                "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 2",
+                "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.VendorInfo.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 2",
                 "dataFields": [
                   {
                     "id": "Node Name",
@@ -129,7 +129,7 @@
               "properties": {
                 "dataSource": {
                   "properties": {
-                    "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 2",
+                    "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.VendorInfo.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 2",
                     "dataFields": [
                       {
                         "id": "Node Name",
@@ -323,7 +323,7 @@
       },
       "subtitle": "",
       "description": "",
-      "unique_key": "a778b0f4-f64f-4397-9789-01e90d38c7c1",
+      "unique_key": "e5a0311f-018a-467c-985c-e9a90d582097",
       "name": "Down",
       "private": false
     },
@@ -345,7 +345,7 @@
             "dataSource": {
               "providerId": "TableSwqlDatasourceService",
               "properties": {
-                "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 3",
+                "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.VendorInfo.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 3",
                 "dataFields": [
                   {
                     "id": "Node Name",
@@ -405,7 +405,7 @@
               "properties": {
                 "dataSource": {
                   "properties": {
-                    "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 3",
+                    "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.VendorInfo.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 3",
                     "dataFields": [
                       {
                         "id": "Node Name",
@@ -586,6 +586,7 @@
                 }
               ],
               "sorterConfiguration": {
+                "sortBy": "",
                 "descendantSorting": ""
               },
               "hasVirtualScroll": true,
@@ -598,7 +599,7 @@
       },
       "subtitle": "",
       "description": "",
-      "unique_key": "8c021a3a-b1ea-436f-89c3-13c3d0a67f91",
+      "unique_key": "67314c82-0332-41fb-85de-cda8e804ce97",
       "name": "Warning",
       "private": false
     },
@@ -620,7 +621,7 @@
             "dataSource": {
               "providerId": "TableSwqlDatasourceService",
               "properties": {
-                "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 1",
+                "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.VendorInfo.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 1",
                 "dataFields": [
                   {
                     "id": "Node Name",
@@ -680,7 +681,7 @@
               "properties": {
                 "dataSource": {
                   "properties": {
-                    "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 1",
+                    "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.VendorInfo.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 1",
                     "dataFields": [
                       {
                         "id": "Node Name",
@@ -872,7 +873,7 @@
       },
       "subtitle": "",
       "description": "",
-      "unique_key": "3a66bb1e-ebd9-494a-9b3c-884cc8361a02",
+      "unique_key": "2282a77d-bbce-4a5d-948b-41b992597b80",
       "name": "Up",
       "private": false
     },
@@ -894,7 +895,7 @@
             "dataSource": {
               "providerId": "TableSwqlDatasourceService",
               "properties": {
-                "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 14",
+                "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.VendorInfo.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 14",
                 "dataFields": [
                   {
                     "id": "Node Name",
@@ -954,7 +955,7 @@
               "properties": {
                 "dataSource": {
                   "properties": {
-                    "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 14",
+                    "swql": "SELECT n.Caption AS [Node Name]\n\t, n.Status\n\t, n.StatusDescription AS [Status Description]\n\t, n.DetailsURL AS [Node Details URL]\n\t, n.MachineType AS [Vendor Name]\n\t, n.VendorInfo.Icon AS [System Vendor Icon]\n\t, n.CPULoad AS [CPULoad]\n\t, n.ResponseTime AS [Response Time]\n\t, n.PercentMemoryUsed AS [Memory Usge]\n\t, n.PercentLoss AS [Packet Loss]\nFROM Orion.Nodes n\nWHERE n.Status = 14",
                     "dataFields": [
                       {
                         "id": "Node Name",
@@ -1148,7 +1149,7 @@
       },
       "subtitle": "",
       "description": "",
-      "unique_key": "7773b5cd-963c-4724-8cf6-3b891014bfbe",
+      "unique_key": "c38b0285-8d64-483b-9b11-c41eac2f44e9",
       "name": "Critical",
       "private": false
     }
