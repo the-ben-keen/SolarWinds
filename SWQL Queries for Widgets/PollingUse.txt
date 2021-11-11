@@ -1,0 +1,10 @@
+---This SWQL can be used to set up a KPI Widget.  Each query will be used seperatly resulting into two tiles.---
+
+SELECT 
+	max(0+propertyvalue) as NPMUsage 
+FROM orion.engineproperties 
+WHERE propertyname = 'Orion.Standard.Polling'
+
+SELECT max(0+propertyvalue) AS [SAMUsage]
+FROM orion.engineproperties
+WHERE propertyname = 'APM.Components.Polling'

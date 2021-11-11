@@ -1,0 +1,41 @@
+---This SWQL query can be used to create a table widget that displays the vital stats for all pollers.---
+
+SELECT
+---names server role within SolarWinds Environment---
+CASE
+	WHEN serv.HostName IS NOT null THEN serv.ServerType
+	WHEN e.ip IS NOT null THEN e.ServerType
+	WHEN env.SQLServer IS NOT null THEN 'SQL Database'
+	WHEN dpa.DisplayName IS NOT null THEN 'DPA Server'
+	WHEN vm.settingvalue IS NOT null THEN 'VMAN'
+	WHEN pm.settingvalue IS NOT null THEN 'Patch Manager'
+	ELSE ''
+END AS [Server Type]
+	, caption AS [Server Name]
+	, n.Status AS [Server Status]
+	, n.detailsurl as [_linkfor_Server Name]
+	, IP_address
+	, CPULOAD AS [CPUStatusIcon]
+	, n.PercentMemoryUsed AS [MemoryUsed]
+	, n.ResponseTime
+	, n.PercentLoss AS [Packets Loss]
+
+FROM orion.nodes n   
+	LEFT JOIN orion.OrionServers serv on n.nodeid like serv.nodeid --or serv.hostname like n.caption  
+	LEFT JOIN orion.engines e on n.IP_Address = e.IP  
+	LEFT JOIN orion.Environment env on env.SqlServer like n.Caption + '%' or n.caption like env.sqlserver + '%' or env.sqlserver like n.ip_address+',%\%' or env.sqlserver like n.ip_address  
+	LEFT JOIN orion.dpa.DpaServer dpa on dpa.displayname like n.Caption+'%' or dpa.displayname like '%'+n.IP_Address+'%'  
+	LEFT JOIN orion.WebSettings pm on pm.SettingName='PM-DataGridServerHost' and pm.SettingValue = n.IP  
+	LEFT JOIN orion.WebSettings vm on vm.SettingName='VManAddress' and vm.SettingValue = n.IP_Address  
+	LEFT JOIN (SELECT count(NodeID) as [CPU Count], nodeid  
+FROM Orion.CPUMultiLoadCurrent  
+
+GROUP BY nodeid) cpu on cpu.nodeid=n.nodeid  
+  
+WHERE 
+	serv.HostName is not null 
+	OR e.ip is not null 
+	OR env.SqlServer is not null 
+	OR dpa.DisplayName is not null 
+	OR vm.settingvalue is not null 
+	OR pm.settingvalue is not null

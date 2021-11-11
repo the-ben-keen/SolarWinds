@@ -1,0 +1,7 @@
+---This query can be used to create a Pie Chart widget to show the overall status of all nodes in the environment---
+
+SELECT COUNT ([N].NodeID) AS Quanity
+    , [N].Status AS [Node Status]
+FROM Orion.Nodes AS [N]
+GROUP BY [N].Status
+ORDER BY [N].Status

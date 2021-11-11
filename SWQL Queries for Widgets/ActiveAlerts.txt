@@ -1,0 +1,48 @@
+SELECT [AlertObjects].AlertConfigurations.Name AS [Name]
+	,'/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:' + TOSTRING([AlertObjects].AlertObjectID) AS [Name_URL]
+	,[AlertObjects].AlertConfigurations.Severity AS [Name_Severity]
+	,[AlertObjects].EntityCaption AS [Object]
+	,[AlertObjects].Node.Status AS [Object_Status]
+,[AlertObjects].EntitYDetailsUrl AS [Object_URL]
+	,CASE 
+		WHEN [AlertObjects].RelatedNodeCaption = EntityCaption
+			THEN '[Self]'
+		ELSE [AlertObjects].RelatedNodeCaption
+		END AS [Related Node]
+	,[AlertObjects].RelatedNodeDetailsURL AS [Related Node_URL]
+	,[AlertObjects].Node.Status AS [Related Node_Status]
+	,TOSTRING(TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime)) AS [Time]
+	,TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime) AS [Time_SORT]
+	,CASE 
+		WHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 1440 -- More than 1 Day (1440 minutes)
+			THEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 1440.0, 1)) + ' Days')
+		WHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 60  -- More than 1 Hour (60 minutes)
+			THEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 60.0, 1)) + ' Hours')
+		ELSE (TOSTRING(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE())) + ' Minutes')
+		END AS [Active]
+	,CASE
+        WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 7 -- More than 7 Day (1440 minutes)
+            THEN 14
+		 WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) < 2 -- Less than 2 Day
+		 	THEN 1
+        ELSE 3
+        END AS [ActiveIcon]
+	     , CASE
+         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL
+           THEN 'Unacknowledged'
+         ELSE CONCAT([AlertObjects].AlertActive.AcknowledgedBy, ' (', TOLOCAL([AlertObjects].AlertActive.AcknowledgedDateTime), ')')
+       END AS [Acknowledge]
+	, CASE
+         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL
+           THEN CONCAT('/Orion/NetPerfMon/AckAlert.aspx?AlertDefID=', [AlertObjects].AlertObjectID)
+         ELSE CONCAT('/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:', [AlertObjects].AlertObjectID)
+       END AS [Acknowledge_URL]
+FROM Orion.AlertObjects AS [AlertObjects]
+-- Mandatory JOINS needed if you want to filter via nodes custom properties
+--LEFT JOIN Orion.NodesCustomProperties AS [NodeCP]
+--  ON [AlertObjects].RelatedNodeID = NodeCP.NodeID
+--LEFT JOIN Orion.Nodes AS [Nodes]
+--  ON [AlertObjects].RelatedNodeID = Nodes.NodeID
+WHERE [AlertObjects].AlertActive.AlertActiveID > 0
+-- AND [AlertObjects].Node.CustomProperties.[CP_Name] = 'CP_Value'
+GROUP BY [AlertObjects].AlertActive.AlertActiveID
