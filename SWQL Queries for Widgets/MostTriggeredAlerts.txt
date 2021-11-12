@@ -1,0 +1,12 @@
+SELECT COUNT([History].AlertHistoryID) AS [Trigger Count]
+     , [History].AlertObjects.AlertConfigurations.Name AS [Alert_Name]
+     , CONCAT( '/Orion/Alerts/Add/Default.aspx?AlertWizardGuid=', [History].AlertObjects.AlertConfigurations.AlertRefID, '&AlertID=', [History].AlertObjects.AlertConfigurations.AlertID ) AS [AlertEdit_URL]
+     , [History].AlertObjects.AlertConfigurations.Severity AS [Alert_Severity]
+     , [History].AlertObjects.AlertConfigurations.Frequency AS [Frequency]
+FROM Orion.AlertHistory AS [History]
+WHERE [History].EventType = 0
+  AND [History].Message <> 'Node deleted'
+  AND [History].AlertObjects.EntityCaption IS NOT NULL
+  AND [History].AlertObjects.RelatedNodeCaption IS NOT NULL
+  AND [History].TimeStamp >= GETDATE() - 30
+GROUP BY [History].AlertObjects.AlertConfigurations.AlertID
