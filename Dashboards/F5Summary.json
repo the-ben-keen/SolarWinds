@@ -1,0 +1,1709 @@
+{
+  "version": 1,
+  "dashboards": [
+    {
+      "widgets": [
+        {
+          "unique_key": "5409ebde-d663-46e9-bec7-a54fa423f45b",
+          "location": {
+            "x": 0,
+            "y": 0,
+            "cols": 7,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "b9e01641-eadf-4c8f-abe7-2c8cd09b4d6b",
+          "location": {
+            "x": 7,
+            "y": 2,
+            "cols": 5,
+            "rows": 3
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "f4c74926-35af-4044-b921-dc2468e81c58",
+          "location": {
+            "x": 7,
+            "y": 0,
+            "cols": 5,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "3eabe917-73ac-4930-ba23-2abe5ab66555",
+          "location": {
+            "x": 0,
+            "y": 5,
+            "cols": 7,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "fe2b6ff1-0fb7-4dc4-bc92-fb592511141d",
+          "location": {
+            "x": 7,
+            "y": 5,
+            "cols": 5,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "0a4ebd0d-6679-4cee-825e-e47e386bb523",
+          "location": {
+            "x": 0,
+            "y": 2,
+            "cols": 7,
+            "rows": 3
+          },
+          "reference": false
+        }
+      ],
+      "parent": null,
+      "unique_key": "43e12582-b325-464c-bb8e-00f214ac4024",
+      "name": "F5 Summary",
+      "private": null
+    }
+  ],
+  "widgets": [
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Inventory",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT [F5Device].Node.Caption\n     , [F5Device].ProductName\n     , [F5Device].ProductVersion + '(' + [F5Device].ProductBuild + ')' AS [CompleteVersion] \n     , [F5Device].IsInMaintenanceMode AS [MaintenanceStatus]\n, CASE IsNull([F5Device].IsInMaintenanceMode, 'False')\n WHEN 'True' THEN 2\nELSE 1\nEND AS [MaintenanceStatusIcon] \n, CASE IsNull([F5Device].IsInMaintenanceMode, 'No')\n     WHEN 'True' THEN 'Yes'\nELSE 'No'\nEND AS [MaintenanceStatusEng]\n     , [F5Device].FailoverStatus\n     , [F5Device].FailoverStatusDescription\n\t , CASE IsNull([F5Device].FailoverStatusDescription, 'Unknown')\n\t WHEN 'Active' THEN 1\n\t ELSE 3\n\t END AS [FailoverIcon]\n     , [F5Device].FailoverStatusColor\n     , [F5Device].SyncStatus\n, CASE IsNull([F5Device].SyncStatus, '2')\nWHEN 3 THEN 1\nELSE 1\nEND AS [SyncIcon]\n     , [F5Device].SyncStatusDescription\n     , [F5Device].SyncStatusColor\n     , [F5Device].Connections\n     , [F5Device].ConnectionsNew\n     , [F5Device].ConnectionsSSL\n     , [F5Device].Description\n     , [F5Device].DetailsUrl AS [F5DeviceDetailsUrl]\n     , [F5Device].Node.Status AS [NodeStatus]\n     , [F5Device].Node.DetailsUrl AS [NodeDetailsURL]\nFROM Orion.F5.System.Device AS [F5Device]",
+                "dataFields": [
+                  {
+                    "id": "Caption",
+                    "label": "Caption",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "ProductName",
+                    "label": "ProductName",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "CompleteVersion",
+                    "label": "CompleteVersion",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "MaintenanceStatus",
+                    "label": "MaintenanceStatus",
+                    "dataType": "System.Boolean"
+                  },
+                  {
+                    "id": "MaintenanceStatusIcon",
+                    "label": "MaintenanceStatusIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "MaintenanceStatusEng",
+                    "label": "MaintenanceStatusEng",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "FailoverStatus",
+                    "label": "FailoverStatus",
+                    "dataType": "System.Byte"
+                  },
+                  {
+                    "id": "FailoverStatusDescription",
+                    "label": "FailoverStatusDescription",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "FailoverIcon",
+                    "label": "FailoverIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "FailoverStatusColor",
+                    "label": "FailoverStatusColor",
+                    "dataType": "System.Byte"
+                  },
+                  {
+                    "id": "SyncStatus",
+                    "label": "SyncStatus",
+                    "dataType": "System.Byte"
+                  },
+                  {
+                    "id": "SyncIcon",
+                    "label": "SyncIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "SyncStatusDescription",
+                    "label": "SyncStatusDescription",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "SyncStatusColor",
+                    "label": "SyncStatusColor",
+                    "dataType": "System.Byte"
+                  },
+                  {
+                    "id": "Connections",
+                    "label": "Connections",
+                    "dataType": "System.Single"
+                  },
+                  {
+                    "id": "ConnectionsNew",
+                    "label": "ConnectionsNew",
+                    "dataType": "System.Single"
+                  },
+                  {
+                    "id": "ConnectionsSSL",
+                    "label": "ConnectionsSSL",
+                    "dataType": "System.Single"
+                  },
+                  {
+                    "id": "Description",
+                    "label": "Description",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "F5DeviceDetailsUrl",
+                    "label": "F5DeviceDetailsUrl",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "NodeStatus",
+                    "label": "NodeStatus",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "NodeDetailsURL",
+                    "label": "NodeDetailsURL",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT [F5Device].Node.Caption\n     , [F5Device].ProductName\n     , [F5Device].ProductVersion + '(' + [F5Device].ProductBuild + ')' AS [CompleteVersion] \n     , [F5Device].IsInMaintenanceMode AS [MaintenanceStatus]\n, CASE IsNull([F5Device].IsInMaintenanceMode, 'False')\n WHEN 'True' THEN 2\nELSE 1\nEND AS [MaintenanceStatusIcon] \n, CASE IsNull([F5Device].IsInMaintenanceMode, 'No')\n     WHEN 'True' THEN 'Yes'\nELSE 'No'\nEND AS [MaintenanceStatusEng]\n     , [F5Device].FailoverStatus\n     , [F5Device].FailoverStatusDescription\n\t , CASE IsNull([F5Device].FailoverStatusDescription, 'Unknown')\n\t WHEN 'Active' THEN 1\n\t ELSE 3\n\t END AS [FailoverIcon]\n     , [F5Device].FailoverStatusColor\n     , [F5Device].SyncStatus\n, CASE IsNull([F5Device].SyncStatus, '2')\nWHEN 3 THEN 1\nELSE 1\nEND AS [SyncIcon]\n     , [F5Device].SyncStatusDescription\n     , [F5Device].SyncStatusColor\n     , [F5Device].Connections\n     , [F5Device].ConnectionsNew\n     , [F5Device].ConnectionsSSL\n     , [F5Device].Description\n     , [F5Device].DetailsUrl AS [F5DeviceDetailsUrl]\n     , [F5Device].Node.Status AS [NodeStatus]\n     , [F5Device].Node.DetailsUrl AS [NodeDetailsURL]\nFROM Orion.F5.System.Device AS [F5Device]",
+                    "dataFields": [
+                      {
+                        "id": "Caption",
+                        "label": "Caption",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "ProductName",
+                        "label": "ProductName",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "CompleteVersion",
+                        "label": "CompleteVersion",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "MaintenanceStatus",
+                        "label": "MaintenanceStatus",
+                        "dataType": "System.Boolean"
+                      },
+                      {
+                        "id": "MaintenanceStatusIcon",
+                        "label": "MaintenanceStatusIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "MaintenanceStatusEng",
+                        "label": "MaintenanceStatusEng",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "FailoverStatus",
+                        "label": "FailoverStatus",
+                        "dataType": "System.Byte"
+                      },
+                      {
+                        "id": "FailoverStatusDescription",
+                        "label": "FailoverStatusDescription",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "FailoverIcon",
+                        "label": "FailoverIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "FailoverStatusColor",
+                        "label": "FailoverStatusColor",
+                        "dataType": "System.Byte"
+                      },
+                      {
+                        "id": "SyncStatus",
+                        "label": "SyncStatus",
+                        "dataType": "System.Byte"
+                      },
+                      {
+                        "id": "SyncIcon",
+                        "label": "SyncIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "SyncStatusDescription",
+                        "label": "SyncStatusDescription",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "SyncStatusColor",
+                        "label": "SyncStatusColor",
+                        "dataType": "System.Byte"
+                      },
+                      {
+                        "id": "Connections",
+                        "label": "Connections",
+                        "dataType": "System.Single"
+                      },
+                      {
+                        "id": "ConnectionsNew",
+                        "label": "ConnectionsNew",
+                        "dataType": "System.Single"
+                      },
+                      {
+                        "id": "ConnectionsSSL",
+                        "label": "ConnectionsSSL",
+                        "dataType": "System.Single"
+                      },
+                      {
+                        "id": "Description",
+                        "label": "Description",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "F5DeviceDetailsUrl",
+                        "label": "F5DeviceDetailsUrl",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "NodeStatus",
+                        "label": "NodeStatus",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "NodeDetailsURL",
+                        "label": "NodeDetailsURL",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_aef439dd-8586-4938-9ae9-e6e6814da959",
+                  "label": "Device Name",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "NodeStatus",
+                        "vendor": null,
+                        "link": "F5DeviceDetailsUrl",
+                        "value": "Caption"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_b209948d-7966-4e62-8326-9618b92a8d21",
+                  "label": "Product",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "ProductName"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_f00178a3-7887-4bf5-97ac-8e92f967359e",
+                  "label": "Complete Version",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "CompleteVersion"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_52cb7d21-7517-4653-aa28-fc8b95d41761",
+                  "label": "Is In Maintenance",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "MaintenanceStatusIcon",
+                        "vendor": null,
+                        "link": "MaintenanceStatusEng",
+                        "value": "MaintenanceStatusEng"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_313530da-9aa5-473a-bb6e-3473c5feff1c",
+                  "label": "Sync Status",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "SyncIcon",
+                        "vendor": null,
+                        "link": "SyncStatusDescription",
+                        "value": "SyncStatusDescription"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_0b619b82-69e8-4bc8-a1e0-e2abb3563bf8",
+                  "label": "Number of Connections",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Connections"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_efd33a7e-82b9-4aa9-b6ac-8c06ad5d89a0",
+                  "label": "Number of SSL Connections",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "ConnectionsSSL"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_8f23924e-0b5c-480c-8567-7df8b998c186",
+                  "label": "Failover Status",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "FailoverIcon",
+                        "vendor": null,
+                        "link": "FailoverStatusDescription",
+                        "value": "FailoverStatusDescription"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "5409ebde-d663-46e9-bec7-a54fa423f45b",
+      "name": "Inventory",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Audit Events",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT TOP 10 ObservationTimestamp AS [TIME]\n    , [NODE].Caption AS [DEVICE NAME]\n    , [NODE].DetailsUrl AS [LinkForDevice]\n    , AuditEventMessage AS [LogMessage]\n    , [EVENTS].DetailsUrl AS  [LogMessageLink]\nFROM Orion.AuditingEvents [EVENTS]\n    INNER JOIN orion.nodes [NODE] \n        ON [NODE].nodeID = [EVENTS].NetworkNode\n    INNER JOIN orion.AuditingActionTypes a\n        on a.ActionTypeID = [EVENTS].ActionTypeID\nWHERE [NODE].Vendor = 'F5 Networks, Inc.'\nORDER BY auditeventid DESC",
+                "dataFields": [
+                  {
+                    "id": "TIME",
+                    "label": "TIME",
+                    "dataType": "System.DateTime"
+                  },
+                  {
+                    "id": "DEVICE NAME",
+                    "label": "DEVICE NAME",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "LinkForDevice",
+                    "label": "LinkForDevice",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "LogMessage",
+                    "label": "LogMessage",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "LogMessageLink",
+                    "label": "LogMessageLink",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT TOP 10 ObservationTimestamp AS [TIME]\n    , [NODE].Caption AS [DEVICE NAME]\n    , [NODE].DetailsUrl AS [LinkForDevice]\n    , AuditEventMessage AS [LogMessage]\n    , [EVENTS].DetailsUrl AS  [LogMessageLink]\nFROM Orion.AuditingEvents [EVENTS]\n    INNER JOIN orion.nodes [NODE] \n        ON [NODE].nodeID = [EVENTS].NetworkNode\n    INNER JOIN orion.AuditingActionTypes a\n        on a.ActionTypeID = [EVENTS].ActionTypeID\nWHERE [NODE].Vendor = 'F5 Networks, Inc.'\nORDER BY auditeventid DESC",
+                    "dataFields": [
+                      {
+                        "id": "TIME",
+                        "label": "TIME",
+                        "dataType": "System.DateTime"
+                      },
+                      {
+                        "id": "DEVICE NAME",
+                        "label": "DEVICE NAME",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "LinkForDevice",
+                        "label": "LinkForDevice",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "LogMessage",
+                        "label": "LogMessage",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "LogMessageLink",
+                        "label": "LogMessageLink",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_d34caf56-25ad-4829-be0e-6fd5c8e5c65c",
+                  "label": "Device Name",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "DEVICE NAME",
+                        "link": "LinkForDevice"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_6acea680-b7db-416d-83b5-1b4be514c10f",
+                  "label": "Log Message",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "LogMessage",
+                        "link": "LogMessageLink"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_c632ab1a-afc1-432c-a578-d1412cd1d101",
+                  "label": "Date/Time",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "DatetimeFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "TIME"
+                      },
+                      "option": 1,
+                      "replaceDate": true
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "b9e01641-eadf-4c8f-abe7-2c8cd09b4d6b",
+      "name": "Audit Events",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Active Alerts",
+            "subtitle": "All Current Active Alerts",
+            "url": "/orion/netperfmon/alerts.aspx",
+            "description": "All Active Alerts sorted by most recent trigger time with search",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT [AlertObjects].AlertConfigurations.Name AS [Name]\n\t,'/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:' + TOSTRING([AlertObjects].AlertObjectID) AS [Name_URL]\n\t,[AlertObjects].AlertConfigurations.Severity AS [Name_Severity]\n\t,[AlertObjects].EntityCaption AS [Object]\n\t,[AlertObjects].Node.Status AS [Object_Status]\n,[AlertObjects].EntitYDetailsUrl AS [Object_URL]\n\t,CASE \n\t\tWHEN [AlertObjects].RelatedNodeCaption = EntityCaption\n\t\t\tTHEN '[Self]'\n\t\tELSE [AlertObjects].RelatedNodeCaption\n\t\tEND AS [Related Node]\n\t,[AlertObjects].RelatedNodeDetailsURL AS [Related Node_URL]\n\t,[AlertObjects].Node.Status AS [Related Node_Status]\n\t,TOSTRING(TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime)) AS [Time]\n\t,TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime) AS [Time_SORT]\n\t,CASE \n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 1440 -- More than 1 Day (1440 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 1440.0, 1)) + ' Days')\n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 60  -- More than 1 Hour (60 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 60.0, 1)) + ' Hours')\n\t\tELSE (TOSTRING(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE())) + ' Minutes')\n\t\tEND AS [Active]\n\t,CASE\n        WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 7 -- More than 7 Day (1440 minutes)\n            THEN 14\n\t\t WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) < 2 -- Less than 2 Day\n\t\t \tTHEN 1\n        ELSE 3\n        END AS [ActiveIcon]\n\t     , CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN 'Unacknowledged'\n         ELSE CONCAT([AlertObjects].AlertActive.AcknowledgedBy, ' (', TOLOCAL([AlertObjects].AlertActive.AcknowledgedDateTime), ')')\n       END AS [Acknowledge]\n\t, CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN CONCAT('/Orion/NetPerfMon/AckAlert.aspx?AlertDefID=', [AlertObjects].AlertObjectID)\n         ELSE CONCAT('/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:', [AlertObjects].AlertObjectID)\n       END AS [Acknowledge_URL]\nFROM Orion.AlertObjects AS [AlertObjects]\n-- Mandatory JOINS needed if you want to filter via nodes custom properties\n--LEFT JOIN Orion.NodesCustomProperties AS [NodeCP]\n--  ON [AlertObjects].RelatedNodeID = NodeCP.NodeID\n--LEFT JOIN Orion.Nodes AS [Nodes]\n--  ON [AlertObjects].RelatedNodeID = Nodes.NodeID\nWHERE [AlertObjects].AlertActive.AlertActiveID > 0\n    AND [AlertObjects].Node.Vendor = 'F5 Networks, Inc'\n-- AND [AlertObjects].Node.CustomProperties.[CP_Name] = 'CP_Value'\nGROUP BY [AlertObjects].AlertActive.AlertActiveID",
+                "dataFields": [
+                  {
+                    "id": "Name",
+                    "label": "Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Name_URL",
+                    "label": "Name_URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Name_Severity",
+                    "label": "Name_Severity",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Object",
+                    "label": "Object",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Object_Status",
+                    "label": "Object_Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Object_URL",
+                    "label": "Object_URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Related Node",
+                    "label": "Related Node",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Related Node_URL",
+                    "label": "Related Node_URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Related Node_Status",
+                    "label": "Related Node_Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Time",
+                    "label": "Time",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Time_SORT",
+                    "label": "Time_SORT",
+                    "dataType": "System.DateTime"
+                  },
+                  {
+                    "id": "Active",
+                    "label": "Active",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "ActiveIcon",
+                    "label": "ActiveIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Acknowledge",
+                    "label": "Acknowledge",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Acknowledge_URL",
+                    "label": "Acknowledge_URL",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT [AlertObjects].AlertConfigurations.Name AS [Name]\n\t,'/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:' + TOSTRING([AlertObjects].AlertObjectID) AS [Name_URL]\n\t,[AlertObjects].AlertConfigurations.Severity AS [Name_Severity]\n\t,[AlertObjects].EntityCaption AS [Object]\n\t,[AlertObjects].Node.Status AS [Object_Status]\n,[AlertObjects].EntitYDetailsUrl AS [Object_URL]\n\t,CASE \n\t\tWHEN [AlertObjects].RelatedNodeCaption = EntityCaption\n\t\t\tTHEN '[Self]'\n\t\tELSE [AlertObjects].RelatedNodeCaption\n\t\tEND AS [Related Node]\n\t,[AlertObjects].RelatedNodeDetailsURL AS [Related Node_URL]\n\t,[AlertObjects].Node.Status AS [Related Node_Status]\n\t,TOSTRING(TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime)) AS [Time]\n\t,TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime) AS [Time_SORT]\n\t,CASE \n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 1440 -- More than 1 Day (1440 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 1440.0, 1)) + ' Days')\n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 60  -- More than 1 Hour (60 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 60.0, 1)) + ' Hours')\n\t\tELSE (TOSTRING(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE())) + ' Minutes')\n\t\tEND AS [Active]\n\t,CASE\n        WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 7 -- More than 7 Day (1440 minutes)\n            THEN 14\n\t\t WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) < 2 -- Less than 2 Day\n\t\t \tTHEN 1\n        ELSE 3\n        END AS [ActiveIcon]\n\t     , CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN 'Unacknowledged'\n         ELSE CONCAT([AlertObjects].AlertActive.AcknowledgedBy, ' (', TOLOCAL([AlertObjects].AlertActive.AcknowledgedDateTime), ')')\n       END AS [Acknowledge]\n\t, CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN CONCAT('/Orion/NetPerfMon/AckAlert.aspx?AlertDefID=', [AlertObjects].AlertObjectID)\n         ELSE CONCAT('/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:', [AlertObjects].AlertObjectID)\n       END AS [Acknowledge_URL]\nFROM Orion.AlertObjects AS [AlertObjects]\n-- Mandatory JOINS needed if you want to filter via nodes custom properties\n--LEFT JOIN Orion.NodesCustomProperties AS [NodeCP]\n--  ON [AlertObjects].RelatedNodeID = NodeCP.NodeID\n--LEFT JOIN Orion.Nodes AS [Nodes]\n--  ON [AlertObjects].RelatedNodeID = Nodes.NodeID\nWHERE [AlertObjects].AlertActive.AlertActiveID > 0\n    AND [AlertObjects].Node.Vendor = 'F5 Networks, Inc'\n-- AND [AlertObjects].Node.CustomProperties.[CP_Name] = 'CP_Value'\nGROUP BY [AlertObjects].AlertActive.AlertActiveID",
+                    "dataFields": [
+                      {
+                        "id": "Name",
+                        "label": "Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Name_URL",
+                        "label": "Name_URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Name_Severity",
+                        "label": "Name_Severity",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Object",
+                        "label": "Object",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Object_Status",
+                        "label": "Object_Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Object_URL",
+                        "label": "Object_URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Related Node",
+                        "label": "Related Node",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Related Node_URL",
+                        "label": "Related Node_URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Related Node_Status",
+                        "label": "Related Node_Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Time",
+                        "label": "Time",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Time_SORT",
+                        "label": "Time_SORT",
+                        "dataType": "System.DateTime"
+                      },
+                      {
+                        "id": "Active",
+                        "label": "Active",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "ActiveIcon",
+                        "label": "ActiveIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Acknowledge",
+                        "label": "Acknowledge",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Acknowledge_URL",
+                        "label": "Acknowledge_URL",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_d889a5eb-0974-4e14-8ea8-b7af4f2388b7",
+                  "label": "Severity",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "SeverityFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Name_Severity"
+                      },
+                      "visualization": "iconWithLabel"
+                    }
+                  }
+                },
+                {
+                  "id": "column_d480947f-52a8-49f6-9b0d-63e308cef296",
+                  "label": "Alert Name",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Name",
+                        "link": "Name_URL"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_a70f1623-afdd-4ba0-92da-185c26ed3372",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Object_Status",
+                        "vendor": null,
+                        "link": "Object_URL",
+                        "value": "Object"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Object"
+                },
+                {
+                  "id": "column_70f83ef3-e0f6-4ed5-9ca2-c2398df13849",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Related Node_Status",
+                        "vendor": null,
+                        "link": "Related Node_URL",
+                        "value": "Related Node"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Related Node"
+                },
+                {
+                  "id": "column_742e4002-a3c6-4de7-baa2-3ccbaf272324",
+                  "label": "Triggered Time",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Time"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_f3126cf5-8f3a-48c8-9d77-d4b3c8b27d95",
+                  "label": "Time Active",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "ActiveIcon",
+                        "vendor": null,
+                        "link": "Name_URL",
+                        "value": "Active"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_ea1cc932-af43-48ef-95c2-7341314e7aa6",
+                  "label": "Acknowledge Status",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Acknowledge",
+                        "link": "Acknowledge_URL"
+                      }
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_742e4002-a3c6-4de7-baa2-3ccbaf272324",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "All Current Active Alerts",
+      "description": "All Active Alerts sorted by most recent trigger time with search",
+      "unique_key": "f4c74926-35af-4044-b921-dc2468e81c58",
+      "name": "Active Alerts",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Pools",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT [F5Device].Caption AS [DeviceName] \n\t, [F5Device].DetailsUrl AS [DeviceLink]\n\t, [F5Device].Node.Status AS [DeviceStatusIcon]\n\t---Shorten Modules Name---\n\t, CASE IsNull ([F5Device].Modules.Name, 'Unknown')\n\t\tWHEN 'Local Traffic Manager' THEN 'LTM'\n\t\tWHEN 'Global Traffic Manager' THEN 'GTM'\n\t\tWHEN 'Link Controller' THEN 'Link Controller'\n\t\tWHEN 'Advanced Firewall Manager' THEN 'AFM'\n\t\tWHEN 'Access Policy Manager' THEN 'APM'\n\t\tWHEN 'Application Security Manger' THEN 'ASM'\n\t\tWHEN 'Application Visibility and Reporting' THEN 'AV&R'\n\t\tWHEN 'Policy Enforement Manager' THEN 'PEM' \n\t\tWHEN 'Application Security Manager' THEN 'ASM'\n\t\tWHEN 'Policy Enforcement Manager' THEN 'PCM'\n\tELSE ' ' \n\tEND AS [ModuleType] \n\t, [F5Device].Pools.ShortName AS [PoolName]\n\t, [F5Device].Pools.DetailsUrl AS [PoolURL]\n\t---Convert Pools Status to Orion Status for Dashboard---\n\t, CASE IsNull([F5Device].Pools.OrionStatus, 7)\n\t\tWHEN 0 THEN 0\n\t\tWHEN 1 THEN 1\n\t\tWHEN 2 THEN 2\n\t\tWHEN 3 THEN 3\n\t\tWHEN 4 THEN 4\n\t\tWHEN 5 THEN 5\n\t\tWHEN 6 THEN 6\n\t\tWHEN 8 THEN 8\n\t\tWHEN 9 THEN 9\n\t\tWHEN 10 THEN 10\n\t\tWHEN 11 THEN 11\n\t\tWHEN 12 THEN 12\n\t\tWHEN 14 THEN 14\n\tELSE 7\n\tEND AS [PoolStatusIcon]\n\t---Convert Enable Status to Orion Status for Dashboard---\n\t, CASE IsNull ([F5Device].Pools.Enabled, 7)\n\t\tWHEN 1 THEN 1\n\t\tWHEN 0 THEN 3\n\tELSE 14\n\tEND AS [EnabledStatusIcon]\n\t---Add Enable Yes/No---\n\t, CASE IsNull ([F5Device].Pools.Enabled, 7)\n\t\tWHEN 1 THEN 'Yes'\n\t\tWHEN 0 THEN 'No'\n\t\tELSE 'Unknown'\n\tEND AS [EnabledStatusDescription]\n\t, [F5Device].Pools.LBModeDescription AS [LBMode]\n\t, [F5Device].Pools.MemberCountTotal AS [TotalConnections]\n\t, [F5Device].Pools.MemberCountActual AS [ActualConnections]\n\t, [F5Device].Pools.MemberPercentActual AS [MemberPercent]\n        , [F5Device].Pools.F5StatusReason AS [StatusDetails]\nFROM Orion.F5.System.DEVICE AS [F5Device]\n\tWHERE [F5Device].Modules.Name IN ('Local Traffic Manager', 'Global Traffic Manager')",
+                "dataFields": [
+                  {
+                    "id": "DeviceName",
+                    "label": "DeviceName",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "DeviceLink",
+                    "label": "DeviceLink",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "DeviceStatusIcon",
+                    "label": "DeviceStatusIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "ModuleType",
+                    "label": "ModuleType",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "PoolName",
+                    "label": "PoolName",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "PoolURL",
+                    "label": "PoolURL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "PoolStatusIcon",
+                    "label": "PoolStatusIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "EnabledStatusIcon",
+                    "label": "EnabledStatusIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "EnabledStatusDescription",
+                    "label": "EnabledStatusDescription",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "LBMode",
+                    "label": "LBMode",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "TotalConnections",
+                    "label": "TotalConnections",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "ActualConnections",
+                    "label": "ActualConnections",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "MemberPercent",
+                    "label": "MemberPercent",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "StatusDetails",
+                    "label": "StatusDetails",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT [F5Device].Caption AS [DeviceName] \n\t, [F5Device].DetailsUrl AS [DeviceLink]\n\t, [F5Device].Node.Status AS [DeviceStatusIcon]\n\t---Shorten Modules Name---\n\t, CASE IsNull ([F5Device].Modules.Name, 'Unknown')\n\t\tWHEN 'Local Traffic Manager' THEN 'LTM'\n\t\tWHEN 'Global Traffic Manager' THEN 'GTM'\n\t\tWHEN 'Link Controller' THEN 'Link Controller'\n\t\tWHEN 'Advanced Firewall Manager' THEN 'AFM'\n\t\tWHEN 'Access Policy Manager' THEN 'APM'\n\t\tWHEN 'Application Security Manger' THEN 'ASM'\n\t\tWHEN 'Application Visibility and Reporting' THEN 'AV&R'\n\t\tWHEN 'Policy Enforement Manager' THEN 'PEM' \n\t\tWHEN 'Application Security Manager' THEN 'ASM'\n\t\tWHEN 'Policy Enforcement Manager' THEN 'PCM'\n\tELSE ' ' \n\tEND AS [ModuleType] \n\t, [F5Device].Pools.ShortName AS [PoolName]\n\t, [F5Device].Pools.DetailsUrl AS [PoolURL]\n\t---Convert Pools Status to Orion Status for Dashboard---\n\t, CASE IsNull([F5Device].Pools.OrionStatus, 7)\n\t\tWHEN 0 THEN 0\n\t\tWHEN 1 THEN 1\n\t\tWHEN 2 THEN 2\n\t\tWHEN 3 THEN 3\n\t\tWHEN 4 THEN 4\n\t\tWHEN 5 THEN 5\n\t\tWHEN 6 THEN 6\n\t\tWHEN 8 THEN 8\n\t\tWHEN 9 THEN 9\n\t\tWHEN 10 THEN 10\n\t\tWHEN 11 THEN 11\n\t\tWHEN 12 THEN 12\n\t\tWHEN 14 THEN 14\n\tELSE 7\n\tEND AS [PoolStatusIcon]\n\t---Convert Enable Status to Orion Status for Dashboard---\n\t, CASE IsNull ([F5Device].Pools.Enabled, 7)\n\t\tWHEN 1 THEN 1\n\t\tWHEN 0 THEN 3\n\tELSE 14\n\tEND AS [EnabledStatusIcon]\n\t---Add Enable Yes/No---\n\t, CASE IsNull ([F5Device].Pools.Enabled, 7)\n\t\tWHEN 1 THEN 'Yes'\n\t\tWHEN 0 THEN 'No'\n\t\tELSE 'Unknown'\n\tEND AS [EnabledStatusDescription]\n\t, [F5Device].Pools.LBModeDescription AS [LBMode]\n\t, [F5Device].Pools.MemberCountTotal AS [TotalConnections]\n\t, [F5Device].Pools.MemberCountActual AS [ActualConnections]\n\t, [F5Device].Pools.MemberPercentActual AS [MemberPercent]\n        , [F5Device].Pools.F5StatusReason AS [StatusDetails]\nFROM Orion.F5.System.DEVICE AS [F5Device]\n\tWHERE [F5Device].Modules.Name IN ('Local Traffic Manager', 'Global Traffic Manager')",
+                    "dataFields": [
+                      {
+                        "id": "DeviceName",
+                        "label": "DeviceName",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "DeviceLink",
+                        "label": "DeviceLink",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "DeviceStatusIcon",
+                        "label": "DeviceStatusIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "ModuleType",
+                        "label": "ModuleType",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "PoolName",
+                        "label": "PoolName",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "PoolURL",
+                        "label": "PoolURL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "PoolStatusIcon",
+                        "label": "PoolStatusIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "EnabledStatusIcon",
+                        "label": "EnabledStatusIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "EnabledStatusDescription",
+                        "label": "EnabledStatusDescription",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "LBMode",
+                        "label": "LBMode",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "TotalConnections",
+                        "label": "TotalConnections",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "ActualConnections",
+                        "label": "ActualConnections",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "MemberPercent",
+                        "label": "MemberPercent",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "StatusDetails",
+                        "label": "StatusDetails",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_5dd6f5a4-b36a-4770-b33c-1cecc011cbcb",
+                  "label": "Device Name",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "DeviceStatusIcon",
+                        "vendor": null,
+                        "link": "DeviceLink",
+                        "value": "DeviceName"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_c21c442b-3191-45d9-a369-897bd422bbd4",
+                  "label": "Type",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "PoolStatusIcon",
+                        "vendor": null,
+                        "link": "PoolURL",
+                        "value": "PoolName"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_437f66e2-cb8a-43b3-b5c1-6011b66668f6",
+                  "label": "Is Enabled",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "EnabledStatusIcon",
+                        "vendor": null,
+                        "link": "EnabledStatusDescription",
+                        "value": "EnabledStatusDescription"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_60ead322-9b38-41ea-8320-e5fb7f162688",
+                  "label": "LB Mode",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "LBMode"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_b09abdb6-2f4e-494e-b11a-54ca4c2bddf0",
+                  "label": "Total Connections Allowed",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "TotalConnections"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_33187cf6-b306-4c3b-91cb-942c14906a76",
+                  "label": "Active Connections",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "ActualConnections"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_6c89bdcc-b9e4-4630-9b4c-b6511787cd33",
+                  "label": "Status Details",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "StatusDetails"
+                      }
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "3eabe917-73ac-4930-ba23-2abe5ab66555",
+      "name": "Pools",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Pool Members",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT [F5Device].Caption AS [DeviceName] \n\t, [F5Device].DetailsUrl AS [DeviceLink]\n\t, [F5Device].Node.Status AS [DeviceStatusIcon]\n\t---Shorten Modules Name---\n\t, CASE IsNull ([F5Device].Modules.Name, 'Unknown')\n\t\tWHEN 'Local Traffic Manager' THEN 'LTM'\n\t\tWHEN 'Global Traffic Manager' THEN 'GTM'\n\t\tWHEN 'Link Controller' THEN 'Link Controller'\n\t\tWHEN 'Advanced Firewall Manager' THEN 'AFM'\n\t\tWHEN 'Access Policy Manager' THEN 'APM'\n\t\tWHEN 'Application Security Manger' THEN 'ASM'\n\t\tWHEN 'Application Visibility and Reporting' THEN 'AV&R'\n\t\tWHEN 'Policy Enforement Manager' THEN 'PEM' \n\t\tWHEN 'Application Security Manager' THEN 'ASM'\n\t\tWHEN 'Policy Enforcement Manager' THEN 'PCM'\n\tELSE ' ' \n\tEND AS [ModuleType] \n\t, [F5Device].Pools.ShortName AS [PoolName]\n\t, [F5Device].Pools.DetailsUrl AS [PoolURL]\n\t---Convert Pools Status to Orion Status for Dashboard---\n\t, CASE IsNull([F5Device].Pools.OrionStatus, 7)\n\t\tWHEN 0 THEN 0\n\t\tWHEN 1 THEN 1\n\t\tWHEN 2 THEN 2\n\t\tWHEN 3 THEN 3\n\t\tWHEN 4 THEN 4\n\t\tWHEN 5 THEN 5\n\t\tWHEN 6 THEN 6\n\t\tWHEN 8 THEN 8\n\t\tWHEN 9 THEN 9\n\t\tWHEN 10 THEN 10\n\t\tWHEN 11 THEN 11\n\t\tWHEN 12 THEN 12\n\t\tWHEN 14 THEN 14\n\tELSE 7\n\tEND AS [PoolStatusIcon]\n\t, [F5Device].Pools.PoolMembers.ShortName AS [MemberName]\n        , [F5Device].Pools.PoolMembers.DetailsURL AS [MemberURL]\n    , [F5Device].Pools.F5StatusReason AS [StatusDetails]\nFROM Orion.F5.System.DEVICE AS [F5Device]\n\tWHERE [F5Device].Modules.Name IN ('Local Traffic Manager', 'Global Traffic Manager')",
+                "dataFields": [
+                  {
+                    "id": "DeviceName",
+                    "label": "DeviceName",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "DeviceLink",
+                    "label": "DeviceLink",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "DeviceStatusIcon",
+                    "label": "DeviceStatusIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "ModuleType",
+                    "label": "ModuleType",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "PoolName",
+                    "label": "PoolName",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "PoolURL",
+                    "label": "PoolURL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "PoolStatusIcon",
+                    "label": "PoolStatusIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "MemberName",
+                    "label": "MemberName",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "MemberURL",
+                    "label": "MemberURL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "StatusDetails",
+                    "label": "StatusDetails",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT [F5Device].Caption AS [DeviceName] \n\t, [F5Device].DetailsUrl AS [DeviceLink]\n\t, [F5Device].Node.Status AS [DeviceStatusIcon]\n\t---Shorten Modules Name---\n\t, CASE IsNull ([F5Device].Modules.Name, 'Unknown')\n\t\tWHEN 'Local Traffic Manager' THEN 'LTM'\n\t\tWHEN 'Global Traffic Manager' THEN 'GTM'\n\t\tWHEN 'Link Controller' THEN 'Link Controller'\n\t\tWHEN 'Advanced Firewall Manager' THEN 'AFM'\n\t\tWHEN 'Access Policy Manager' THEN 'APM'\n\t\tWHEN 'Application Security Manger' THEN 'ASM'\n\t\tWHEN 'Application Visibility and Reporting' THEN 'AV&R'\n\t\tWHEN 'Policy Enforement Manager' THEN 'PEM' \n\t\tWHEN 'Application Security Manager' THEN 'ASM'\n\t\tWHEN 'Policy Enforcement Manager' THEN 'PCM'\n\tELSE ' ' \n\tEND AS [ModuleType] \n\t, [F5Device].Pools.ShortName AS [PoolName]\n\t, [F5Device].Pools.DetailsUrl AS [PoolURL]\n\t---Convert Pools Status to Orion Status for Dashboard---\n\t, CASE IsNull([F5Device].Pools.OrionStatus, 7)\n\t\tWHEN 0 THEN 0\n\t\tWHEN 1 THEN 1\n\t\tWHEN 2 THEN 2\n\t\tWHEN 3 THEN 3\n\t\tWHEN 4 THEN 4\n\t\tWHEN 5 THEN 5\n\t\tWHEN 6 THEN 6\n\t\tWHEN 8 THEN 8\n\t\tWHEN 9 THEN 9\n\t\tWHEN 10 THEN 10\n\t\tWHEN 11 THEN 11\n\t\tWHEN 12 THEN 12\n\t\tWHEN 14 THEN 14\n\tELSE 7\n\tEND AS [PoolStatusIcon]\n\t, [F5Device].Pools.PoolMembers.ShortName AS [MemberName]\n        , [F5Device].Pools.PoolMembers.DetailsURL AS [MemberURL]\n    , [F5Device].Pools.F5StatusReason AS [StatusDetails]\nFROM Orion.F5.System.DEVICE AS [F5Device]\n\tWHERE [F5Device].Modules.Name IN ('Local Traffic Manager', 'Global Traffic Manager')",
+                    "dataFields": [
+                      {
+                        "id": "DeviceName",
+                        "label": "DeviceName",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "DeviceLink",
+                        "label": "DeviceLink",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "DeviceStatusIcon",
+                        "label": "DeviceStatusIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "ModuleType",
+                        "label": "ModuleType",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "PoolName",
+                        "label": "PoolName",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "PoolURL",
+                        "label": "PoolURL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "PoolStatusIcon",
+                        "label": "PoolStatusIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "MemberName",
+                        "label": "MemberName",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "MemberURL",
+                        "label": "MemberURL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "StatusDetails",
+                        "label": "StatusDetails",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_594edf06-d97b-48c1-9ca2-b46133764126",
+                  "label": "Device Name",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "DeviceStatusIcon",
+                        "vendor": null,
+                        "link": "DeviceLink",
+                        "value": "DeviceName"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_c78f0481-7a2f-45f6-8a64-9d03b7f7725f",
+                  "label": "Type",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "ModuleType"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_9a87676c-66f1-4946-b879-0857efec4913",
+                  "label": "Pool Name",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "PoolStatusIcon",
+                        "vendor": null,
+                        "link": "PoolURL",
+                        "value": "PoolName"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_3eac1a35-f2a4-4715-aecb-f1e6552c3c69",
+                  "label": "Member Name",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "MemberName",
+                        "link": "MemberURL"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_1e692884-80b6-45ce-afc6-619999eae859",
+                  "label": "Status Details",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "StatusDetails"
+                      }
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "fe2b6ff1-0fb7-4dc4-bc92-fb592511141d",
+      "name": "Pool Members",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Virtual Servers",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT [F5Device].Caption AS [DeviceName] \n\t, [F5Device].DetailsUrl AS [DeviceLink]\n\t, [F5Device].Node.Status AS [DeviceStatusIcon]\n\t---Shorten Modules Name---\n\t, CASE IsNull ([F5Device].Modules.Name, 'Unknown')\n\t\tWHEN 'Local Traffic Manager' THEN 'LTM'\n\t\tWHEN 'Global Traffic Manager' THEN 'GTM'\n\t\tWHEN 'Link Controller' THEN 'Link Controller'\n\t\tWHEN 'Advanced Firewall Manager' THEN 'AFM'\n\t\tWHEN 'Access Policy Manager' THEN 'APM'\n\t\tWHEN 'Application Security Manger' THEN 'ASM'\n\t\tWHEN 'Application Visibility and Reporting' THEN 'AV&R'\n\t\tWHEN 'Policy Enforement Manager' THEN 'PEM' \n\t\tWHEN 'Application Security Manager' THEN 'ASM'\n\t\tWHEN 'Policy Enforcement Manager' THEN 'PCM'\n\tELSE ' ' \n\tEND AS [ModuleType] \n\t, [F5Device].VirtualServers.ShortName AS [VirtualServerName]\n\t, [F5Device].VirtualServers.DetailsURL AS [VirtaulServerLink]\n\t---F5 Status Conversion For Icon---\n\t, CASE IsNull ([F5Device].VirtualServers.OrionStatusDescription, 7)\n\t\tWHEN 'Unknown' THEN 12\n\t\tWHEN 'UP' THEN 1\n\t\tWHEN 'DOWN' THEN 2\n\t\tWHEN 'WARNING' THEN 3\n\t\tWHEN 'SHUTDOWN' THEN 4\n\t\tWHEN 'TESTING' THEN 5\n\t\tWHEN 'DORMANT' THEN 6\n\t\tWHEN 'NotPresent' THEN 7\n\t\tWHEN 'Unmanaged' THEN 9\n\t\tWHEN 'Critical' THEN 14\n\tELSE 12\n\tEND AS [VMStatusIcon]\n\t, [F5Device].VirtualServers.Port AS [Port]\n\t, [F5Device].VirtualServers.F5StatusReason AS [StatusDetails]\nFROM Orion.F5.System.DEVICE AS [F5Device]\n\tWHERE [F5Device].Modules.Name IN ('Local Traffic Manager', 'Global Traffic Manager')",
+                "dataFields": [
+                  {
+                    "id": "DeviceName",
+                    "label": "DeviceName",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "DeviceLink",
+                    "label": "DeviceLink",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "DeviceStatusIcon",
+                    "label": "DeviceStatusIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "ModuleType",
+                    "label": "ModuleType",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "VirtualServerName",
+                    "label": "VirtualServerName",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "VirtaulServerLink",
+                    "label": "VirtaulServerLink",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "VMStatusIcon",
+                    "label": "VMStatusIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Port",
+                    "label": "Port",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "StatusDetails",
+                    "label": "StatusDetails",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT [F5Device].Caption AS [DeviceName] \n\t, [F5Device].DetailsUrl AS [DeviceLink]\n\t, [F5Device].Node.Status AS [DeviceStatusIcon]\n\t---Shorten Modules Name---\n\t, CASE IsNull ([F5Device].Modules.Name, 'Unknown')\n\t\tWHEN 'Local Traffic Manager' THEN 'LTM'\n\t\tWHEN 'Global Traffic Manager' THEN 'GTM'\n\t\tWHEN 'Link Controller' THEN 'Link Controller'\n\t\tWHEN 'Advanced Firewall Manager' THEN 'AFM'\n\t\tWHEN 'Access Policy Manager' THEN 'APM'\n\t\tWHEN 'Application Security Manger' THEN 'ASM'\n\t\tWHEN 'Application Visibility and Reporting' THEN 'AV&R'\n\t\tWHEN 'Policy Enforement Manager' THEN 'PEM' \n\t\tWHEN 'Application Security Manager' THEN 'ASM'\n\t\tWHEN 'Policy Enforcement Manager' THEN 'PCM'\n\tELSE ' ' \n\tEND AS [ModuleType] \n\t, [F5Device].VirtualServers.ShortName AS [VirtualServerName]\n\t, [F5Device].VirtualServers.DetailsURL AS [VirtaulServerLink]\n\t---F5 Status Conversion For Icon---\n\t, CASE IsNull ([F5Device].VirtualServers.OrionStatusDescription, 7)\n\t\tWHEN 'Unknown' THEN 12\n\t\tWHEN 'UP' THEN 1\n\t\tWHEN 'DOWN' THEN 2\n\t\tWHEN 'WARNING' THEN 3\n\t\tWHEN 'SHUTDOWN' THEN 4\n\t\tWHEN 'TESTING' THEN 5\n\t\tWHEN 'DORMANT' THEN 6\n\t\tWHEN 'NotPresent' THEN 7\n\t\tWHEN 'Unmanaged' THEN 9\n\t\tWHEN 'Critical' THEN 14\n\tELSE 12\n\tEND AS [VMStatusIcon]\n\t, [F5Device].VirtualServers.Port AS [Port]\n\t, [F5Device].VirtualServers.F5StatusReason AS [StatusDetails]\nFROM Orion.F5.System.DEVICE AS [F5Device]\n\tWHERE [F5Device].Modules.Name IN ('Local Traffic Manager', 'Global Traffic Manager')",
+                    "dataFields": [
+                      {
+                        "id": "DeviceName",
+                        "label": "DeviceName",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "DeviceLink",
+                        "label": "DeviceLink",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "DeviceStatusIcon",
+                        "label": "DeviceStatusIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "ModuleType",
+                        "label": "ModuleType",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "VirtualServerName",
+                        "label": "VirtualServerName",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "VirtaulServerLink",
+                        "label": "VirtaulServerLink",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "VMStatusIcon",
+                        "label": "VMStatusIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Port",
+                        "label": "Port",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "StatusDetails",
+                        "label": "StatusDetails",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_093e4427-22fd-4c68-9d84-369fc850771b",
+                  "label": "Device Name",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "DeviceStatusIcon",
+                        "vendor": null,
+                        "link": "DeviceLink",
+                        "value": "DeviceName"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_9ca65f29-6baf-4087-832b-c438b4051578",
+                  "label": "Type",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "ModuleType"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_862fa754-6cd3-442f-b1c9-1d7d557cc7e1",
+                  "label": "Virtual Servers",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "VMStatusIcon",
+                        "vendor": null,
+                        "link": "VirtaulServerLink",
+                        "value": "VirtualServerName"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_b94c5e70-a92d-4586-895e-a925bb17b31f",
+                  "label": "Port",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Port"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_5798f968-0a99-47e2-a2f1-b3330d4fbcac",
+                  "label": "Status Details",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "StatusDetails"
+                      }
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "0a4ebd0d-6679-4cee-825e-e47e386bb523",
+      "name": "Virtual Servers",
+      "private": false
+    }
+  ],
+  "remove": null
+}
