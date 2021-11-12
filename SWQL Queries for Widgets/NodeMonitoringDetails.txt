@@ -1,0 +1,22 @@
+SELECT Caption  
+, DetailsUrl as [_linkfor_Caption]  
+, ObjectSubType as [Polling Method]  
+, tostring(PollInterval) + ' Seconds' as [Ping Frequency]  
+, tostring(StatCollection) + ' Minutes' as [Detailed Polling Frequency]  
+, tostring(RediscoveryInterval) + ' Minutes' as [Rediscovery Interval]  
+,case when PollInterval < 60 then 14 
+when PollInterval < 120 then 3 
+else 1  
+end as [_iconfor_Ping Frequency]  
+,case when StatCollection < 5 then 14  
+when StatCollection < 10 then 3  
+else 1  
+end as [_iconfor_Detailed Polling Frequency]  
+,case when RediscoveryInterval < 16 then 14 
+when RediscoveryInterval < 30 then 3
+else 1  
+end as [_iconfor_Rediscovery Interval]  
+  
+FROM Orion.Nodes  
+  
+order by PollInterval,StatCollection,RediscoveryInterval,caption

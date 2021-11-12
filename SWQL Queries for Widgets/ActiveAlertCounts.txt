@@ -1,0 +1,14 @@
+SELECT CASE  
+WHEN o.AlertConfigurations.Severity = 2 then 'Critical'  
+WHEN o.AlertConfigurations.Severity = 3 then 'Serious'  
+WHEN o.AlertConfigurations.Severity = 1 then 'Warning'  
+WHEN o.AlertConfigurations.Severity = 0 then 'Informational'  
+WHEN o.AlertConfigurations.Severity = 4 then 'Notice'  
+else tostring(o.AlertConfigurations.Severity) 
+END AS [Severity]  ,
+ o.AlertConfigurations.Severity as [iconvalue]
+,Count(*) as [Count]  
+FROM Orion.AlertObjects o  
+WHERE o.AlertActive.TriggeredMessage <> ''  
+Group by o.AlertConfigurations.Severity  
+order by o.AlertConfigurations.Severity asc

@@ -1,0 +1,14 @@
+SELECT count(name) as [Alerts]
+	, tostring(Frequency) + ' Seconds' as [Frequency]  
+, CASE
+	WHEN ac.frequency < 60 then 'High frequency alerts can negatively impact performance'  
+	else ''  
+END AS [Recommendation]  
+,CASE
+	WHEN ac.frequency < 60 then 14  
+	ELSE 1
+END AS [_iconfor_Recommendation]  
+FROM Orion.AlertConfigurations ac  
+WHERE enabled=1  
+GROUP BY frequency  
+ORDER BY ac.frequency asc

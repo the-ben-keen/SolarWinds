@@ -1,0 +1,37 @@
+SELECT  
+n.caption AS [Node]  
+, n.detailsurl AS [_linkfor_Node]
+, n.status AS [IconFor_NodeStatus]
+, n.ip_address as [IP Address]  
+, n.detailsurl as [_linkfor_IP Address]  
+, n.statusdescription as [Status Description]  
+, n.objectsubtype as [Collection Type]  
+, e.servername  
+, n.statcollection as [Interval]  
+, CASE
+WHEN n.objectsubtype !='SNMP' THEN 'Not Used'  
+WHEN n.community='' THEN 'Not Used'  
+ELSE n.community  
+END AS [SNMPv2 Community]  
+, CASE
+WHEN c.Name is null then 'Not Used'  
+ELSE c.Name   
+END AS [WMI/SNMPv3 Credential]  
+, tolocal(n.lastsystemuptimepollutc) as [Last Stat Collection]  
+, tolocal(n.lastsync) as [Last Ping]  
+, daydiff(lastsystemuptimepollUTC,getutcdate()) as [Days Since Polled]  
+, 'Edit' AS [Edit]  
+, '/Orion/Nodes/NodeProperties.aspx?Nodes=' + ToString(n.NodeID) AS [_LinkFor_Edit]  
+, '/Orion/images/nodemgmt_art/icons/icon_edit.gif' as [_IconFor_Edit]    
+  
+from orion.nodes n  
+left JOIN Orion.NodeSettings ns ON n.NodeID = ns.NodeID and SettingName like '%Credential%'      
+left JOIN Orion.Credential c ON ns.SettingValue = c.ID      
+join Orion.Engines e on e.engineid=n.engineid  
+where status<>'2'  
+and status<>'9'  
+and objectsubtype!='ICMP'  
+and minutediff(lastsystemuptimepollUTC,getutcdate())>20  
+--and daydiff(lastsystemuptimepollUTC,getutcdate())>1  
+
+Order by Lastsystemuptimepollutc

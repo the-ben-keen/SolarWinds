@@ -1,0 +1,20 @@
+SELECT COUNT([History].AlertHistoryID) AS [Alert Count]
+     , [History].AlertObjects.AlertConfigurations.Name AS [AlertName]
+     , [History].AlertObjects.AlertConfigurations.Severity AS [AlertSeverity]
+     , CONCAT( '/Orion/Alerts/Add/Default.aspx?AlertWizardGuid=', [History].AlertObjects.AlertConfigurations.AlertRefID, '&AlertID=', [History].AlertObjects.AlertConfigurations.AlertID ) AS [AlertEdit_URL]
+     , [History].AlertObjects.EntityCaption AS [Entity]
+     , [History].AlertObjects.EntityDetailsUrl AS [Entity_URL]
+     , [History].AlertObjects.Node.VendorInfo.Icon AS [Entity_Vendor]
+     , CASE
+         WHEN [History].AlertObjects.EntityCaption = [History].AlertObjects.RelatedNodeCaption THEN '[Self]'
+         ELSE [History].AlertObjects.RelatedNodeCaption
+       END AS [RelatedNode]
+     , [History].AlertObjects.RelatedNodeDetailsUrl AS [RelatedNode_Url]
+FROM Orion.AlertHistory AS [History]
+WHERE [History].TimeStamp >= GETDATE() - 30
+  AND [History].EventType = 0 -- looks to be 'alert triggered'
+  AND [History].AlertObjects.AlertConfigurations.Name IS NOT NULL
+GROUP BY [History].AlertObjects.AlertConfigurations.Name
+       , [History].AlertObjects.EntityCaption
+       , [History].AlertObjects.RelatedNodeCaption
+ORDER BY COUNT([History].AlertHistoryID) DESC
