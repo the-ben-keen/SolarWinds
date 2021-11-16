@@ -1,0 +1,12 @@
+SELECT TOP 10 ObservationTimestamp AS [TIME]
+    , [NODE].Caption AS [DEVICE NAME]
+    , [NODE].DetailsUrl AS [LinkForDevice]
+    , AuditEventMessage AS [LogMessage]
+    , [EVENTS].DetailsUrl AS  [LogMessageLink]
+FROM Orion.AuditingEvents [EVENTS]
+    INNER JOIN orion.nodes [NODE] 
+        ON [NODE].nodeID = [EVENTS].NetworkNode
+    INNER JOIN orion.AuditingActionTypes a
+        on a.ActionTypeID = [EVENTS].ActionTypeID
+WHERE [NODE].Vendor = 'F5 Networks, Inc.'
+ORDER BY auditeventid DESC
