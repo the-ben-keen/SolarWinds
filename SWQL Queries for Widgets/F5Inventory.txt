@@ -1,0 +1,34 @@
+SELECT [F5Device].Node.Caption
+     , [F5Device].ProductName
+     , [F5Device].ProductVersion + '(' + [F5Device].ProductBuild + ')' AS [CompleteVersion] 
+     , [F5Device].IsInMaintenanceMode AS [MaintenanceStatus]
+, CASE IsNull([F5Device].IsInMaintenanceMode, 'False')
+ WHEN 'True' THEN 2
+ELSE 1
+END AS [MaintenanceStatusIcon] 
+, CASE IsNull([F5Device].IsInMaintenanceMode, 'No')
+     WHEN 'True' THEN 'Yes'
+ELSE 'No'
+END AS [MaintenanceStatusEng]
+     , [F5Device].FailoverStatus
+     , [F5Device].FailoverStatusDescription
+	 , CASE IsNull([F5Device].FailoverStatusDescription, 'Unknown')
+	 WHEN 'Active' THEN 1
+	 ELSE 3
+	 END AS [FailoverIcon]
+     , [F5Device].FailoverStatusColor
+     , [F5Device].SyncStatus
+, CASE IsNull([F5Device].SyncStatus, '2')
+WHEN 3 THEN 1
+ELSE 1
+END AS [SyncIcon]
+     , [F5Device].SyncStatusDescription
+     , [F5Device].SyncStatusColor
+     , [F5Device].Connections
+     , [F5Device].ConnectionsNew
+     , [F5Device].ConnectionsSSL
+     , [F5Device].Description
+     , [F5Device].DetailsUrl AS [F5DeviceDetailsUrl]
+     , [F5Device].Node.Status AS [NodeStatus]
+     , [F5Device].Node.DetailsUrl AS [NodeDetailsURL]
+FROM Orion.F5.System.Device AS [F5Device]
