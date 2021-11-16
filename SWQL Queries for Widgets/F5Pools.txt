@@ -1,0 +1,55 @@
+SELECT [F5Device].Caption AS [DeviceName] 
+	, [F5Device].DetailsUrl AS [DeviceLink]
+	, [F5Device].Node.Status AS [DeviceStatusIcon]
+	---Shorten Modules Name---
+	, CASE IsNull ([F5Device].Modules.Name, 'Unknown')
+		WHEN 'Local Traffic Manager' THEN 'LTM'
+		WHEN 'Global Traffic Manager' THEN 'GTM'
+		WHEN 'Link Controller' THEN 'Link Controller'
+		WHEN 'Advanced Firewall Manager' THEN 'AFM'
+		WHEN 'Access Policy Manager' THEN 'APM'
+		WHEN 'Application Security Manger' THEN 'ASM'
+		WHEN 'Application Visibility and Reporting' THEN 'AV&R'
+		WHEN 'Policy Enforement Manager' THEN 'PEM' 
+		WHEN 'Application Security Manager' THEN 'ASM'
+		WHEN 'Policy Enforcement Manager' THEN 'PCM'
+	ELSE ' ' 
+	END AS [ModuleType] 
+	, [F5Device].Pools.ShortName AS [PoolName]
+	, [F5Device].Pools.DetailsUrl AS [PoolURL]
+	---Convert Pools Status to Orion Status for Dashboard---
+	, CASE IsNull([F5Device].Pools.OrionStatus, 7)
+		WHEN 0 THEN 0
+		WHEN 1 THEN 1
+		WHEN 2 THEN 2
+		WHEN 3 THEN 3
+		WHEN 4 THEN 4
+		WHEN 5 THEN 5
+		WHEN 6 THEN 6
+		WHEN 8 THEN 8
+		WHEN 9 THEN 9
+		WHEN 10 THEN 10
+		WHEN 11 THEN 11
+		WHEN 12 THEN 12
+		WHEN 14 THEN 14
+	ELSE 7
+	END AS [PoolStatusIcon]
+	---Convert Enable Status to Orion Status for Dashboard---
+	, CASE IsNull ([F5Device].Pools.Enabled, 7)
+		WHEN 1 THEN 1
+		WHEN 0 THEN 3
+	ELSE 14
+	END AS [EnabledStatusIcon]
+	---Add Enable Yes/No---
+	, CASE IsNull ([F5Device].Pools.Enabled, 7)
+		WHEN 1 THEN 'Yes'
+		WHEN 0 THEN 'No'
+		ELSE 'Unknown'
+	END AS [EnabledStatusDescription]
+	, [F5Device].Pools.LBModeDescription AS [LBMode]
+	, [F5Device].Pools.MemberCountTotal AS [TotalConnections]
+	, [F5Device].Pools.MemberCountActual AS [ActualConnections]
+	, [F5Device].Pools.MemberPercentActual AS [MemberPercent]
+        , [F5Device].Pools.F5StatusReason AS [StatusDetails]
+FROM Orion.F5.System.DEVICE AS [F5Device]
+	WHERE [F5Device].Modules.Name IN ('Local Traffic Manager', 'Global Traffic Manager')
