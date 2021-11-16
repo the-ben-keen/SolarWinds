@@ -1,0 +1,37 @@
+SELECT [F5Device].Caption AS [DeviceName] 
+	, [F5Device].DetailsUrl AS [DeviceLink]
+	, [F5Device].Node.Status AS [DeviceStatusIcon]
+	---Shorten Modules Name---
+	, CASE IsNull ([F5Device].Modules.Name, 'Unknown')
+		WHEN 'Local Traffic Manager' THEN 'LTM'
+		WHEN 'Global Traffic Manager' THEN 'GTM'
+		WHEN 'Link Controller' THEN 'Link Controller'
+		WHEN 'Advanced Firewall Manager' THEN 'AFM'
+		WHEN 'Access Policy Manager' THEN 'APM'
+		WHEN 'Application Security Manger' THEN 'ASM'
+		WHEN 'Application Visibility and Reporting' THEN 'AV&R'
+		WHEN 'Policy Enforement Manager' THEN 'PEM' 
+		WHEN 'Application Security Manager' THEN 'ASM'
+		WHEN 'Policy Enforcement Manager' THEN 'PCM'
+	ELSE ' ' 
+	END AS [ModuleType] 
+	, [F5Device].VirtualServers.ShortName AS [VirtualServerName]
+	, [F5Device].VirtualServers.DetailsURL AS [VirtaulServerLink]
+	---F5 Status Conversion For Icon---
+	, CASE IsNull ([F5Device].VirtualServers.OrionStatusDescription, 7)
+		WHEN 'Unknown' THEN 12
+		WHEN 'UP' THEN 1
+		WHEN 'DOWN' THEN 2
+		WHEN 'WARNING' THEN 3
+		WHEN 'SHUTDOWN' THEN 4
+		WHEN 'TESTING' THEN 5
+		WHEN 'DORMANT' THEN 6
+		WHEN 'NotPresent' THEN 7
+		WHEN 'Unmanaged' THEN 9
+		WHEN 'Critical' THEN 14
+	ELSE 12
+	END AS [VMStatusIcon]
+	, [F5Device].VirtualServers.Port AS [Port]
+	, [F5Device].VirtualServers.F5StatusReason AS [StatusDetails]
+FROM Orion.F5.System.DEVICE AS [F5Device]
+	WHERE [F5Device].Modules.Name IN ('Local Traffic Manager', 'Global Traffic Manager')
