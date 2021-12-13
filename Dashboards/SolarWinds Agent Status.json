@@ -1,0 +1,275 @@
+{
+  "version": 1,
+  "dashboards": [
+    {
+      "widgets": [
+        {
+          "unique_key": "c8cc7213-d6da-4c2c-98fc-f074c0662209",
+          "location": {
+            "x": 0,
+            "y": 0,
+            "cols": 6,
+            "rows": 2
+          },
+          "reference": false
+        }
+      ],
+      "parent": null,
+      "unique_key": "904013f0-cb6a-4c0d-b4d7-a561d46d4e50",
+      "name": "SolarWinds Agent Status",
+      "private": null
+    }
+  ],
+  "widgets": [
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Agent Management",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT Name AS [Node Name]\n\t, a.IP AS [Node IP]\n\t, a.Node.DetailsURL AS [Node URL]\n\t, a.ConnectionStatusMessage AS [Agent Connection Status]\n\t, a.ConnectionStatus AS [Connection Status Icon]\n\t, a.AgentStatusMessage AS [Agent Status]\n\t, a.AgentStatus AS [Agent Status Icon]\n\t, a.AgentVersion AS [Agent Version]\n\t, a.IsActiveAgent AS [Active Agent]\n\t, a.Node.VendorInfo.Icon AS [System Vendor Icon]\n\t, a.Node.MachineType AS [System Vendor]\nFROM Orion.AgentManagement.Agent a",
+                "dataFields": [
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node IP",
+                    "label": "Node IP",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node URL",
+                    "label": "Node URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Agent Connection Status",
+                    "label": "Agent Connection Status",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Connection Status Icon",
+                    "label": "Connection Status Icon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Agent Status",
+                    "label": "Agent Status",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Agent Status Icon",
+                    "label": "Agent Status Icon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Agent Version",
+                    "label": "Agent Version",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Active Agent",
+                    "label": "Active Agent",
+                    "dataType": "System.Boolean"
+                  },
+                  {
+                    "id": "System Vendor Icon",
+                    "label": "System Vendor Icon",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "System Vendor",
+                    "label": "System Vendor",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT Name AS [Node Name]\n\t, a.IP AS [Node IP]\n\t, a.Node.DetailsURL AS [Node URL]\n\t, a.ConnectionStatusMessage AS [Agent Connection Status]\n\t, a.ConnectionStatus AS [Connection Status Icon]\n\t, a.AgentStatusMessage AS [Agent Status]\n\t, a.AgentStatus AS [Agent Status Icon]\n\t, a.AgentVersion AS [Agent Version]\n\t, a.IsActiveAgent AS [Active Agent]\n\t, a.Node.VendorInfo.Icon AS [System Vendor Icon]\n\t, a.Node.MachineType AS [System Vendor]\nFROM Orion.AgentManagement.Agent a",
+                    "dataFields": [
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node IP",
+                        "label": "Node IP",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node URL",
+                        "label": "Node URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Agent Connection Status",
+                        "label": "Agent Connection Status",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Connection Status Icon",
+                        "label": "Connection Status Icon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Agent Status",
+                        "label": "Agent Status",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Agent Status Icon",
+                        "label": "Agent Status Icon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Agent Version",
+                        "label": "Agent Version",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Active Agent",
+                        "label": "Active Agent",
+                        "dataType": "System.Boolean"
+                      },
+                      {
+                        "id": "System Vendor Icon",
+                        "label": "System Vendor Icon",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "System Vendor",
+                        "label": "System Vendor",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_017453ac-cb0b-4328-81a0-9de668c9dafa",
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Node Name",
+                        "link": "Node URL"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                },
+                {
+                  "id": "column_2fcd78e7-8ffe-4d9b-b836-b6495ceaf16e",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Node IP"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node IP"
+                },
+                {
+                  "id": "column_5105d621-b75e-403e-a4c0-bf46712137fd",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Connection Status Icon",
+                        "vendor": null,
+                        "link": "Node URL",
+                        "value": "Agent Connection Status"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Agent Connection Status"
+                },
+                {
+                  "id": "column_2867e5fa-da57-4845-af6f-106c261da650",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Agent Status Icon",
+                        "vendor": null,
+                        "link": "Node URL",
+                        "value": "Agent Status"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Agent Status"
+                },
+                {
+                  "id": "column_057d0865-8250-4b8d-b000-70235d4cb903",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": null,
+                        "vendor": "System Vendor Icon",
+                        "link": "Node URL",
+                        "value": "System Vendor"
+                      },
+                      "iconFormat": "vendor",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "System Vendor"
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "c8cc7213-d6da-4c2c-98fc-f074c0662209",
+      "name": "Agent Management",
+      "private": false
+    }
+  ],
+  "remove": null
+}
