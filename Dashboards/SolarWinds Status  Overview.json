@@ -2,7 +2,7 @@
     "version": 1,
     "dashboards": [{
             "widgets": [{
-                    "unique_key": "09a01198-ac02-4c08-b682-8bf7901015a6",
+                    "unique_key": "52a1a538-30ee-49c0-b73a-be2e8a6f346a",
                     "location": {
                         "x": 4,
                         "y": 2,
@@ -11,7 +11,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "340d343a-2901-4ca2-a953-dc1b757c83c4",
+                    "unique_key": "83c05540-3fe5-417a-b1e6-e254789f467c",
                     "location": {
                         "x": 0,
                         "y": 1,
@@ -20,7 +20,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "4aaccde9-5d48-47fa-8b2c-86f17c413190",
+                    "unique_key": "01fb333e-2d90-47cf-bdad-8801d8a183d6",
                     "location": {
                         "x": 6,
                         "y": 16,
@@ -29,7 +29,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "cf0360e3-b6bd-4d5c-9361-7d0024d73ac8",
+                    "unique_key": "45936580-5023-47ba-9acb-8c142c6f730a",
                     "location": {
                         "x": 0,
                         "y": 16,
@@ -38,7 +38,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "103945a5-832c-4dda-acc9-b0d1c8e741fd",
+                    "unique_key": "ee84cc55-1a27-4efb-a104-df5fb12f7500",
                     "location": {
                         "x": 0,
                         "y": 2,
@@ -47,7 +47,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "6ab040dc-792a-4b4a-a73a-579d32a4b2e5",
+                    "unique_key": "7b5326d2-b402-4a61-a5ad-66d9a7e208e9",
                     "location": {
                         "x": 4,
                         "y": 12,
@@ -56,7 +56,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "85d52787-2991-4432-bb75-ac19cae954c9",
+                    "unique_key": "9d1dcd6a-bbc5-4691-8933-873792bdd48c",
                     "location": {
                         "x": 0,
                         "y": 6,
@@ -65,7 +65,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "12706075-5aba-4481-981c-3c73df96792a",
+                    "unique_key": "2c64c0cf-cd82-463c-991d-0c6b9ebe426a",
                     "location": {
                         "x": 0,
                         "y": 7,
@@ -83,7 +83,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "32582fde-e6d2-43ec-9054-cdc2a144e7a4",
+                    "unique_key": "b2174acf-c725-40b0-93db-41011fc22b59",
                     "location": {
                         "x": 7,
                         "y": 5,
@@ -92,7 +92,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "467d2f38-3d73-4587-9a8d-c90b7531a3ef",
+                    "unique_key": "ae1e6e2b-74aa-4cdd-a36e-69e6d8508b7e",
                     "location": {
                         "x": 7,
                         "y": 6,
@@ -101,7 +101,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "2d264216-c6eb-4b64-ba02-7363a2be4480",
+                    "unique_key": "d67d459b-432e-4cf9-a0e1-a5ba32bb489b",
                     "location": {
                         "x": 4,
                         "y": 15,
@@ -110,7 +110,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "e6dc67e9-1fb1-4c22-928f-a848ad316d26",
+                    "unique_key": "ff705ca3-5e0d-474f-810a-ab0cb42c1ae4",
                     "location": {
                         "x": 8,
                         "y": 12,
@@ -119,7 +119,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "9e58a861-e1d3-44ac-af6f-b28802e4cf7b",
+                    "unique_key": "e2dd1c2b-10f1-4e0c-be5c-64f7628428a1",
                     "location": {
                         "x": 0,
                         "y": 11,
@@ -128,7 +128,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "0eb5bfeb-d671-4704-aae1-2af2dbb0b88e",
+                    "unique_key": "0f63a555-d746-4b8d-93ee-827ee9dd706e",
                     "location": {
                         "x": 8,
                         "y": 10,
@@ -137,7 +137,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "8daaefe5-b32d-424a-bd80-6c3665f83ea4",
+                    "unique_key": "ab894e2e-deb1-4023-a32b-9ac5946ba1f4",
                     "location": {
                         "x": 0,
                         "y": 10,
@@ -146,7 +146,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "5b91b729-50ee-4cb9-a646-322fe5fab22e",
+                    "unique_key": "9b785035-2e79-49d8-85e1-841edf8d1368",
                     "location": {
                         "x": 0,
                         "y": 12,
@@ -155,7 +155,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "767b55f4-1348-46d6-94a8-7047c5f6541a",
+                    "unique_key": "2873d51e-11c1-4023-90c4-3a5e5622b927",
                     "location": {
                         "x": 8,
                         "y": 14,
@@ -182,7 +182,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "cb46dcb6-5ab0-4278-b9af-0e877ae9003a",
+                    "unique_key": "b2027b85-f63e-42a4-9d18-66dd36e126fa",
                     "location": {
                         "x": 4,
                         "y": 6,
@@ -191,7 +191,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "a9abc78a-92e6-40b2-ae07-25009624351e",
+                    "unique_key": "b7578f1a-5599-4c95-93e2-37c918194255",
                     "location": {
                         "x": 4,
                         "y": 10,
@@ -200,7 +200,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "01bb9759-7f0b-486a-8232-327f3bb6340f",
+                    "unique_key": "76a2b545-fdb4-4eba-b205-f8a83df72b9b",
                     "location": {
                         "x": 4,
                         "y": 14,
@@ -209,7 +209,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "f3037b86-ccc5-43d0-9668-b0a5c0d1d413",
+                    "unique_key": "b2fa9def-d1de-47af-ab77-92925ff4344d",
                     "location": {
                         "x": 0,
                         "y": 9,
@@ -218,7 +218,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "29d92c01-5cf9-41c9-9189-c192afd650e1",
+                    "unique_key": "f41eef71-c15e-4609-8f27-a936e2d4103c",
                     "location": {
                         "x": 0,
                         "y": 0,
@@ -227,7 +227,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "f7e55251-2a1e-4a91-85a9-4526ae87af07",
+                    "unique_key": "a219b541-d3d4-46ee-a17b-da375b55bf07",
                     "location": {
                         "x": 0,
                         "y": 13,
@@ -236,7 +236,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "601bf175-61dc-4b3e-8cd4-f4f2ff9a9fc7",
+                    "unique_key": "9ef905b0-0c91-4812-84a3-01a197477638",
                     "location": {
                         "x": 0,
                         "y": 14,
@@ -245,7 +245,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "ea8676f3-03d0-422c-970c-bee5dd58276d",
+                    "unique_key": "58d25922-8f8a-42c3-8d58-f7822b7b5310",
                     "location": {
                         "x": 2,
                         "y": 2,
@@ -254,7 +254,7 @@
                     },
                     "reference": false
                 }, {
-                    "unique_key": "9502a8d9-241e-4762-a406-dc8aa730c4d4",
+                    "unique_key": "0061dee1-a76a-4c0d-aaee-a47788b45b66",
                     "location": {
                         "x": 0,
                         "y": 15,
@@ -265,7 +265,7 @@
                 }
             ],
             "parent": null,
-            "unique_key": "26ce1b21-4391-4f07-b556-b3125eb93a67",
+            "unique_key": "740f3ce7-1f38-401e-bf6a-cbb6b23e9419",
             "name": "SolarWinds Status Overview",
             "private": null
         }
@@ -432,7 +432,7 @@
             },
             "subtitle": "By Severity",
             "description": "",
-            "unique_key": "09a01198-ac02-4c08-b682-8bf7901015a6",
+            "unique_key": "52a1a538-30ee-49c0-b73a-be2e8a6f346a",
             "name": "Number of Active Alerts",
             "private": false
         }, {
@@ -667,7 +667,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "340d343a-2901-4ca2-a953-dc1b757c83c4",
+            "unique_key": "83c05540-3fe5-417a-b1e6-e254789f467c",
             "name": "Orion Node Performance",
             "private": false
         }, {
@@ -862,7 +862,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "4aaccde9-5d48-47fa-8b2c-86f17c413190",
+            "unique_key": "01fb333e-2d90-47cf-bdad-8801d8a183d6",
             "name": "Credential Lookup",
             "private": false
         }, {
@@ -1178,7 +1178,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "cf0360e3-b6bd-4d5c-9361-7d0024d73ac8",
+            "unique_key": "45936580-5023-47ba-9acb-8c142c6f730a",
             "name": "Credential Details",
             "private": false
         }, {
@@ -1264,7 +1264,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "103945a5-832c-4dda-acc9-b0d1c8e741fd",
+            "unique_key": "ee84cc55-1a27-4efb-a104-df5fb12f7500",
             "name": "Overall Status Summary",
             "private": false
         }, {
@@ -1531,7 +1531,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "6ab040dc-792a-4b4a-a73a-579d32a4b2e5",
+            "unique_key": "7b5326d2-b402-4a61-a5ad-66d9a7e208e9",
             "name": "Volumes with Polling Issues",
             "private": false
         }, {
@@ -1666,7 +1666,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "85d52787-2991-4432-bb75-ac19cae954c9",
+            "unique_key": "9d1dcd6a-bbc5-4691-8933-873792bdd48c",
             "name": "Alert History",
             "private": false
         }, {
@@ -1694,14 +1694,10 @@
                                     }, {
                                         "id": "date",
                                         "label": "date",
-                                        "dataType": "System.DateTime"
-                                    }, {
-                                        "id": "name",
-                                        "label": "name",
                                         "dataType": "System.String"
                                     }
                                 ],
-                                "swql": "select \ncount(message) as [Alerts] \n,datetrunc('day',timestamp) as [date] \n,ac.name \n \nFROM Orion.AlertHistory ah \nleft join orion.alertobjects ao on ah.alertobjectid=ao.alertobjectid \nleft join orion.AlertConfigurations ac on ac.alertid=ao.alertid \n \n \nwhere daydiff(timestamp,getdate())<30 \n \ngroup by datetrunc('day',timestamp), ac.name \n \norder by [date]",
+                                "swql": "SELECT COUNT([AH].AlertHistoryID) AS [Alerts]\n , SUBSTRING(TOSTRING(DATETRUNC('day', [AH].Timestamp)), 1, 6) AS [date]\nFROM Orion.AlertHistory AS [AH]\nWHERE DAYDIFF([AH].Timestamp, GETDATE()) < 30\nGROUP BY DATETRUNC('day', [AH].Timestamp)\nORDER BY DATETRUNC('day', [AH].Timestamp)",
                                 "categoryField": "date",
                                 "valueField": "Alerts",
                                 "dataFormat": "custom",
@@ -1725,14 +1721,10 @@
                                             }, {
                                                 "id": "date",
                                                 "label": "date",
-                                                "dataType": "System.DateTime"
-                                            }, {
-                                                "id": "name",
-                                                "label": "name",
                                                 "dataType": "System.String"
                                             }
                                         ],
-                                        "swql": "select \ncount(message) as [Alerts] \n,datetrunc('day',timestamp) as [date] \n,ac.name \n \nFROM Orion.AlertHistory ah \nleft join orion.alertobjects ao on ah.alertobjectid=ao.alertobjectid \nleft join orion.AlertConfigurations ac on ac.alertid=ao.alertid \n \n \nwhere daydiff(timestamp,getdate())<30 \n \ngroup by datetrunc('day',timestamp), ac.name \n \norder by [date]",
+                                        "swql": "SELECT COUNT([AH].AlertHistoryID) AS [Alerts]\n , SUBSTRING(TOSTRING(DATETRUNC('day', [AH].Timestamp)), 1, 6) AS [date]\nFROM Orion.AlertHistory AS [AH]\nWHERE DAYDIFF([AH].Timestamp, GETDATE()) < 30\nGROUP BY DATETRUNC('day', [AH].Timestamp)\nORDER BY DATETRUNC('day', [AH].Timestamp)",
                                         "categoryField": "date",
                                         "valueField": "Alerts",
                                         "dataFormat": "custom",
@@ -1760,7 +1752,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "12706075-5aba-4481-981c-3c73df96792a",
+            "unique_key": "2c64c0cf-cd82-463c-991d-0c6b9ebe426a",
             "name": "Alerts per Day",
             "private": false
         }, {
@@ -2028,7 +2020,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "32582fde-e6d2-43ec-9054-cdc2a144e7a4",
+            "unique_key": "b2174acf-c725-40b0-93db-41011fc22b59",
             "name": "Alert Intervals",
             "private": false
         }, {
@@ -2220,7 +2212,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "467d2f38-3d73-4587-9a8d-c90b7531a3ef",
+            "unique_key": "ae1e6e2b-74aa-4cdd-a36e-69e6d8508b7e",
             "name": "Alerts",
             "private": false
         }, {
@@ -2340,7 +2332,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "2d264216-c6eb-4b64-ba02-7363a2be4480",
+            "unique_key": "d67d459b-432e-4cf9-a0e1-a5ba32bb489b",
             "name": "Groups",
             "private": false
         }, {
@@ -2533,7 +2525,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "e6dc67e9-1fb1-4c22-928f-a848ad316d26",
+            "unique_key": "ff705ca3-5e0d-474f-810a-ab0cb42c1ae4",
             "name": "Volume Intervals",
             "private": false
         }, {
@@ -2719,7 +2711,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "9e58a861-e1d3-44ac-af6f-b28802e4cf7b",
+            "unique_key": "e2dd1c2b-10f1-4e0c-be5c-64f7628428a1",
             "name": "Volumes",
             "private": false
         }, {
@@ -2914,7 +2906,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "0eb5bfeb-d671-4704-aae1-2af2dbb0b88e",
+            "unique_key": "0f63a555-d746-4b8d-93ee-827ee9dd706e",
             "name": "Nodes with Custom CPU Thresholds",
             "private": false
         }, {
@@ -3125,7 +3117,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "8daaefe5-b32d-424a-bd80-6c3665f83ea4",
+            "unique_key": "ab894e2e-deb1-4023-a32b-9ac5946ba1f4",
             "name": "Nodes with Custom Memory Thresholds",
             "private": false
         }, {
@@ -3385,7 +3377,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "5b91b729-50ee-4cb9-a646-322fe5fab22e",
+            "unique_key": "9b785035-2e79-49d8-85e1-841edf8d1368",
             "name": "Volumes with Custom Thresholds",
             "private": false
         }, {
@@ -3645,7 +3637,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "767b55f4-1348-46d6-94a8-7047c5f6541a",
+            "unique_key": "2873d51e-11c1-4023-90c4-3a5e5622b927",
             "name": "Interfaces with Custom Thresholds",
             "private": false
         }, {
@@ -4238,7 +4230,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "cb46dcb6-5ab0-4278-b9af-0e877ae9003a",
+            "unique_key": "b2027b85-f63e-42a4-9d18-66dd36e126fa",
             "name": "Active Alert Counts",
             "private": false
         }, {
@@ -4579,7 +4571,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "a9abc78a-92e6-40b2-ae07-25009624351e",
+            "unique_key": "b7578f1a-5599-4c95-93e2-37c918194255",
             "name": "Nodes with Polling Issues",
             "private": false
         }, {
@@ -4772,7 +4764,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "01bb9759-7f0b-486a-8232-327f3bb6340f",
+            "unique_key": "76a2b545-fdb4-4eba-b205-f8a83df72b9b",
             "name": "Interface Intervals",
             "private": false
         }, {
@@ -4977,7 +4969,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "f3037b86-ccc5-43d0-9668-b0a5c0d1d413",
+            "unique_key": "b2fa9def-d1de-47af-ab77-92925ff4344d",
             "name": "Nodes",
             "private": false
         }, {
@@ -5370,7 +5362,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "29d92c01-5cf9-41c9-9189-c192afd650e1",
+            "unique_key": "f41eef71-c15e-4609-8f27-a936e2d4103c",
             "name": "Pollers",
             "private": false
         }, {
@@ -5556,7 +5548,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "f7e55251-2a1e-4a91-85a9-4526ae87af07",
+            "unique_key": "a219b541-d3d4-46ee-a17b-da375b55bf07",
             "name": "Interfaces",
             "private": false
         }, {
@@ -5756,7 +5748,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "601bf175-61dc-4b3e-8cd4-f4f2ff9a9fc7",
+            "unique_key": "9ef905b0-0c91-4812-84a3-01a197477638",
             "name": "Interfaces with Polling Issues",
             "private": false
         }, {
@@ -5874,7 +5866,7 @@
             },
             "subtitle": "SAM and NPM Useage Percentage",
             "description": "",
-            "unique_key": "ea8676f3-03d0-422c-970c-bee5dd58276d",
+            "unique_key": "58d25922-8f8a-42c3-8d58-f7822b7b5310",
             "name": "Polling Use",
             "private": false
         }, {
@@ -6002,7 +5994,7 @@
             },
             "subtitle": "",
             "description": "",
-            "unique_key": "9502a8d9-241e-4762-a406-dc8aa730c4d4",
+            "unique_key": "0061dee1-a76a-4c0d-aaee-a47788b45b66",
             "name": "Group Intervals",
             "private": false
         }
