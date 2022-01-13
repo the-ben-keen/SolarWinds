@@ -1,0 +1,11 @@
+SELECT [CPA].AssignmentName
+	, Nodes.NodeID
+	, [CPA].StatusDescription
+	, [CPA].Status
+	, [CPA].DetailsURL
+	
+FROM Orion.Nodes Nodes
+JOIN Orion.NPM.CustomPollerAssignment [CPA] ON Nodes.NodeID = [CPA].NodeID
+WHERE [CPA].AssignmentName LIKE 'CGX_Tunnel_Status%'
+	AND [CPA].StatusDescription LIKE 'Critical'
+	AND Nodes.CustomProperties.PrimaryApplication NOT LIKE 'Lab Router%'
