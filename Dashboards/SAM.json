@@ -1,0 +1,2145 @@
+{
+  "version": 1,
+  "dashboards": [
+    {
+      "widgets": [
+        {
+          "unique_key": "b10657f2-64d5-4bfd-b593-af14651e3c4e",
+          "location": {
+            "x": 0,
+            "y": 0,
+            "cols": 5,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "5b4044be-b8e2-4134-8c36-032a893057a0",
+          "location": {
+            "x": 0,
+            "y": 10,
+            "cols": 12,
+            "rows": 3
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "b5672ee5-f853-47ea-a5f2-b458ae21cf1a",
+          "location": {
+            "x": 5,
+            "y": 0,
+            "cols": 4,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "101a95c1-a38c-47e0-9072-eccc8d5f6fd3",
+          "location": {
+            "x": 0,
+            "y": 8,
+            "cols": 9,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "165720f4-b816-47a9-bf06-b7f625e32893",
+          "location": {
+            "x": 0,
+            "y": 6,
+            "cols": 9,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "009dc36c-9f2a-45cb-a5b7-4d3e55038fc7",
+          "location": {
+            "x": 9,
+            "y": 0,
+            "cols": 3,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "a780a815-b411-402f-8447-85cc321e4438",
+          "location": {
+            "x": 0,
+            "y": 4,
+            "cols": 9,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "c381394e-1796-4043-9c39-bbe407511db6",
+          "location": {
+            "x": 0,
+            "y": 4,
+            "cols": 9,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "6bf6c663-e509-49c7-8327-dc4fd2d17f1e",
+          "location": {
+            "x": 0,
+            "y": 4,
+            "cols": 9,
+            "rows": 2
+          },
+          "reference": false
+        }
+      ],
+      "parent": null,
+      "feature": null,
+      "unique_key": "bbf00cce-428c-4db6-8b63-f7e5ec6f647e",
+      "name": "Server & Application Monitor Summary",
+      "private": null
+    }
+  ],
+  "widgets": [
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Overall Application Statuses",
+            "subtitle": "",
+            "url": "/Orion/Apm/Summary.aspx",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_77a95b13-3470-4a8c-96db-81d2ee61decb",
+              "kpi_61130f7f-18b4-4b7f-aa41-6a6555c446d8",
+              "kpi_b2e337e8-c4c1-4554-89bd-e4d3e1c12a08",
+              "kpi_f1b272d4-b765-416d-8b13-f0d402f3347d",
+              "kpi_5cc08b8a-600f-4565-b8bc-a2160fe02e7a"
+            ]
+          }
+        },
+        "kpi_77a95b13-3470-4a8c-96db-81d2ee61decb": {
+          "id": "kpi_77a95b13-3470-4a8c-96db-81d2ee61decb",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 2",
+                "dataFields": [
+                  {
+                    "id": "Applications",
+                    "label": "Applications",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 2",
+                    "dataFields": [
+                      {
+                        "id": "Applications",
+                        "label": "Applications",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Down",
+              "backgroundColor": "var(--nui-color-semantic-critical)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_61130f7f-18b4-4b7f-aa41-6a6555c446d8": {
+          "id": "kpi_61130f7f-18b4-4b7f-aa41-6a6555c446d8",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 3",
+                "dataFields": [
+                  {
+                    "id": "Applications",
+                    "label": "Applications",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 3",
+                    "dataFields": [
+                      {
+                        "id": "Applications",
+                        "label": "Applications",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Warning",
+              "backgroundColor": "var(--nui-color-semantic-warning)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_b2e337e8-c4c1-4554-89bd-e4d3e1c12a08": {
+          "id": "kpi_b2e337e8-c4c1-4554-89bd-e4d3e1c12a08",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 14",
+                "dataFields": [
+                  {
+                    "id": "Applications",
+                    "label": "Applications",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 14",
+                    "dataFields": [
+                      {
+                        "id": "Applications",
+                        "label": "Applications",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Criticial",
+              "backgroundColor": "var(--nui-color-chart-six)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_5cc08b8a-600f-4565-b8bc-a2160fe02e7a": {
+          "id": "kpi_5cc08b8a-600f-4565-b8bc-a2160fe02e7a",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 1",
+                "dataFields": [
+                  {
+                    "id": "Applications",
+                    "label": "Applications",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 1",
+                    "dataFields": [
+                      {
+                        "id": "Applications",
+                        "label": "Applications",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "UP",
+              "backgroundColor": "var(--nui-color-semantic-ok)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_f1b272d4-b765-416d-8b13-f0d402f3347d": {
+          "id": "kpi_f1b272d4-b765-416d-8b13-f0d402f3347d",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 0",
+                "dataFields": [
+                  {
+                    "id": "Applications",
+                    "label": "Applications",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 0",
+                    "dataFields": [
+                      {
+                        "id": "Applications",
+                        "label": "Applications",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Unknown",
+              "backgroundColor": "var(--nui-color-semantic-unknown)",
+              "units": ""
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "b10657f2-64d5-4bfd-b593-af14651e3c4e",
+      "name": "Overall Application Statuses",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Server Performance",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT N.Caption AS [Node Name]\n    , N.Status AS [Node Status]\n    , N.DetailsUrl AS [Node Details]\n    , N.Applications.Name AS [Application Name]\n    , N.Applications.Status AS [Application Status]\n    , N.Applications.DetailsUrl AS [Application Details]\n    , N.CPULOad AS [Node CPU Load]\n    , N.PercentMemoryUsed AS [Node Memory Used]\n    , N.ResponseTime AS [Node Response Time]\n    , N.PercentLoss AS [Node Packet Loss]\n    , CASE \n        WHEN N.CustomProperties.BusinessCritical = 'True' THEN 'Yes' Else 'No'\n    END AS [Business Critical Node]\nFROM Orion.Nodes N\nWHERE N.Applications.Name != 'Null'",
+                "dataFields": [
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Status",
+                    "label": "Node Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Node Details",
+                    "label": "Node Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Application Name",
+                    "label": "Application Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Application Status",
+                    "label": "Application Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Application Details",
+                    "label": "Application Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node CPU Load",
+                    "label": "Node CPU Load",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Node Memory Used",
+                    "label": "Node Memory Used",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Node Response Time",
+                    "label": "Node Response Time",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Node Packet Loss",
+                    "label": "Node Packet Loss",
+                    "dataType": "System.Double"
+                  },
+                  {
+                    "id": "Business Critical Node",
+                    "label": "Business Critical Node",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT N.Caption AS [Node Name]\n    , N.Status AS [Node Status]\n    , N.DetailsUrl AS [Node Details]\n    , N.Applications.Name AS [Application Name]\n    , N.Applications.Status AS [Application Status]\n    , N.Applications.DetailsUrl AS [Application Details]\n    , N.CPULOad AS [Node CPU Load]\n    , N.PercentMemoryUsed AS [Node Memory Used]\n    , N.ResponseTime AS [Node Response Time]\n    , N.PercentLoss AS [Node Packet Loss]\n    , CASE \n        WHEN N.CustomProperties.BusinessCritical = 'True' THEN 'Yes' Else 'No'\n    END AS [Business Critical Node]\nFROM Orion.Nodes N\nWHERE N.Applications.Name != 'Null'",
+                    "dataFields": [
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Status",
+                        "label": "Node Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Node Details",
+                        "label": "Node Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Application Name",
+                        "label": "Application Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Application Status",
+                        "label": "Application Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Application Details",
+                        "label": "Application Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node CPU Load",
+                        "label": "Node CPU Load",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Node Memory Used",
+                        "label": "Node Memory Used",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Node Response Time",
+                        "label": "Node Response Time",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Node Packet Loss",
+                        "label": "Node Packet Loss",
+                        "dataType": "System.Double"
+                      },
+                      {
+                        "id": "Business Critical Node",
+                        "label": "Business Critical Node",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_723fffcb-282f-4123-96cb-1033f8e7d220",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Node Status",
+                        "vendor": null,
+                        "link": "Node Details",
+                        "value": "Node Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                },
+                {
+                  "id": "column_6ffdf132-3331-4ab6-9285-5a3002a974c5",
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "link": "Application Details",
+                        "value": "Application Name"
+                      },
+                      "targetSelf": false
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Application Name"
+                },
+                {
+                  "id": "column_adfbb80d-2d84-49d9-8443-f8a75d7e0199",
+                  "formatter": {
+                    "componentType": "StatusFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Application Status"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Application Status"
+                },
+                {
+                  "id": "column_4eac3c30-0088-49cd-83f5-c51445355bc3",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Node CPU Load",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.CpuLoad",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node CPU Load"
+                },
+                {
+                  "id": "column_4bfc18c3-c6d6-4761-931d-4f4edac2af17",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Node Memory Used",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.PercentMemoryUsed",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Memory Used"
+                },
+                {
+                  "id": "column_dc9eb70c-0280-4572-9f96-f02155d1cd64",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Node Response Time",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.ResponseTime",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Response Time"
+                },
+                {
+                  "id": "column_e6bbdf39-ad88-4a1e-8aff-528063688482",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Node Packet Loss",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.PercentLoss",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Packet Loss"
+                },
+                {
+                  "id": "column_5c9606b6-5f30-466a-86cc-0e3a0eca66b6",
+                  "label": "Business Critical Server",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Business Critical Node"
+                      }
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "5b4044be-b8e2-4134-8c36-032a893057a0",
+      "name": "Server Performance",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Down Applications",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT N.Caption AS [Node Name]\n    , N.Status AS [Node Status]\n    , N.DetailsUrl AS [Node Details]\n    , N.Applications.Name AS [Application Name]\n    , N.Applications.Status AS [Application Status]\n    , N.Applications.DetailsUrl AS [Application Details]\nFROM Orion.Nodes N\nWHERE N.Applications.Status = 2",
+                "dataFields": [
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Status",
+                    "label": "Node Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Node Details",
+                    "label": "Node Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Application Name",
+                    "label": "Application Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Application Status",
+                    "label": "Application Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Application Details",
+                    "label": "Application Details",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT N.Caption AS [Node Name]\n    , N.Status AS [Node Status]\n    , N.DetailsUrl AS [Node Details]\n    , N.Applications.Name AS [Application Name]\n    , N.Applications.Status AS [Application Status]\n    , N.Applications.DetailsUrl AS [Application Details]\nFROM Orion.Nodes N\nWHERE N.Applications.Status = 2",
+                    "dataFields": [
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Status",
+                        "label": "Node Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Node Details",
+                        "label": "Node Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Application Name",
+                        "label": "Application Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Application Status",
+                        "label": "Application Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Application Details",
+                        "label": "Application Details",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_669b74cc-8d33-4719-b229-e48d6450442a",
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "link": "Application Details",
+                        "value": "Application Name"
+                      },
+                      "targetSelf": false
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Application Name"
+                },
+                {
+                  "id": "column_869bf18d-3106-475c-b785-3fb83a59e262",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Node Status",
+                        "vendor": null,
+                        "link": "Node Details",
+                        "value": "Node Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "b5672ee5-f853-47ea-a5f2-b458ae21cf1a",
+      "name": "Down Applications",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Monitored Component by Memory Used",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT N.Applications.Components.CurrentStatistics.ComponentName AS [Component Name]\n\t, N.Applications.Components.DetailsURL AS [Componet Details]\n\t, N.Applications.Components.Status AS [Component Status]\n\t, N.Applications.Name AS [Application Name]\n\t, N.Applications.Status AS [Application Status]\n\t, N.Applications.DetailsURL AS [Application Details]\n\t, N.Caption AS [Node Name]\n\t, N.Status AS [Node Status]\n\t, N.DetailsURL AS [Node Details]\n\t, ROUND(N.Applications.Components.CurrentStatistics.ComponentPercentMemory, 2) AS [Component Memory Used]\nFROM Orion.Nodes N\nWHERE N.Applications.Components.CurrentStatistics.ComponentName != 'Null'",
+                "dataFields": [
+                  {
+                    "id": "Component Name",
+                    "label": "Component Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Componet Details",
+                    "label": "Componet Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Component Status",
+                    "label": "Component Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Application Name",
+                    "label": "Application Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Application Status",
+                    "label": "Application Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Application Details",
+                    "label": "Application Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Status",
+                    "label": "Node Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Node Details",
+                    "label": "Node Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Component Memory Used",
+                    "label": "Component Memory Used",
+                    "dataType": "System.Double"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT N.Applications.Components.CurrentStatistics.ComponentName AS [Component Name]\n\t, N.Applications.Components.DetailsURL AS [Componet Details]\n\t, N.Applications.Components.Status AS [Component Status]\n\t, N.Applications.Name AS [Application Name]\n\t, N.Applications.Status AS [Application Status]\n\t, N.Applications.DetailsURL AS [Application Details]\n\t, N.Caption AS [Node Name]\n\t, N.Status AS [Node Status]\n\t, N.DetailsURL AS [Node Details]\n\t, ROUND(N.Applications.Components.CurrentStatistics.ComponentPercentMemory, 2) AS [Component Memory Used]\nFROM Orion.Nodes N\nWHERE N.Applications.Components.CurrentStatistics.ComponentName != 'Null'",
+                    "dataFields": [
+                      {
+                        "id": "Component Name",
+                        "label": "Component Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Componet Details",
+                        "label": "Componet Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Component Status",
+                        "label": "Component Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Application Name",
+                        "label": "Application Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Application Status",
+                        "label": "Application Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Application Details",
+                        "label": "Application Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Status",
+                        "label": "Node Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Node Details",
+                        "label": "Node Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Component Memory Used",
+                        "label": "Component Memory Used",
+                        "dataType": "System.Double"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_462e57e2-b6bb-4223-8374-74591c4ae867",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Component Status",
+                        "vendor": null,
+                        "link": "Componet Details",
+                        "value": "Component Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Component Name"
+                },
+                {
+                  "id": "column_1d88e5df-2698-4526-8d53-594434a506e3",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Application Status",
+                        "vendor": null,
+                        "link": "Application Details",
+                        "value": "Application Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Application Name"
+                },
+                {
+                  "id": "column_5242dd5f-e30a-48a3-96a6-cf82b57f9d5f",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Node Status",
+                        "vendor": null,
+                        "link": "Node Details",
+                        "value": "Node Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                },
+                {
+                  "id": "column_3c91e261-dbef-4664-a580-52c192213e4d",
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Component Memory Used"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": "%"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Component Memory Used"
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_3c91e261-dbef-4664-a580-52c192213e4d",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "101a95c1-a38c-47e0-9072-eccc8d5f6fd3",
+      "name": "Monitored Component by Memory Used",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Monitored Component by Response Time",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT N.Applications.Components.CurrentStatistics.ComponentName AS [Component Name]\n\t, N.Applications.Components.DetailsURL AS [Componet Details]\n\t, N.Applications.Components.Status AS [Component Status]\n\t, N.Applications.Name AS [Application Name]\n\t, N.Applications.Status AS [Application Status]\n\t, N.Applications.DetailsURL AS [Application Details]\n\t, N.Caption AS [Node Name]\n\t, N.Status AS [Node Status]\n\t, N.DetailsURL AS [Node Details]\n\t, ROUND(N.Applications.Components.CurrentStatistics.ComponentResponseTime, 2) AS [Component Response Time]\nFROM Orion.Nodes N\nWHERE N.Applications.Components.CurrentStatistics.ComponentName != 'Null'",
+                "dataFields": [
+                  {
+                    "id": "Component Name",
+                    "label": "Component Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Componet Details",
+                    "label": "Componet Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Component Status",
+                    "label": "Component Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Application Name",
+                    "label": "Application Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Application Status",
+                    "label": "Application Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Application Details",
+                    "label": "Application Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Status",
+                    "label": "Node Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Node Details",
+                    "label": "Node Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Component Response Time",
+                    "label": "Component Response Time",
+                    "dataType": "System.Int64"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT N.Applications.Components.CurrentStatistics.ComponentName AS [Component Name]\n\t, N.Applications.Components.DetailsURL AS [Componet Details]\n\t, N.Applications.Components.Status AS [Component Status]\n\t, N.Applications.Name AS [Application Name]\n\t, N.Applications.Status AS [Application Status]\n\t, N.Applications.DetailsURL AS [Application Details]\n\t, N.Caption AS [Node Name]\n\t, N.Status AS [Node Status]\n\t, N.DetailsURL AS [Node Details]\n\t, ROUND(N.Applications.Components.CurrentStatistics.ComponentResponseTime, 2) AS [Component Response Time]\nFROM Orion.Nodes N\nWHERE N.Applications.Components.CurrentStatistics.ComponentName != 'Null'",
+                    "dataFields": [
+                      {
+                        "id": "Component Name",
+                        "label": "Component Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Componet Details",
+                        "label": "Componet Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Component Status",
+                        "label": "Component Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Application Name",
+                        "label": "Application Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Application Status",
+                        "label": "Application Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Application Details",
+                        "label": "Application Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Status",
+                        "label": "Node Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Node Details",
+                        "label": "Node Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Component Response Time",
+                        "label": "Component Response Time",
+                        "dataType": "System.Int64"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_462e57e2-b6bb-4223-8374-74591c4ae867",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Component Status",
+                        "vendor": null,
+                        "link": "Componet Details",
+                        "value": "Component Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Component Name"
+                },
+                {
+                  "id": "column_1d88e5df-2698-4526-8d53-594434a506e3",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Application Status",
+                        "vendor": null,
+                        "link": "Application Details",
+                        "value": "Application Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Application Name"
+                },
+                {
+                  "id": "column_5242dd5f-e30a-48a3-96a6-cf82b57f9d5f",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Node Status",
+                        "vendor": null,
+                        "link": "Node Details",
+                        "value": "Node Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                },
+                {
+                  "id": "column_e1e83811-a225-45a8-bff0-961d5c92b0a7",
+                  "label": "Response Time",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Component Response Time"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": "ms"
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_e1e83811-a225-45a8-bff0-961d5c92b0a7",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "165720f4-b816-47a9-bf06-b7f625e32893",
+      "name": "Monitored Component by Response Time",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Applications with Problems",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT N.Caption AS [Node Name]\n    , N.Status AS [Node Status]\n    , N.DetailsUrl AS [Node Details]\n    , N.Applications.Name AS [Application Name]\n    , N.Applications.Status AS [Application Status]\n    , N.Applications.DetailsUrl AS [Application Details]\nFROM Orion.Nodes N\nWHERE N.Applications.Status != 1 OR N.Applications.Status != 2",
+                "dataFields": [
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Status",
+                    "label": "Node Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Node Details",
+                    "label": "Node Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Application Name",
+                    "label": "Application Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Application Status",
+                    "label": "Application Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Application Details",
+                    "label": "Application Details",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT N.Caption AS [Node Name]\n    , N.Status AS [Node Status]\n    , N.DetailsUrl AS [Node Details]\n    , N.Applications.Name AS [Application Name]\n    , N.Applications.Status AS [Application Status]\n    , N.Applications.DetailsUrl AS [Application Details]\nFROM Orion.Nodes N\nWHERE N.Applications.Status != 1 OR N.Applications.Status != 2",
+                    "dataFields": [
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Status",
+                        "label": "Node Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Node Details",
+                        "label": "Node Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Application Name",
+                        "label": "Application Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Application Status",
+                        "label": "Application Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Application Details",
+                        "label": "Application Details",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_669b74cc-8d33-4719-b229-e48d6450442a",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Application Status",
+                        "vendor": null,
+                        "link": "Application Details",
+                        "value": "Application Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Application Name"
+                },
+                {
+                  "id": "column_869bf18d-3106-475c-b785-3fb83a59e262",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Node Status",
+                        "vendor": null,
+                        "link": "Node Details",
+                        "value": "Node Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "009dc36c-9f2a-45cb-a5b7-4d3e55038fc7",
+      "name": "Applications with Problems",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Monitored Component by Virtual Memory Used",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT N.Applications.Components.CurrentStatistics.ComponentName AS [Component Name]\n\t, N.Applications.Components.DetailsURL AS [Componet Details]\n\t, N.Applications.Components.Status AS [Component Status]\n\t, N.Applications.Name AS [Application Name]\n\t, N.Applications.Status AS [Application Status]\n\t, N.Applications.DetailsURL AS [Application Details]\n\t, N.Caption AS [Node Name]\n\t, N.Status AS [Node Status]\n\t, N.DetailsURL AS [Node Details]\n\t, ROUND(N.Applications.Components.CurrentStatistics.ComponentPercentVirtualMemory, 2) AS [Component Virtual Memory Used]\nFROM Orion.Nodes N\nWHERE N.Applications.Components.CurrentStatistics.ComponentName != 'Null'",
+                "dataFields": [
+                  {
+                    "id": "Component Name",
+                    "label": "Component Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Componet Details",
+                    "label": "Componet Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Component Status",
+                    "label": "Component Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Application Name",
+                    "label": "Application Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Application Status",
+                    "label": "Application Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Application Details",
+                    "label": "Application Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Status",
+                    "label": "Node Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Node Details",
+                    "label": "Node Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Component Virtual Memory Used",
+                    "label": "Component Virtual Memory Used",
+                    "dataType": "System.Double"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT N.Applications.Components.CurrentStatistics.ComponentName AS [Component Name]\n\t, N.Applications.Components.DetailsURL AS [Componet Details]\n\t, N.Applications.Components.Status AS [Component Status]\n\t, N.Applications.Name AS [Application Name]\n\t, N.Applications.Status AS [Application Status]\n\t, N.Applications.DetailsURL AS [Application Details]\n\t, N.Caption AS [Node Name]\n\t, N.Status AS [Node Status]\n\t, N.DetailsURL AS [Node Details]\n\t, ROUND(N.Applications.Components.CurrentStatistics.ComponentPercentVirtualMemory, 2) AS [Component Virtual Memory Used]\nFROM Orion.Nodes N\nWHERE N.Applications.Components.CurrentStatistics.ComponentName != 'Null'",
+                    "dataFields": [
+                      {
+                        "id": "Component Name",
+                        "label": "Component Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Componet Details",
+                        "label": "Componet Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Component Status",
+                        "label": "Component Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Application Name",
+                        "label": "Application Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Application Status",
+                        "label": "Application Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Application Details",
+                        "label": "Application Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Status",
+                        "label": "Node Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Node Details",
+                        "label": "Node Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Component Virtual Memory Used",
+                        "label": "Component Virtual Memory Used",
+                        "dataType": "System.Double"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_462e57e2-b6bb-4223-8374-74591c4ae867",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Component Status",
+                        "vendor": null,
+                        "link": "Componet Details",
+                        "value": "Component Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Component Name"
+                },
+                {
+                  "id": "column_1d88e5df-2698-4526-8d53-594434a506e3",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Application Status",
+                        "vendor": null,
+                        "link": "Application Details",
+                        "value": "Application Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Application Name"
+                },
+                {
+                  "id": "column_5242dd5f-e30a-48a3-96a6-cf82b57f9d5f",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Node Status",
+                        "vendor": null,
+                        "link": "Node Details",
+                        "value": "Node Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                },
+                {
+                  "id": "column_21143e81-1cd6-4d2e-a645-a91371778951",
+                  "label": "Virtual Memory Used",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Component Virtual Memory Used"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": "%"
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_21143e81-1cd6-4d2e-a645-a91371778951",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "a780a815-b411-402f-8447-85cc321e4438",
+      "name": "Monitored Component by Virtual Memory Used",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Monitored Component by CPU Load",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT N.Applications.Components.CurrentStatistics.ComponentName AS [Component Name]\n\t, N.Applications.Components.DetailsURL AS [Componet Details]\n\t, N.Applications.Components.Status AS [Component Status]\n\t, N.Applications.Name AS [Application Name]\n\t, N.Applications.Status AS [Application Status]\n\t, N.Applications.DetailsURL AS [Application Details]\n\t, N.Caption AS [Node Name]\n\t, N.Status AS [Node Status]\n\t, N.DetailsURL AS [Node Details]\n\t, ROUND(N.Applications.Components.CurrentStatistics.ComponentPercentCPU, 2) AS [Component CPU Used]\nFROM Orion.Nodes N\nWHERE N.Applications.Components.CurrentStatistics.ComponentName != 'Null'",
+                "dataFields": [
+                  {
+                    "id": "Component Name",
+                    "label": "Component Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Componet Details",
+                    "label": "Componet Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Component Status",
+                    "label": "Component Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Application Name",
+                    "label": "Application Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Application Status",
+                    "label": "Application Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Application Details",
+                    "label": "Application Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Status",
+                    "label": "Node Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Node Details",
+                    "label": "Node Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Component CPU Used",
+                    "label": "Component CPU Used",
+                    "dataType": "System.Double"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT N.Applications.Components.CurrentStatistics.ComponentName AS [Component Name]\n\t, N.Applications.Components.DetailsURL AS [Componet Details]\n\t, N.Applications.Components.Status AS [Component Status]\n\t, N.Applications.Name AS [Application Name]\n\t, N.Applications.Status AS [Application Status]\n\t, N.Applications.DetailsURL AS [Application Details]\n\t, N.Caption AS [Node Name]\n\t, N.Status AS [Node Status]\n\t, N.DetailsURL AS [Node Details]\n\t, ROUND(N.Applications.Components.CurrentStatistics.ComponentPercentCPU, 2) AS [Component CPU Used]\nFROM Orion.Nodes N\nWHERE N.Applications.Components.CurrentStatistics.ComponentName != 'Null'",
+                    "dataFields": [
+                      {
+                        "id": "Component Name",
+                        "label": "Component Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Componet Details",
+                        "label": "Componet Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Component Status",
+                        "label": "Component Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Application Name",
+                        "label": "Application Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Application Status",
+                        "label": "Application Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Application Details",
+                        "label": "Application Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Status",
+                        "label": "Node Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Node Details",
+                        "label": "Node Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Component CPU Used",
+                        "label": "Component CPU Used",
+                        "dataType": "System.Double"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_462e57e2-b6bb-4223-8374-74591c4ae867",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Component Status",
+                        "vendor": null,
+                        "link": "Componet Details",
+                        "value": "Component Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Component Name"
+                },
+                {
+                  "id": "column_1d88e5df-2698-4526-8d53-594434a506e3",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Application Status",
+                        "vendor": null,
+                        "link": "Application Details",
+                        "value": "Application Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Application Name"
+                },
+                {
+                  "id": "column_5242dd5f-e30a-48a3-96a6-cf82b57f9d5f",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Node Status",
+                        "vendor": null,
+                        "link": "Node Details",
+                        "value": "Node Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                },
+                {
+                  "id": "column_6d85286c-e7c1-4108-a2f5-671e9dbd6da8",
+                  "label": "Component CPU Load",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Component CPU Used"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": "%"
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_6d85286c-e7c1-4108-a2f5-671e9dbd6da8",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "c381394e-1796-4043-9c39-bbe407511db6",
+      "name": "Monitored Component by CPU Load",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Monitored Component by I/O Total Operations/s",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT N.Applications.Components.CurrentStatistics.ComponentName AS [Component Name]\n\t, N.Applications.Components.DetailsURL AS [Componet Details]\n\t, N.Applications.Components.Status AS [Component Status]\n\t, N.Applications.Name AS [Application Name]\n\t, N.Applications.Status AS [Application Status]\n\t, N.Applications.DetailsURL AS [Application Details]\n\t, N.Caption AS [Node Name]\n\t, N.Status AS [Node Status]\n\t, N.DetailsURL AS [Node Details]\n\t, ROUND(N.Applications.Components.CurrentStatistics.ComponentIOTotalOperationsPerSec, 2) AS [Component IOPS Total]\nFROM Orion.Nodes N\nWHERE N.Applications.Components.CurrentStatistics.ComponentName != 'Null'",
+                "dataFields": [
+                  {
+                    "id": "Component Name",
+                    "label": "Component Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Componet Details",
+                    "label": "Componet Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Component Status",
+                    "label": "Component Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Application Name",
+                    "label": "Application Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Application Status",
+                    "label": "Application Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Application Details",
+                    "label": "Application Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Status",
+                    "label": "Node Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Node Details",
+                    "label": "Node Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Component IOPS Total",
+                    "label": "Component IOPS Total",
+                    "dataType": "System.Double"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT N.Applications.Components.CurrentStatistics.ComponentName AS [Component Name]\n\t, N.Applications.Components.DetailsURL AS [Componet Details]\n\t, N.Applications.Components.Status AS [Component Status]\n\t, N.Applications.Name AS [Application Name]\n\t, N.Applications.Status AS [Application Status]\n\t, N.Applications.DetailsURL AS [Application Details]\n\t, N.Caption AS [Node Name]\n\t, N.Status AS [Node Status]\n\t, N.DetailsURL AS [Node Details]\n\t, ROUND(N.Applications.Components.CurrentStatistics.ComponentIOTotalOperationsPerSec, 2) AS [Component IOPS Total]\nFROM Orion.Nodes N\nWHERE N.Applications.Components.CurrentStatistics.ComponentName != 'Null'",
+                    "dataFields": [
+                      {
+                        "id": "Component Name",
+                        "label": "Component Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Componet Details",
+                        "label": "Componet Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Component Status",
+                        "label": "Component Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Application Name",
+                        "label": "Application Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Application Status",
+                        "label": "Application Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Application Details",
+                        "label": "Application Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Status",
+                        "label": "Node Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Node Details",
+                        "label": "Node Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Component IOPS Total",
+                        "label": "Component IOPS Total",
+                        "dataType": "System.Double"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_462e57e2-b6bb-4223-8374-74591c4ae867",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Component Status",
+                        "vendor": null,
+                        "link": "Componet Details",
+                        "value": "Component Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Component Name"
+                },
+                {
+                  "id": "column_1d88e5df-2698-4526-8d53-594434a506e3",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Application Status",
+                        "vendor": null,
+                        "link": "Application Details",
+                        "value": "Application Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Application Name"
+                },
+                {
+                  "id": "column_5242dd5f-e30a-48a3-96a6-cf82b57f9d5f",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Node Status",
+                        "vendor": null,
+                        "link": "Node Details",
+                        "value": "Node Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                },
+                {
+                  "id": "column_5f7df232-1c28-4c55-993d-b0fe5648ef37",
+                  "label": "Total IOPS",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Component IOPS Total"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": " / sec"
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_5f7df232-1c28-4c55-993d-b0fe5648ef37",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "6bf6c663-e509-49c7-8327-dc4fd2d17f1e",
+      "name": "Monitored Component by I/O Total Operations/s",
+      "private": false
+    }
+  ],
+  "remove": null
+}
