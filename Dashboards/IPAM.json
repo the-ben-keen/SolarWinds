@@ -4,7 +4,7 @@
     {
       "widgets": [
         {
-          "unique_key": "3a5d1264-e04d-4525-9687-46cf2de9fd1a",
+          "unique_key": "6d11aef7-13ad-4387-800d-849c103db0ac",
           "location": {
             "x": 5,
             "y": 0,
@@ -14,7 +14,7 @@
           "reference": false
         },
         {
-          "unique_key": "495ca7d0-2b8a-4bc5-921b-c1600e1619a4",
+          "unique_key": "94f43800-aae4-43d6-b700-0cf4aff7a710",
           "location": {
             "x": 0,
             "y": 0,
@@ -24,7 +24,7 @@
           "reference": false
         },
         {
-          "unique_key": "fb4c37cb-e4f5-4664-aa86-41f04189068b",
+          "unique_key": "290df81c-8ae3-438e-8da0-baf97d02c9d2",
           "location": {
             "x": 0,
             "y": 2,
@@ -32,11 +32,21 @@
             "rows": 3
           },
           "reference": false
+        },
+        {
+          "unique_key": "a9e99645-cbd6-46c2-b9f0-82a980afd583",
+          "location": {
+            "x": 0,
+            "y": 5,
+            "cols": 5,
+            "rows": 3
+          },
+          "reference": false
         }
       ],
       "parent": null,
       "feature": null,
-      "unique_key": "9e27e82b-1349-42a0-be73-ff479dcffd27",
+      "unique_key": "92022333-f659-4dd9-9b13-c7139cc3f877",
       "name": "IP Address Manager Summary",
       "private": null
     }
@@ -206,7 +216,7 @@
       },
       "subtitle": "",
       "description": "",
-      "unique_key": "3a5d1264-e04d-4525-9687-46cf2de9fd1a",
+      "unique_key": "6d11aef7-13ad-4387-800d-849c103db0ac",
       "name": "Subnets by % IP Address Used",
       "private": false
     },
@@ -357,7 +367,7 @@
       },
       "subtitle": "",
       "description": "",
-      "unique_key": "495ca7d0-2b8a-4bc5-921b-c1600e1619a4",
+      "unique_key": "94f43800-aae4-43d6-b700-0cf4aff7a710",
       "name": "DHCP Scopes by Utilization",
       "private": false
     },
@@ -556,8 +566,139 @@
       },
       "subtitle": "",
       "description": "",
-      "unique_key": "fb4c37cb-e4f5-4664-aa86-41f04189068b",
+      "unique_key": "290df81c-8ae3-438e-8da0-baf97d02c9d2",
       "name": "Pending IP Requests",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "IPAM Events",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT E.EventTime AS [Event Time]\n\t, E.UserName AS [Action by]\n\t, E.Message AS [Event Message]\nFROM IPAM.Event E",
+                "dataFields": [
+                  {
+                    "id": "Event Time",
+                    "label": "Event Time",
+                    "dataType": "System.DateTime"
+                  },
+                  {
+                    "id": "Action by",
+                    "label": "Action by",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Event Message",
+                    "label": "Event Message",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT E.EventTime AS [Event Time]\n\t, E.UserName AS [Action by]\n\t, E.Message AS [Event Message]\nFROM IPAM.Event E",
+                    "dataFields": [
+                      {
+                        "id": "Event Time",
+                        "label": "Event Time",
+                        "dataType": "System.DateTime"
+                      },
+                      {
+                        "id": "Action by",
+                        "label": "Action by",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Event Message",
+                        "label": "Event Message",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_6e5b26c3-c443-4f06-9d24-6b202a8d79fe",
+                  "label": "Event Time",
+                  "isActive": true,
+                  "width": 100,
+                  "formatter": {
+                    "componentType": "DatetimeFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Event Time"
+                      },
+                      "option": "0",
+                      "replaceDate": true
+                    }
+                  }
+                },
+                {
+                  "id": "column_b5d1fdcc-7380-46b7-9bfc-5786474964df",
+                  "label": "Action by",
+                  "isActive": true,
+                  "width": 75,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Action by"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_a60bc050-1e62-4ecf-894e-71a22158c1f1",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Event Message"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Event Message"
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "a9e99645-cbd6-46c2-b9f0-82a980afd583",
+      "name": "IPAM Events",
       "private": false
     }
   ],
