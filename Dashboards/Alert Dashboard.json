@@ -35,6 +35,7 @@
         }
       ],
       "parent": null,
+      "feature": null,
       "unique_key": "c91e6be3-142f-4395-a9d0-69e2336513cf",
       "name": "Alert Dashboard",
       "private": null
@@ -59,7 +60,7 @@
             "dataSource": {
               "providerId": "TableSwqlDatasourceService",
               "properties": {
-                "swql": "SELECT [AlertObjects].AlertConfigurations.Name AS [Name]\n\t,'/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:' + TOSTRING([AlertObjects].AlertObjectID) AS [Name_URL]\n\t,[AlertObjects].AlertConfigurations.Severity AS [Name_Severity]\n\t,[AlertObjects].EntityCaption AS [Object]\n\t,[AlertObjects].Node.Status AS [Object_Status]\n,[AlertObjects].EntitYDetailsUrl AS [Object_URL]\n\t,CASE \n\t\tWHEN [AlertObjects].RelatedNodeCaption = EntityCaption\n\t\t\tTHEN '[Self]'\n\t\tELSE [AlertObjects].RelatedNodeCaption\n\t\tEND AS [Related Node]\n\t,[AlertObjects].RelatedNodeDetailsURL AS [Related Node_URL]\n\t,[AlertObjects].Node.Status AS [Related Node_Status]\n\t,TOSTRING(TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime)) AS [Time]\n\t,TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime) AS [Time_SORT]\n\t,CASE \n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 1440 -- More than 1 Day (1440 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 1440.0, 1)) + ' Days')\n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 60  -- More than 1 Hour (60 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 60.0, 1)) + ' Hours')\n\t\tELSE (TOSTRING(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE())) + ' Minutes')\n\t\tEND AS [Active]\n\t,CASE\n        WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 7 -- More than 7 Day (1440 minutes)\n            THEN 14\n\t\t WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) < 2 -- Less than 2 Day\n\t\t \tTHEN 1\n        ELSE 3\n        END AS [ActiveIcon]\n\t     , CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN 'Unacknowledged'\n         ELSE CONCAT([AlertObjects].AlertActive.AcknowledgedBy, ' (', TOLOCAL([AlertObjects].AlertActive.AcknowledgedDateTime), ')')\n       END AS [Acknowledge]\n\t, CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN CONCAT('/Orion/NetPerfMon/AckAlert.aspx?AlertDefID=', [AlertObjects].AlertObjectID)\n         ELSE CONCAT('/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:', [AlertObjects].AlertObjectID)\n       END AS [Acknowledge_URL]\nFROM Orion.AlertObjects AS [AlertObjects]\n-- Mandatory JOINS needed if you want to filter via nodes custom properties\n--LEFT JOIN Orion.NodesCustomProperties AS [NodeCP]\n--  ON [AlertObjects].RelatedNodeID = NodeCP.NodeID\n--LEFT JOIN Orion.Nodes AS [Nodes]\n--  ON [AlertObjects].RelatedNodeID = Nodes.NodeID\nWHERE [AlertObjects].AlertActive.AlertActiveID > 0\n-- AND [AlertObjects].Node.CustomProperties.[CP_Name] = 'CP_Value'\nGROUP BY [AlertObjects].AlertActive.AlertActiveID",
+                "swql": "SELECT [AlertObjects].AlertConfigurations.Name AS [Name]\n\t,'/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:' + TOSTRING([AlertObjects].AlertObjectID) AS [Name_URL]\n\t,[AlertObjects].AlertConfigurations.Severity AS [Name_Severity]\n\t,[AlertObjects].EntityCaption AS [Object]\n\t,[AlertObjects].Node.Status AS [Object_Status]\n,[AlertObjects].EntitYDetailsUrl AS [Object_URL]\n\t,CASE \n\t\tWHEN [AlertObjects].RelatedNodeCaption = EntityCaption\n\t\t\tTHEN '[Self]'\n\t\tELSE [AlertObjects].RelatedNodeCaption\n\t\tEND AS [Related Node]\n\t,[AlertObjects].RelatedNodeDetailsURL AS [Related Node_URL]\n\t,[AlertObjects].Node.Status AS [Related Node_Status]\n\t,TOSTRING(TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime)) AS [Time]\n\t,TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime) AS [Time_SORT]\n\t,CASE \n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 1440 -- More than 1 Day (1440 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 1440.0, 1)) + ' Days')\n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 60  -- More than 1 Hour (60 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 60.0, 1)) + ' Hours')\n\t\tELSE (TOSTRING(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE())) + ' Minutes')\n\t\tEND AS [Active]\n\t,CASE\n        WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 7 -- More than 7 Day (1440 minutes)\n            THEN 14\n\t\t WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) < 2 -- Less than 2 Day\n\t\t \tTHEN 1\n        ELSE 3\n        END AS [ActiveIcon]\n\t     , CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN 'Unacknowledged'\n         ELSE CONCAT([AlertObjects].AlertActive.AcknowledgedBy, ' (', TOLOCAL([AlertObjects].AlertActive.AcknowledgedDateTime), ')')\n       END AS [Acknowledge]\n\t, CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN CONCAT('/Orion/NetPerfMon/AckAlert.aspx?AlertDefID=', [AlertObjects].AlertObjectID)\n         ELSE CONCAT('/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:', [AlertObjects].AlertObjectID)\n       END AS [Acknowledge_URL]\nFROM Orion.AlertObjects AS [AlertObjects]\n-- Mandatory JOINS needed if you want to filter via nodes custom properties\n--LEFT JOIN Orion.NodesCustomProperties AS [NodeCP]\n--  ON [AlertObjects].RelatedNodeID = NodeCP.NodeID\n--LEFT JOIN Orion.Nodes AS [Nodes]\n--  ON [AlertObjects].RelatedNodeID = Nodes.NodeID\nWHERE [AlertObjects].AlertActive.AlertActiveID > 0\n-- AND [AlertObjects].AlertConfigurations.Severity  NOT IN (0, 4)\n-- The severity levels are: 0 - informational, 1 - warning, 2 - critical, 3 - serious, 4 - notice.\n-- AND [AlertObjects].Node.CustomProperties.[CP_Name] = 'CP_Value'\nGROUP BY [AlertObjects].AlertActive.AlertActiveID",
                 "dataFields": [
                   {
                     "id": "Name",
@@ -144,7 +145,7 @@
               "properties": {
                 "dataSource": {
                   "properties": {
-                    "swql": "SELECT [AlertObjects].AlertConfigurations.Name AS [Name]\n\t,'/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:' + TOSTRING([AlertObjects].AlertObjectID) AS [Name_URL]\n\t,[AlertObjects].AlertConfigurations.Severity AS [Name_Severity]\n\t,[AlertObjects].EntityCaption AS [Object]\n\t,[AlertObjects].Node.Status AS [Object_Status]\n,[AlertObjects].EntitYDetailsUrl AS [Object_URL]\n\t,CASE \n\t\tWHEN [AlertObjects].RelatedNodeCaption = EntityCaption\n\t\t\tTHEN '[Self]'\n\t\tELSE [AlertObjects].RelatedNodeCaption\n\t\tEND AS [Related Node]\n\t,[AlertObjects].RelatedNodeDetailsURL AS [Related Node_URL]\n\t,[AlertObjects].Node.Status AS [Related Node_Status]\n\t,TOSTRING(TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime)) AS [Time]\n\t,TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime) AS [Time_SORT]\n\t,CASE \n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 1440 -- More than 1 Day (1440 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 1440.0, 1)) + ' Days')\n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 60  -- More than 1 Hour (60 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 60.0, 1)) + ' Hours')\n\t\tELSE (TOSTRING(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE())) + ' Minutes')\n\t\tEND AS [Active]\n\t,CASE\n        WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 7 -- More than 7 Day (1440 minutes)\n            THEN 14\n\t\t WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) < 2 -- Less than 2 Day\n\t\t \tTHEN 1\n        ELSE 3\n        END AS [ActiveIcon]\n\t     , CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN 'Unacknowledged'\n         ELSE CONCAT([AlertObjects].AlertActive.AcknowledgedBy, ' (', TOLOCAL([AlertObjects].AlertActive.AcknowledgedDateTime), ')')\n       END AS [Acknowledge]\n\t, CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN CONCAT('/Orion/NetPerfMon/AckAlert.aspx?AlertDefID=', [AlertObjects].AlertObjectID)\n         ELSE CONCAT('/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:', [AlertObjects].AlertObjectID)\n       END AS [Acknowledge_URL]\nFROM Orion.AlertObjects AS [AlertObjects]\n-- Mandatory JOINS needed if you want to filter via nodes custom properties\n--LEFT JOIN Orion.NodesCustomProperties AS [NodeCP]\n--  ON [AlertObjects].RelatedNodeID = NodeCP.NodeID\n--LEFT JOIN Orion.Nodes AS [Nodes]\n--  ON [AlertObjects].RelatedNodeID = Nodes.NodeID\nWHERE [AlertObjects].AlertActive.AlertActiveID > 0\n-- AND [AlertObjects].Node.CustomProperties.[CP_Name] = 'CP_Value'\nGROUP BY [AlertObjects].AlertActive.AlertActiveID",
+                    "swql": "SELECT [AlertObjects].AlertConfigurations.Name AS [Name]\n\t,'/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:' + TOSTRING([AlertObjects].AlertObjectID) AS [Name_URL]\n\t,[AlertObjects].AlertConfigurations.Severity AS [Name_Severity]\n\t,[AlertObjects].EntityCaption AS [Object]\n\t,[AlertObjects].Node.Status AS [Object_Status]\n,[AlertObjects].EntitYDetailsUrl AS [Object_URL]\n\t,CASE \n\t\tWHEN [AlertObjects].RelatedNodeCaption = EntityCaption\n\t\t\tTHEN '[Self]'\n\t\tELSE [AlertObjects].RelatedNodeCaption\n\t\tEND AS [Related Node]\n\t,[AlertObjects].RelatedNodeDetailsURL AS [Related Node_URL]\n\t,[AlertObjects].Node.Status AS [Related Node_Status]\n\t,TOSTRING(TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime)) AS [Time]\n\t,TOLOCAL([AlertObjects].AlertActive.TriggeredDateTime) AS [Time_SORT]\n\t,CASE \n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 1440 -- More than 1 Day (1440 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 1440.0, 1)) + ' Days')\n\t\tWHEN MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 60  -- More than 1 Hour (60 minutes)\n\t\t\tTHEN (TOSTRING(ROUND(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) / 60.0, 1)) + ' Hours')\n\t\tELSE (TOSTRING(MINUTEDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE())) + ' Minutes')\n\t\tEND AS [Active]\n\t,CASE\n        WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) > 7 -- More than 7 Day (1440 minutes)\n            THEN 14\n\t\t WHEN DayDIFF([AlertObjects].AlertActive.TriggeredDateTime, GETUTCDATE()) < 2 -- Less than 2 Day\n\t\t \tTHEN 1\n        ELSE 3\n        END AS [ActiveIcon]\n\t     , CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN 'Unacknowledged'\n         ELSE CONCAT([AlertObjects].AlertActive.AcknowledgedBy, ' (', TOLOCAL([AlertObjects].AlertActive.AcknowledgedDateTime), ')')\n       END AS [Acknowledge]\n\t, CASE\n         WHEN [AlertObjects].AlertActive.Acknowledged IS NULL\n           THEN CONCAT('/Orion/NetPerfMon/AckAlert.aspx?AlertDefID=', [AlertObjects].AlertObjectID)\n         ELSE CONCAT('/Orion/NetPerfMon/ActiveAlertDetails.aspx?NetObject=AAT:', [AlertObjects].AlertObjectID)\n       END AS [Acknowledge_URL]\nFROM Orion.AlertObjects AS [AlertObjects]\n-- Mandatory JOINS needed if you want to filter via nodes custom properties\n--LEFT JOIN Orion.NodesCustomProperties AS [NodeCP]\n--  ON [AlertObjects].RelatedNodeID = NodeCP.NodeID\n--LEFT JOIN Orion.Nodes AS [Nodes]\n--  ON [AlertObjects].RelatedNodeID = Nodes.NodeID\nWHERE [AlertObjects].AlertActive.AlertActiveID > 0\n-- AND [AlertObjects].AlertConfigurations.Severity  NOT IN (0, 4)\n-- The severity levels are: 0 - informational, 1 - warning, 2 - critical, 3 - serious, 4 - notice.\n-- AND [AlertObjects].Node.CustomProperties.[CP_Name] = 'CP_Value'\nGROUP BY [AlertObjects].AlertActive.AlertActiveID",
                     "dataFields": [
                       {
                         "id": "Name",
@@ -253,9 +254,10 @@
                     "componentType": "LinkFormatterComponent",
                     "properties": {
                       "dataFieldIds": {
-                        "value": "Name",
-                        "link": "Name_URL"
-                      }
+                        "link": "Name_URL",
+                        "value": "Name"
+                      },
+                      "targetSelf": false
                     }
                   }
                 },
@@ -334,9 +336,10 @@
                     "componentType": "LinkFormatterComponent",
                     "properties": {
                       "dataFieldIds": {
-                        "value": "Acknowledge",
-                        "link": "Acknowledge_URL"
-                      }
+                        "link": "Acknowledge_URL",
+                        "value": "Acknowledge"
+                      },
+                      "targetSelf": false
                     }
                   }
                 }
@@ -524,9 +527,10 @@
                     "componentType": "LinkFormatterComponent",
                     "properties": {
                       "dataFieldIds": {
-                        "value": "AlertName",
-                        "link": "AlertEdit_URL"
-                      }
+                        "link": "AlertEdit_URL",
+                        "value": "AlertName"
+                      },
+                      "targetSelf": false
                     }
                   }
                 },
@@ -556,9 +560,10 @@
                     "componentType": "LinkFormatterComponent",
                     "properties": {
                       "dataFieldIds": {
-                        "value": "RelatedNode",
-                        "link": "RelatedNode_Url"
-                      }
+                        "link": "RelatedNode_Url",
+                        "value": "RelatedNode"
+                      },
+                      "targetSelf": false
                     }
                   }
                 }
@@ -707,9 +712,10 @@
                     "componentType": "LinkFormatterComponent",
                     "properties": {
                       "dataFieldIds": {
-                        "value": "Alert_Name",
-                        "link": "AlertEdit_URL"
-                      }
+                        "link": "AlertEdit_URL",
+                        "value": "Alert_Name"
+                      },
+                      "targetSelf": false
                     }
                   }
                 },
