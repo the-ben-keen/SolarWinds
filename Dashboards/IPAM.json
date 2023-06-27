@@ -1,0 +1,565 @@
+{
+  "version": 1,
+  "dashboards": [
+    {
+      "widgets": [
+        {
+          "unique_key": "3a5d1264-e04d-4525-9687-46cf2de9fd1a",
+          "location": {
+            "x": 5,
+            "y": 0,
+            "cols": 5,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "495ca7d0-2b8a-4bc5-921b-c1600e1619a4",
+          "location": {
+            "x": 0,
+            "y": 0,
+            "cols": 5,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "fb4c37cb-e4f5-4664-aa86-41f04189068b",
+          "location": {
+            "x": 0,
+            "y": 2,
+            "cols": 10,
+            "rows": 3
+          },
+          "reference": false
+        }
+      ],
+      "parent": null,
+      "feature": null,
+      "unique_key": "9e27e82b-1349-42a0-be73-ff479dcffd27",
+      "name": "IP Address Manager Summary",
+      "private": null
+    }
+  ],
+  "widgets": [
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Subnets by % IP Address Used",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT S.FriendlyName AS [Subnet Name]\n\t, S.PercentUsed AS [% IP Space Used]\n\t, S.AvailableCount AS [IPs Available]\n\t, S.UsedCount AS [IPs Used]\nFROM IPAM.Subnet S",
+                "dataFields": [
+                  {
+                    "id": "Subnet Name",
+                    "label": "Subnet Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "% IP Space Used",
+                    "label": "% IP Space Used",
+                    "dataType": "System.Decimal"
+                  },
+                  {
+                    "id": "IPs Available",
+                    "label": "IPs Available",
+                    "dataType": "System.Int64"
+                  },
+                  {
+                    "id": "IPs Used",
+                    "label": "IPs Used",
+                    "dataType": "System.Int64"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT S.FriendlyName AS [Subnet Name]\n\t, S.PercentUsed AS [% IP Space Used]\n\t, S.AvailableCount AS [IPs Available]\n\t, S.UsedCount AS [IPs Used]\nFROM IPAM.Subnet S",
+                    "dataFields": [
+                      {
+                        "id": "Subnet Name",
+                        "label": "Subnet Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "% IP Space Used",
+                        "label": "% IP Space Used",
+                        "dataType": "System.Decimal"
+                      },
+                      {
+                        "id": "IPs Available",
+                        "label": "IPs Available",
+                        "dataType": "System.Int64"
+                      },
+                      {
+                        "id": "IPs Used",
+                        "label": "IPs Used",
+                        "dataType": "System.Int64"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_a9c04273-d961-4e14-8433-a2e68d4945b3",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Subnet Name"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Subnet Name"
+                },
+                {
+                  "id": "column_43746af8-6e1e-46cc-b3a4-4527a73c4045",
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "% IP Space Used"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": "%"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "% IP Space Used"
+                },
+                {
+                  "id": "column_238f44c5-5274-4815-aebc-bbf51c9e95f5",
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "IPs Available"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": ""
+                    }
+                  },
+                  "isActive": true,
+                  "label": "IPs Available"
+                },
+                {
+                  "id": "column_05bdb4e4-5758-46fa-86fd-38bc4f9478ae",
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "IPs Used"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": ""
+                    }
+                  },
+                  "isActive": true,
+                  "label": "IPs Used"
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_43746af8-6e1e-46cc-b3a4-4527a73c4045",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 43200,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "3a5d1264-e04d-4525-9687-46cf2de9fd1a",
+      "name": "Subnets by % IP Address Used",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "DHCP Scopes by Utilization",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT D.Address AS [DHCP Scope IP]\n\t, D.PercentUsed AS [% IP Space Used]\n\t, D.AvailableCount AS [IPs Available]\n\t, D.UsedCount AS [IPs Used]\nFROM IPAM.DhcpScope D",
+                "dataFields": [
+                  {
+                    "id": "DHCP Scope IP",
+                    "label": "DHCP Scope IP",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "% IP Space Used",
+                    "label": "% IP Space Used",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "IPs Available",
+                    "label": "IPs Available",
+                    "dataType": "System.Int64"
+                  },
+                  {
+                    "id": "IPs Used",
+                    "label": "IPs Used",
+                    "dataType": "System.Int64"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT D.Address AS [DHCP Scope IP]\n\t, D.PercentUsed AS [% IP Space Used]\n\t, D.AvailableCount AS [IPs Available]\n\t, D.UsedCount AS [IPs Used]\nFROM IPAM.DhcpScope D",
+                    "dataFields": [
+                      {
+                        "id": "DHCP Scope IP",
+                        "label": "DHCP Scope IP",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "% IP Space Used",
+                        "label": "% IP Space Used",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "IPs Available",
+                        "label": "IPs Available",
+                        "dataType": "System.Int64"
+                      },
+                      {
+                        "id": "IPs Used",
+                        "label": "IPs Used",
+                        "dataType": "System.Int64"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_da8035a5-1bb5-4ae1-8c1e-e0461f76127f",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "DHCP Scope IP"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "DHCP Scope IP"
+                },
+                {
+                  "id": "column_d2e6747d-7c8e-4218-84ad-14c1cc880a4b",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "% IP Space Used"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "% IP Space Used"
+                },
+                {
+                  "id": "column_18abc42e-e92f-431c-a79d-0747c8d36822",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "IPs Available"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "IPs Available"
+                },
+                {
+                  "id": "column_6894d1e0-4366-4e59-9067-228b687d3c69",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "IPs Used"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "IPs Used"
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_d2e6747d-7c8e-4218-84ad-14c1cc880a4b",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "495ca7d0-2b8a-4bc5-921b-c1600e1619a4",
+      "name": "DHCP Scopes by Utilization",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Pending IP Requests",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT R.RequestDate AS [Date Requested]\n\t, R.DisplayName AS [Request Name]\n\t, R.Email AS [Requester Email Address]\n\t, R.Subnet AS [Request Subnet]\n\t, R.Comment AS [Comment]\n\t, R.AdminComment AS [Admin Comment]\nFROM IPAM.IPRequests R\nWHERE R.ResolutionDate IS NULL",
+                "dataFields": [
+                  {
+                    "id": "Date Requested",
+                    "label": "Date Requested",
+                    "dataType": "System.DateTime"
+                  },
+                  {
+                    "id": "Request Name",
+                    "label": "Request Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Requester Email Address",
+                    "label": "Requester Email Address",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Request Subnet",
+                    "label": "Request Subnet",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Comment",
+                    "label": "Comment",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Admin Comment",
+                    "label": "Admin Comment",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT R.RequestDate AS [Date Requested]\n\t, R.DisplayName AS [Request Name]\n\t, R.Email AS [Requester Email Address]\n\t, R.Subnet AS [Request Subnet]\n\t, R.Comment AS [Comment]\n\t, R.AdminComment AS [Admin Comment]\nFROM IPAM.IPRequests R\nWHERE R.ResolutionDate IS NULL",
+                    "dataFields": [
+                      {
+                        "id": "Date Requested",
+                        "label": "Date Requested",
+                        "dataType": "System.DateTime"
+                      },
+                      {
+                        "id": "Request Name",
+                        "label": "Request Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Requester Email Address",
+                        "label": "Requester Email Address",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Request Subnet",
+                        "label": "Request Subnet",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Comment",
+                        "label": "Comment",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Admin Comment",
+                        "label": "Admin Comment",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_b56ef9fe-5e2b-4b16-823e-b8258852b3e9",
+                  "formatter": {
+                    "componentType": "DatetimeFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Date Requested"
+                      },
+                      "option": "1",
+                      "replaceDate": true
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Date Requested"
+                },
+                {
+                  "id": "column_c36649ff-afd7-415c-a7b5-4d8142ca4c3e",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Request Name"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Request Name"
+                },
+                {
+                  "id": "column_42295fd6-cde5-4246-967e-9580ef69b973",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Requester Email Address"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Requester Email Address"
+                },
+                {
+                  "id": "column_8ba56e15-1265-4996-b990-5e8d4293237c",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Request Subnet"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Request Subnet"
+                },
+                {
+                  "id": "column_628bac5f-fe44-43a8-b7f0-463ba5e3efa5",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Comment"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Comment"
+                },
+                {
+                  "id": "column_d4467cc5-1223-4752-9243-e1ade8d87e5c",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Admin Comment"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Admin Comment"
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_b56ef9fe-5e2b-4b16-823e-b8258852b3e9",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "fb4c37cb-e4f5-4664-aa86-41f04189068b",
+      "name": "Pending IP Requests",
+      "private": false
+    }
+  ],
+  "remove": null
+}
