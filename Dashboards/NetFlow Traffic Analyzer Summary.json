@@ -1,0 +1,737 @@
+{
+  "version": 1,
+  "dashboards": [
+    {
+      "widgets": [
+        {
+          "unique_key": "66c8ba54-38d8-43a5-a542-c8322dbf9988",
+          "location": {
+            "x": 0,
+            "y": 4,
+            "cols": 6,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "319e758b-7ceb-4211-9200-191e7d2b858c",
+          "location": {
+            "x": 0,
+            "y": 0,
+            "cols": 6,
+            "rows": 4
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "9317eb36-3486-42cc-b0bd-835c5f3a43fa",
+          "location": {
+            "x": 0,
+            "y": 6,
+            "cols": 6,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "5e7ca3ec-876d-42f9-bf31-51883492b322",
+          "location": {
+            "x": 6,
+            "y": 4,
+            "cols": 6,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "39616da3-a77b-44a2-988b-a2ae60f8023e",
+          "location": {
+            "x": 6,
+            "y": 0,
+            "cols": 6,
+            "rows": 4
+          },
+          "reference": false
+        }
+      ],
+      "parent": null,
+      "feature": null,
+      "unique_key": "e2c36e97-5009-4ad3-a296-d5c35a7b1198",
+      "name": "NetFlow Traffic Analyzer Summary",
+      "private": null
+    }
+  ],
+  "widgets": [
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Flow and CBQoS Sources",
+            "subtitle": "",
+            "url": "/apps/nta-flowsources/management",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT NS.Node.Engine.ServerName AS [Server Name]\n\t, NS.Node.Status AS [Server Status]\n\t, NS.Node.DetailsURL AS [Server Details]\n\t, NS.Node.Interfaces.Name AS [Interface Name]\n\t, NS.Node.Interfaces.Status AS [Interface Status]\n\t, NS.Node.Interfaces.DetailsURL AS [Interface Details]\n\t, NS.LastTimeFlow AS [Last Received NetFlow]\n\t, NS.Node.Interfaces.Outbps AS [Traffic Out]\n\t, NS.Node.Interfaces.Inbps AS [Traffic In]\n\t, CASE\n\t\tWHEN NS.CBQoSLastTime IS NULL \n\t\t\tTHEN 'Never'\n\t\tELSE TOSTRING(NS.CBQoSLastTime)\n\tEND AS [Last Received CBQoS Date]\nFROM Orion.Netflow.Source NS\nWHERE NS.Node.Interfaces.Name = 'Local Netflow Source'",
+                "dataFields": [
+                  {
+                    "id": "Server Name",
+                    "label": "Server Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Server Status",
+                    "label": "Server Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Server Details",
+                    "label": "Server Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Interface Name",
+                    "label": "Interface Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Interface Status",
+                    "label": "Interface Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Interface Details",
+                    "label": "Interface Details",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Last Received NetFlow",
+                    "label": "Last Received NetFlow",
+                    "dataType": "System.DateTime"
+                  },
+                  {
+                    "id": "Traffic Out",
+                    "label": "Traffic Out",
+                    "dataType": "System.Single"
+                  },
+                  {
+                    "id": "Traffic In",
+                    "label": "Traffic In",
+                    "dataType": "System.Single"
+                  },
+                  {
+                    "id": "Last Received CBQoS Date",
+                    "label": "Last Received CBQoS Date",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT NS.Node.Engine.ServerName AS [Server Name]\n\t, NS.Node.Status AS [Server Status]\n\t, NS.Node.DetailsURL AS [Server Details]\n\t, NS.Node.Interfaces.Name AS [Interface Name]\n\t, NS.Node.Interfaces.Status AS [Interface Status]\n\t, NS.Node.Interfaces.DetailsURL AS [Interface Details]\n\t, NS.LastTimeFlow AS [Last Received NetFlow]\n\t, NS.Node.Interfaces.Outbps AS [Traffic Out]\n\t, NS.Node.Interfaces.Inbps AS [Traffic In]\n\t, CASE\n\t\tWHEN NS.CBQoSLastTime IS NULL \n\t\t\tTHEN 'Never'\n\t\tELSE TOSTRING(NS.CBQoSLastTime)\n\tEND AS [Last Received CBQoS Date]\nFROM Orion.Netflow.Source NS\nWHERE NS.Node.Interfaces.Name = 'Local Netflow Source'",
+                    "dataFields": [
+                      {
+                        "id": "Server Name",
+                        "label": "Server Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Server Status",
+                        "label": "Server Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Server Details",
+                        "label": "Server Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Interface Name",
+                        "label": "Interface Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Interface Status",
+                        "label": "Interface Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Interface Details",
+                        "label": "Interface Details",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Last Received NetFlow",
+                        "label": "Last Received NetFlow",
+                        "dataType": "System.DateTime"
+                      },
+                      {
+                        "id": "Traffic Out",
+                        "label": "Traffic Out",
+                        "dataType": "System.Single"
+                      },
+                      {
+                        "id": "Traffic In",
+                        "label": "Traffic In",
+                        "dataType": "System.Single"
+                      },
+                      {
+                        "id": "Last Received CBQoS Date",
+                        "label": "Last Received CBQoS Date",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_f5c54f3f-5a98-44c2-a310-3b2690336237",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Server Status",
+                        "vendor": null,
+                        "link": "Server Details",
+                        "value": "Server Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Server Name"
+                },
+                {
+                  "id": "column_4f865c34-526f-435b-9dee-aba826659f25",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Interface Status",
+                        "vendor": null,
+                        "link": "Interface Details",
+                        "value": "Interface Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Interface Name"
+                },
+                {
+                  "id": "column_19ee13bf-adad-4644-82f5-32c72b6ea769",
+                  "formatter": {
+                    "componentType": "DatetimeFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Last Received NetFlow"
+                      },
+                      "option": "0",
+                      "replaceDate": true
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Last Received NetFlow"
+                },
+                {
+                  "id": "column_67aed8ed-ef16-4dce-a0f7-8f52e09de11d",
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Traffic Out"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": "bps"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Traffic Out"
+                },
+                {
+                  "id": "column_397dce4c-cf0e-42b7-991d-7f6c1cf3719d",
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Traffic In"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": "bps"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Traffic In"
+                },
+                {
+                  "id": "column_5942ae74-a6a0-4e1e-b1ac-52a84943dc95",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Last Received CBQoS Date"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Last Received CBQoS Date"
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "66c8ba54-38d8-43a5-a542-c8322dbf9988",
+      "name": "Flow and CBQoS Sources",
+      "private": false
+    },
+    {
+      "type": "multicharttimeseries",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Total NetFlow Packets Received",
+            "subtitle": "",
+            "url": "/ui/perfstack/PSTK-A1F7F0B6C6754A1F402FF2546253A08C4D4EF6DE",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "/": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TimeseriesPerfstackDatasourceService",
+              "properties": {
+                "id": "PSTK-A1F7F0B6C6754A1F402FF2546253A08C4D4EF6DE",
+                "displayName": "Total NetFlow Packets Received",
+                "startTime": null,
+                "endTime": null,
+                "presetTime": "last12Hours"
+              }
+            }
+          }
+        },
+        "timeframeSelection": {
+          "properties": {
+            "timeframe": {
+              "selectedPresetId": "lastHour",
+              "startDatetime": "2023-06-28T14:34:03.797Z",
+              "endDatetime": "2023-06-28T15:34:03.797Z"
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "319e758b-7ceb-4211-9200-191e7d2b858c",
+      "name": "Total NetFlow Packets Received",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Traffic Analyzer Events",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT OE.EventTime AS [Event Time]\n\t, OE.Message AS [Event Message]\nFROM Orion.Events OE\nWHERE OE.EventTypeProperties.EventType IN (300, 301, 302, 303, 304, 306, 307, 311, 312, 313, 316, 320, 323, 340, 341, 342)",
+                "dataFields": [
+                  {
+                    "id": "Event Time",
+                    "label": "Event Time",
+                    "dataType": "System.DateTime"
+                  },
+                  {
+                    "id": "Event Message",
+                    "label": "Event Message",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT OE.EventTime AS [Event Time]\n\t, OE.Message AS [Event Message]\nFROM Orion.Events OE\nWHERE OE.EventTypeProperties.EventType IN (300, 301, 302, 303, 304, 306, 307, 311, 312, 313, 316, 320, 323, 340, 341, 342)",
+                    "dataFields": [
+                      {
+                        "id": "Event Time",
+                        "label": "Event Time",
+                        "dataType": "System.DateTime"
+                      },
+                      {
+                        "id": "Event Message",
+                        "label": "Event Message",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_97ae52f8-1d16-4bb2-a5b0-111e26ca7e84",
+                  "formatter": {
+                    "componentType": "DatetimeFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Event Time"
+                      },
+                      "option": "1",
+                      "replaceDate": true
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Event Time"
+                },
+                {
+                  "id": "column_7edfb4e2-82a0-426f-a544-5a5a45b58ad2",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Event Message"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Event Message"
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": false
+              }
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "9317eb36-3486-42cc-b0bd-835c5f3a43fa",
+      "name": "Traffic Analyzer Events",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Top 10 Applications",
+            "subtitle": "INGRESS AND EGRESS, LAST 1 HOURS",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT TOP 10 NA.Name AS [Application Name]\n\t, NA.Flows.IngressInterface.Inbps AS [Ingress Bytes]\n\t, NA.Flows.IngressInterface.Outbps AS [Egress Bytes]\n\t, NA.Flows.IngressInterface.InPktSize AS [Ingress Packets]\n\t, NA.Flows.IngressInterface.OutPktSize AS [Egress Packets]\n\t, NA.Flows.IngressInterface.PercentUtil AS [Percent Utilized]\nFROM Orion.Netflow.Applications NA",
+                "dataFields": [
+                  {
+                    "id": "Application Name",
+                    "label": "Application Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Ingress Bytes",
+                    "label": "Ingress Bytes",
+                    "dataType": "System.Single"
+                  },
+                  {
+                    "id": "Egress Bytes",
+                    "label": "Egress Bytes",
+                    "dataType": "System.Single"
+                  },
+                  {
+                    "id": "Ingress Packets",
+                    "label": "Ingress Packets",
+                    "dataType": "System.Int16"
+                  },
+                  {
+                    "id": "Egress Packets",
+                    "label": "Egress Packets",
+                    "dataType": "System.Int16"
+                  },
+                  {
+                    "id": "Percent Utilized",
+                    "label": "Percent Utilized",
+                    "dataType": "System.Double"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT TOP 10 NA.Name AS [Application Name]\n\t, NA.Flows.IngressInterface.Inbps AS [Ingress Bytes]\n\t, NA.Flows.IngressInterface.Outbps AS [Egress Bytes]\n\t, NA.Flows.IngressInterface.InPktSize AS [Ingress Packets]\n\t, NA.Flows.IngressInterface.OutPktSize AS [Egress Packets]\n\t, NA.Flows.IngressInterface.PercentUtil AS [Percent Utilized]\nFROM Orion.Netflow.Applications NA",
+                    "dataFields": [
+                      {
+                        "id": "Application Name",
+                        "label": "Application Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Ingress Bytes",
+                        "label": "Ingress Bytes",
+                        "dataType": "System.Single"
+                      },
+                      {
+                        "id": "Egress Bytes",
+                        "label": "Egress Bytes",
+                        "dataType": "System.Single"
+                      },
+                      {
+                        "id": "Ingress Packets",
+                        "label": "Ingress Packets",
+                        "dataType": "System.Int16"
+                      },
+                      {
+                        "id": "Egress Packets",
+                        "label": "Egress Packets",
+                        "dataType": "System.Int16"
+                      },
+                      {
+                        "id": "Percent Utilized",
+                        "label": "Percent Utilized",
+                        "dataType": "System.Double"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_e5c03f6c-34d2-4d3b-bb95-cbd05ef0cde0",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Application Name"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Application Name"
+                },
+                {
+                  "id": "column_405aaa5b-4db3-43d8-b69c-cdad12664142",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Ingress Bytes"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Ingress Bytes"
+                },
+                {
+                  "id": "column_63a46dfc-2e8f-40d9-9a7d-ff2cdab6251c",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Egress Bytes"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Egress Bytes"
+                },
+                {
+                  "id": "column_256c1b16-fc9d-45d0-9c26-0d10176f93ee",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Ingress Packets"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Ingress Packets"
+                },
+                {
+                  "id": "column_d8ddb423-c88b-44da-9653-71eb83621072",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Egress Packets"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Egress Packets"
+                },
+                {
+                  "id": "column_0b89b921-7a63-4e51-8ac2-d6183e15f65a",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Percent Utilized"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Percent Utilized"
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 3600,
+                "overrideDefaultSettings": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "INGRESS AND EGRESS, LAST 1 HOURS",
+      "description": "",
+      "unique_key": "5e7ca3ec-876d-42f9-bf31-51883492b322",
+      "name": "Top 10 Applications",
+      "private": false
+    },
+    {
+      "type": "multicharttimeseries",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Total NetFlow Packets Transmitted",
+            "subtitle": "",
+            "url": "/ui/perfstack/PSTK-4F71A5B3890562CC82694498E297537A15335174",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "/": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TimeseriesPerfstackDatasourceService",
+              "properties": {
+                "id": "PSTK-4F71A5B3890562CC82694498E297537A15335174",
+                "displayName": "Total NetFlow Packets Transmitted",
+                "startTime": null,
+                "endTime": null,
+                "presetTime": "last12Hours"
+              }
+            }
+          }
+        },
+        "timeframeSelection": {
+          "properties": {
+            "timeframe": {
+              "selectedPresetId": "lastHour",
+              "startDatetime": "2023-06-28T14:32:04.346Z",
+              "endDatetime": "2023-06-28T15:32:04.346Z"
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "39616da3-a77b-44a2-988b-a2ae60f8023e",
+      "name": "Total NetFlow Packets Transmitted",
+      "private": false
+    }
+  ],
+  "remove": null
+}
