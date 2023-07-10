@@ -1,0 +1,745 @@
+{
+  "version": 1,
+  "dashboards": [
+    {
+      "widgets": [
+        {
+          "unique_key": "52a1a538-30ee-49c0-b73a-be2e8a6f346a",
+          "location": {
+            "x": 0,
+            "y": 0,
+            "cols": 3,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "b10657f2-64d5-4bfd-b593-af14651e3c4e",
+          "location": {
+            "x": 7,
+            "y": 0,
+            "cols": 4,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "094979c6-a561-4867-b8af-07258127204a",
+          "location": {
+            "x": 3,
+            "y": 0,
+            "cols": 4,
+            "rows": 2
+          },
+          "reference": false
+        }
+      ],
+      "parent": null,
+      "feature": null,
+      "unique_key": "e236c385-dfeb-4b7a-9416-e163f4bc0389",
+      "name": "Executive Dashboard",
+      "private": null
+    }
+  ],
+  "widgets": [
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Number of Active Alerts",
+            "subtitle": "By Severity",
+            "url": "/apps/platform/dashboard/20",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_eaab48b3-5d79-44ff-ab2f-9e377a14e687",
+              "kpi_babdb191-92e4-4222-9006-1d1d45f87eaf",
+              "kpi_e1f64a51-4a33-4116-9528-3f77a4919f0a"
+            ]
+          }
+        },
+        "kpi_eaab48b3-5d79-44ff-ab2f-9e377a14e687": {
+          "id": "kpi_eaab48b3-5d79-44ff-ab2f-9e377a14e687",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT ([AlertObjects].AlertConfigurations.Severity) AS [Severity]\nFROM Orion.AlertObjects AS [AlertObjects]\nWHERE [AlertObjects].AlertConfigurations.Severity = 2 --CRITICAL--\n AND [AlertObjects].AlertActive.AlertActiveID > 0",
+                "dataFields": [
+                  {
+                    "id": "Severity",
+                    "label": "Severity",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT ([AlertObjects].AlertConfigurations.Severity) AS [Severity]\nFROM Orion.AlertObjects AS [AlertObjects]\nWHERE [AlertObjects].AlertConfigurations.Severity = 2 --CRITICAL--\n AND [AlertObjects].AlertActive.AlertActiveID > 0",
+                    "dataFields": [
+                      {
+                        "id": "Severity",
+                        "label": "Severity",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 1,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "CRITICAL",
+              "backgroundColor": "var(--nui-color-semantic-critical)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_babdb191-92e4-4222-9006-1d1d45f87eaf": {
+          "id": "kpi_babdb191-92e4-4222-9006-1d1d45f87eaf",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT ([AlertObjects].AlertConfigurations.Severity) AS [Severity]\nFROM Orion.AlertObjects AS [AlertObjects]\nWHERE [AlertObjects].AlertConfigurations.Severity = 1 --Warning--\n AND [AlertObjects].AlertActive.AlertActiveID > 0",
+                "dataFields": [
+                  {
+                    "id": "Severity",
+                    "label": "Severity",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT ([AlertObjects].AlertConfigurations.Severity) AS [Severity]\nFROM Orion.AlertObjects AS [AlertObjects]\nWHERE [AlertObjects].AlertConfigurations.Severity = 1 --Warning--\n AND [AlertObjects].AlertActive.AlertActiveID > 0",
+                    "dataFields": [
+                      {
+                        "id": "Severity",
+                        "label": "Severity",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 10,
+                  "warningThresholdValue": 1,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Warning",
+              "backgroundColor": "var(--nui-color-semantic-warning)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_e1f64a51-4a33-4116-9528-3f77a4919f0a": {
+          "id": "kpi_e1f64a51-4a33-4116-9528-3f77a4919f0a",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT ([AlertObjects].AlertConfigurations.Severity) AS [Severity]\nFROM Orion.AlertObjects AS [AlertObjects]\nWHERE [AlertObjects].AlertConfigurations.Severity = 3 --SERIOUS--\n AND [AlertObjects].AlertActive.AlertActiveID > 0",
+                "dataFields": [
+                  {
+                    "id": "Severity",
+                    "label": "Severity",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT ([AlertObjects].AlertConfigurations.Severity) AS [Severity]\nFROM Orion.AlertObjects AS [AlertObjects]\nWHERE [AlertObjects].AlertConfigurations.Severity = 3 --SERIOUS--\n AND [AlertObjects].AlertActive.AlertActiveID > 0",
+                    "dataFields": [
+                      {
+                        "id": "Severity",
+                        "label": "Severity",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Serious",
+              "backgroundColor": "var(--nui-color-chart-one)",
+              "units": ""
+            }
+          }
+        }
+      },
+      "subtitle": "By Severity",
+      "description": "",
+      "unique_key": "52a1a538-30ee-49c0-b73a-be2e8a6f346a",
+      "name": "Number of Active Alerts",
+      "private": false
+    },
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Overall Application Statuses",
+            "subtitle": "",
+            "url": "/apps/platform/dashboard/23",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_77a95b13-3470-4a8c-96db-81d2ee61decb",
+              "kpi_61130f7f-18b4-4b7f-aa41-6a6555c446d8",
+              "kpi_b2e337e8-c4c1-4554-89bd-e4d3e1c12a08",
+              "kpi_f1b272d4-b765-416d-8b13-f0d402f3347d",
+              "kpi_5cc08b8a-600f-4565-b8bc-a2160fe02e7a"
+            ]
+          }
+        },
+        "kpi_77a95b13-3470-4a8c-96db-81d2ee61decb": {
+          "id": "kpi_77a95b13-3470-4a8c-96db-81d2ee61decb",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 2",
+                "dataFields": [
+                  {
+                    "id": "Applications",
+                    "label": "Applications",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 2",
+                    "dataFields": [
+                      {
+                        "id": "Applications",
+                        "label": "Applications",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Down",
+              "backgroundColor": "var(--nui-color-semantic-critical)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_61130f7f-18b4-4b7f-aa41-6a6555c446d8": {
+          "id": "kpi_61130f7f-18b4-4b7f-aa41-6a6555c446d8",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 3",
+                "dataFields": [
+                  {
+                    "id": "Applications",
+                    "label": "Applications",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 3",
+                    "dataFields": [
+                      {
+                        "id": "Applications",
+                        "label": "Applications",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Warning",
+              "backgroundColor": "var(--nui-color-semantic-warning)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_b2e337e8-c4c1-4554-89bd-e4d3e1c12a08": {
+          "id": "kpi_b2e337e8-c4c1-4554-89bd-e4d3e1c12a08",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 14",
+                "dataFields": [
+                  {
+                    "id": "Applications",
+                    "label": "Applications",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 14",
+                    "dataFields": [
+                      {
+                        "id": "Applications",
+                        "label": "Applications",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Criticial",
+              "backgroundColor": "var(--nui-color-chart-six)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_5cc08b8a-600f-4565-b8bc-a2160fe02e7a": {
+          "id": "kpi_5cc08b8a-600f-4565-b8bc-a2160fe02e7a",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 1",
+                "dataFields": [
+                  {
+                    "id": "Applications",
+                    "label": "Applications",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 1",
+                    "dataFields": [
+                      {
+                        "id": "Applications",
+                        "label": "Applications",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "UP",
+              "backgroundColor": "var(--nui-color-semantic-ok)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_f1b272d4-b765-416d-8b13-f0d402f3347d": {
+          "id": "kpi_f1b272d4-b765-416d-8b13-f0d402f3347d",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 0",
+                "dataFields": [
+                  {
+                    "id": "Applications",
+                    "label": "Applications",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (A.ApplicationID) AS [Applications]\nFROM Orion.APM.Application A\nWHERE A.Status = 0",
+                    "dataFields": [
+                      {
+                        "id": "Applications",
+                        "label": "Applications",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Unknown",
+              "backgroundColor": "var(--nui-color-semantic-unknown)",
+              "units": ""
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "b10657f2-64d5-4bfd-b593-af14651e3c4e",
+      "name": "Overall Application Statuses",
+      "private": false
+    },
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Overall Node Status",
+            "subtitle": "",
+            "url": "/apps/platform/dashboard/18",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_72e2c1b5-4a75-4d37-bb0c-6cbfbf1323a8",
+              "kpi_21b9b33b-f8d3-4081-9f5a-48fb74127656",
+              "kpi_e5cbeaac-d77c-4058-bc9e-4781f80387f7",
+              "kpi_d04894a4-6983-4ce5-9c5f-d273c41541d7",
+              "kpi_03ce9f77-6387-48aa-9437-8b5841129a3a"
+            ]
+          }
+        },
+        "kpi_72e2c1b5-4a75-4d37-bb0c-6cbfbf1323a8": {
+          "id": "kpi_72e2c1b5-4a75-4d37-bb0c-6cbfbf1323a8",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (N.NodeID) AS Nodes\nFROM Orion.Nodes N\nWHERE N.Status = 2",
+                "dataFields": [
+                  {
+                    "id": "Nodes",
+                    "label": "Nodes",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (N.NodeID) AS Nodes\nFROM Orion.Nodes N\nWHERE N.Status = 2",
+                    "dataFields": [
+                      {
+                        "id": "Nodes",
+                        "label": "Nodes",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Down",
+              "backgroundColor": "var(--nui-color-semantic-critical)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_21b9b33b-f8d3-4081-9f5a-48fb74127656": {
+          "id": "kpi_21b9b33b-f8d3-4081-9f5a-48fb74127656",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (N.NodeID) AS Nodes\nFROM Orion.Nodes N\nWHERE N.Status = 14",
+                "dataFields": [
+                  {
+                    "id": "Nodes",
+                    "label": "Nodes",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (N.NodeID) AS Nodes\nFROM Orion.Nodes N\nWHERE N.Status = 14",
+                    "dataFields": [
+                      {
+                        "id": "Nodes",
+                        "label": "Nodes",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Critical",
+              "backgroundColor": "var(--nui-color-chart-six)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_e5cbeaac-d77c-4058-bc9e-4781f80387f7": {
+          "id": "kpi_e5cbeaac-d77c-4058-bc9e-4781f80387f7",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (N.NodeID) AS Nodes\nFROM Orion.Nodes N\nWHERE N.Status = 3",
+                "dataFields": [
+                  {
+                    "id": "Nodes",
+                    "label": "Nodes",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (N.NodeID) AS Nodes\nFROM Orion.Nodes N\nWHERE N.Status = 3",
+                    "dataFields": [
+                      {
+                        "id": "Nodes",
+                        "label": "Nodes",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Warning",
+              "backgroundColor": "var(--nui-color-semantic-warning)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_d04894a4-6983-4ce5-9c5f-d273c41541d7": {
+          "id": "kpi_d04894a4-6983-4ce5-9c5f-d273c41541d7",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (N.NodeID) AS Nodes\nFROM Orion.Nodes N\nWHERE N.Status = 0",
+                "dataFields": [
+                  {
+                    "id": "Nodes",
+                    "label": "Nodes",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (N.NodeID) AS Nodes\nFROM Orion.Nodes N\nWHERE N.Status = 0",
+                    "dataFields": [
+                      {
+                        "id": "Nodes",
+                        "label": "Nodes",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Unknown",
+              "backgroundColor": "var(--nui-color-semantic-unknown)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_03ce9f77-6387-48aa-9437-8b5841129a3a": {
+          "id": "kpi_03ce9f77-6387-48aa-9437-8b5841129a3a",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (N.NodeID) AS Nodes\nFROM Orion.Nodes N\nWHERE N.Status = 1",
+                "dataFields": [
+                  {
+                    "id": "Nodes",
+                    "label": "Nodes",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (N.NodeID) AS Nodes\nFROM Orion.Nodes N\nWHERE N.Status = 1",
+                    "dataFields": [
+                      {
+                        "id": "Nodes",
+                        "label": "Nodes",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Up",
+              "backgroundColor": "var(--nui-color-semantic-ok)",
+              "units": ""
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "094979c6-a561-4867-b8af-07258127204a",
+      "name": "Overall Node Status",
+      "private": false
+    }
+  ],
+  "remove": null
+}
