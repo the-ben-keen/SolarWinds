@@ -1,0 +1,794 @@
+{
+  "version": 1,
+  "dashboards": [
+    {
+      "widgets": [
+        {
+          "unique_key": "6c710f07-e8b0-4d0a-a7b7-1bca9d4250b1",
+          "location": {
+            "x": 0,
+            "y": 2,
+            "cols": 11,
+            "rows": 3
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "797f7e7b-4f2e-4447-93bb-9d06a0d3af1b",
+          "location": {
+            "x": 7,
+            "y": 0,
+            "cols": 4,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "9db28a11-f052-41cd-803f-138012bbc7a0",
+          "location": {
+            "x": 3,
+            "y": 0,
+            "cols": 2,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "4a65b63f-4751-49d4-8d11-f0e8c4f65708",
+          "location": {
+            "x": 5,
+            "y": 0,
+            "cols": 2,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "14e5a21f-d63e-46fa-a605-3d28a4964cbe",
+          "location": {
+            "x": 0,
+            "y": 0,
+            "cols": 3,
+            "rows": 2
+          },
+          "reference": false
+        }
+      ],
+      "parent": null,
+      "feature": null,
+      "unique_key": "8efee6ea-e9b0-4555-9c1d-a188d81fc65b",
+      "name": "Server Configuration Summary",
+      "private": null
+    }
+  ],
+  "widgets": [
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "SCM NODES",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT N.CAPTION AS [SERVER NAME]\n\t, N.DETAILSURL AS [SERVER URL]\n\t, N.STATUS AS [SERVER STATUS]\n\t, N.IPADDRESS AS [IP ADDRESS]\n    , N.VENDOR AS [SYSTEM VENDOR]\n\t, CASE\n\t\tWHEN N.SCMNODE.ENABLED = 'TRUE'\n\t\tTHEN 'YES'\n\t\tELSE 'NO'\n\tEND AS [SCM Enabled]\n    , N.SCMNODE.BaselineStatus AS [BASELINE]\n        , CASE \n        WHEN N.SCMNODE.BASELINESTATUS = '1'\n        THEN 'SUCCESSFUL'\n        ELSE 'UNSUCCESSFUL'\n    END AS [SCM BASELINE STATUS]\n    , N.SCMNODE.SCMSERVERCONFIGURATIONDIFFERSFROMBASELINE.BaselineVsCurrentConfigurationUrl AS [CONFIGURATION URL]\n    , N.SCMNODE.ASSIGNEDPROFILELIST AS [ASSIGNED PROFILE(S)]\n    , N.SCMNODE.LASTCHANGEDETECTED AS [DATE OF LAST CHANGE]\nFROM ORION.NODES N \nWHERE N.ISSERVER = 'TRUE'",
+                "dataFields": [
+                  {
+                    "id": "SERVER NAME",
+                    "label": "SERVER NAME",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "SERVER URL",
+                    "label": "SERVER URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "SERVER STATUS",
+                    "label": "SERVER STATUS",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "IP ADDRESS",
+                    "label": "IP ADDRESS",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "SYSTEM VENDOR",
+                    "label": "SYSTEM VENDOR",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "SCM Enabled",
+                    "label": "SCM Enabled",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "BASELINE",
+                    "label": "BASELINE",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "SCM BASELINE STATUS",
+                    "label": "SCM BASELINE STATUS",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "CONFIGURATION URL",
+                    "label": "CONFIGURATION URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "ASSIGNED PROFILE(S)",
+                    "label": "ASSIGNED PROFILE(S)",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "DATE OF LAST CHANGE",
+                    "label": "DATE OF LAST CHANGE",
+                    "dataType": "System.DateTime"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT N.CAPTION AS [SERVER NAME]\n\t, N.DETAILSURL AS [SERVER URL]\n\t, N.STATUS AS [SERVER STATUS]\n\t, N.IPADDRESS AS [IP ADDRESS]\n    , N.VENDOR AS [SYSTEM VENDOR]\n\t, CASE\n\t\tWHEN N.SCMNODE.ENABLED = 'TRUE'\n\t\tTHEN 'YES'\n\t\tELSE 'NO'\n\tEND AS [SCM Enabled]\n    , N.SCMNODE.BaselineStatus AS [BASELINE]\n        , CASE \n        WHEN N.SCMNODE.BASELINESTATUS = '1'\n        THEN 'SUCCESSFUL'\n        ELSE 'UNSUCCESSFUL'\n    END AS [SCM BASELINE STATUS]\n    , N.SCMNODE.SCMSERVERCONFIGURATIONDIFFERSFROMBASELINE.BaselineVsCurrentConfigurationUrl AS [CONFIGURATION URL]\n    , N.SCMNODE.ASSIGNEDPROFILELIST AS [ASSIGNED PROFILE(S)]\n    , N.SCMNODE.LASTCHANGEDETECTED AS [DATE OF LAST CHANGE]\nFROM ORION.NODES N \nWHERE N.ISSERVER = 'TRUE'",
+                    "dataFields": [
+                      {
+                        "id": "SERVER NAME",
+                        "label": "SERVER NAME",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "SERVER URL",
+                        "label": "SERVER URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "SERVER STATUS",
+                        "label": "SERVER STATUS",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "IP ADDRESS",
+                        "label": "IP ADDRESS",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "SYSTEM VENDOR",
+                        "label": "SYSTEM VENDOR",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "SCM Enabled",
+                        "label": "SCM Enabled",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "BASELINE",
+                        "label": "BASELINE",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "SCM BASELINE STATUS",
+                        "label": "SCM BASELINE STATUS",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "CONFIGURATION URL",
+                        "label": "CONFIGURATION URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "ASSIGNED PROFILE(S)",
+                        "label": "ASSIGNED PROFILE(S)",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "DATE OF LAST CHANGE",
+                        "label": "DATE OF LAST CHANGE",
+                        "dataType": "System.DateTime"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_580ac194-aebb-4038-9c6c-ae7f7751804c",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "SERVER STATUS",
+                        "vendor": null,
+                        "link": "SERVER URL",
+                        "value": "SERVER NAME"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "SERVER NAME"
+                },
+                {
+                  "id": "column_e2e46793-391f-41e2-885e-a37ed3648dc9",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "IP ADDRESS"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "IP ADDRESS"
+                },
+                {
+                  "id": "column_707655c1-7650-4c29-8b61-6819da298e10",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "SCM Enabled"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "SCM Enabled"
+                },
+                {
+                  "id": "column_9ed11235-67f3-43be-9f71-99226b74a374",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "BASELINE",
+                        "vendor": null,
+                        "link": "CONFIGURATION URL",
+                        "value": "SCM BASELINE STATUS"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "SCM BASELINE STATUS"
+                },
+                {
+                  "id": "column_f7de2aed-2afc-49c8-9464-d399a1579aa3",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "ASSIGNED PROFILE(S)"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "ASSIGNED PROFILE(S)"
+                },
+                {
+                  "id": "column_7f716f1f-418e-408d-b740-d25868dfa82e",
+                  "formatter": {
+                    "componentType": "DatetimeFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "DATE OF LAST CHANGE"
+                      },
+                      "option": "0",
+                      "replaceDate": true
+                    }
+                  },
+                  "isActive": true,
+                  "label": "DATE OF LAST CHANGE"
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "6c710f07-e8b0-4d0a-a7b7-1bca9d4250b1",
+      "name": "SCM NODES",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Policies",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT P.Name AS [Policy Name]\n\t, P.DetailsUrl AS [Policy URL]\n\t, P.Assignments.PassedRulesCount AS [Pass Rules]\n\t, P.Assignments.FailedRulesCount AS [Failed Rules]\nFROM Orion.PolicyEngine.Policy P",
+                "dataFields": [
+                  {
+                    "id": "Policy Name",
+                    "label": "Policy Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Policy URL",
+                    "label": "Policy URL",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Pass Rules",
+                    "label": "Pass Rules",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Failed Rules",
+                    "label": "Failed Rules",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT P.Name AS [Policy Name]\n\t, P.DetailsUrl AS [Policy URL]\n\t, P.Assignments.PassedRulesCount AS [Pass Rules]\n\t, P.Assignments.FailedRulesCount AS [Failed Rules]\nFROM Orion.PolicyEngine.Policy P",
+                    "dataFields": [
+                      {
+                        "id": "Policy Name",
+                        "label": "Policy Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Policy URL",
+                        "label": "Policy URL",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Pass Rules",
+                        "label": "Pass Rules",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Failed Rules",
+                        "label": "Failed Rules",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_b5a582f9-aed3-4596-96bd-2c8fb51eaa65",
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "link": "Policy URL",
+                        "value": "Policy Name"
+                      },
+                      "targetSelf": false
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Policy Name"
+                },
+                {
+                  "id": "column_2cb5344d-3c2b-4382-ad65-7b20fa15c66e",
+                  "label": "Pass Rules",
+                  "isActive": true,
+                  "width": 70,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Pass Rules"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_d91920db-34b7-4b30-a6b0-4865c4385e80",
+                  "label": "Failed Rules",
+                  "isActive": true,
+                  "width": 70,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Failed Rules"
+                      }
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "797f7e7b-4f2e-4447-93bb-9d06a0d3af1b",
+      "name": "Policies",
+      "private": false
+    },
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Overall compliance",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_92f3adc4-886b-4c33-a675-d9a4d42e4b7c"
+            ]
+          }
+        },
+        "kpi_92f3adc4-886b-4c33-a675-d9a4d42e4b7c": {
+          "id": "kpi_92f3adc4-886b-4c33-a675-d9a4d42e4b7c",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT PC.CompliancePercentage\nFROM Orion.PolicyEngine.PolicyCompliance PC",
+                "dataFields": [
+                  {
+                    "id": "CompliancePercentage",
+                    "label": "CompliancePercentage",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT PC.CompliancePercentage\nFROM Orion.PolicyEngine.PolicyCompliance PC",
+                    "dataFields": [
+                      {
+                        "id": "CompliancePercentage",
+                        "label": "CompliancePercentage",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Passed Rules",
+              "backgroundColor": "var(--nui-color-bg-secondary)",
+              "units": "%"
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "9db28a11-f052-41cd-803f-138012bbc7a0",
+      "name": "Overall compliance",
+      "private": false
+    },
+    {
+      "type": "proportional",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Overall Rule Status",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "chart": {
+          "providers": {
+            "dataSource": {
+              "providerId": "ProportionalSwqlDatasourceService",
+              "properties": {
+                "dataFields": [
+                  {
+                    "id": "Quanity",
+                    "label": "Quanity",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Rule Status",
+                    "label": "Rule Status",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "swql": "SELECT COUNT (AR.RuleID) AS Quanity\n\t, AR.Status AS [Rule Status]\nFROM Orion.PolicyEngine.AssignedRule AR\nWHERE AR.Status IN (0, 1, 2)\nGROUP BY AR.Status\nORDER BY AR.Status",
+                "categoryField": "Rule Status",
+                "valueField": "Quanity",
+                "dataFormat": "orion-statuses",
+                "iconMappingField": "",
+                "colorMappingField": "",
+                "linkMappingField": "",
+                "type": "hand-edit",
+                "editor": {}
+              }
+            },
+            "adapter": {
+              "providerId": "NOVA_DATASOURCE_ADAPTER",
+              "properties": {
+                "componentId": "chart",
+                "propertyPath": "widgetData",
+                "dataSource": {
+                  "properties": {
+                    "dataFields": [
+                      {
+                        "id": "Quanity",
+                        "label": "Quanity",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Rule Status",
+                        "label": "Rule Status",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "swql": "SELECT COUNT (AR.RuleID) AS Quanity\n\t, AR.Status AS [Rule Status]\nFROM Orion.PolicyEngine.AssignedRule AR\nWHERE AR.Status IN (0, 1, 2)\nGROUP BY AR.Status\nORDER BY AR.Status",
+                    "categoryField": "Rule Status",
+                    "valueField": "Quanity",
+                    "dataFormat": "orion-statuses",
+                    "iconMappingField": "",
+                    "colorMappingField": "",
+                    "linkMappingField": "",
+                    "type": "hand-edit",
+                    "editor": {}
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "chartOptions": {
+                "type": "DonutChart",
+                "legendPlacement": "None",
+                "legendFormatter": {
+                  "componentType": "GenericValueFormatterComponent"
+                }
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "4a65b63f-4751-49d4-8d11-f0e8c4f65708",
+      "name": "Overall Rule Status",
+      "private": false
+    },
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "SCM Systems",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_c45a143d-a93d-484f-a404-448961a7c084",
+              "kpi_d45596ad-4ddb-42e5-afb4-1e89d2c17a52"
+            ]
+          }
+        },
+        "kpi_c45a143d-a93d-484f-a404-448961a7c084": {
+          "id": "kpi_c45a143d-a93d-484f-a404-448961a7c084",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (S.ENABLED) AS [SCM ENABLED SYSTEMS]\nFROM ORION.SCM.SERVERCONFIGURATION S",
+                "dataFields": [
+                  {
+                    "id": "SCM ENABLED SYSTEMS",
+                    "label": "SCM ENABLED SYSTEMS",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (S.ENABLED) AS [SCM ENABLED SYSTEMS]\nFROM ORION.SCM.SERVERCONFIGURATION S",
+                    "dataFields": [
+                      {
+                        "id": "SCM ENABLED SYSTEMS",
+                        "label": "SCM ENABLED SYSTEMS",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Enabled",
+              "backgroundColor": "var(--nui-color-bg-secondary)",
+              "units": ""
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        },
+        "kpi_d45596ad-4ddb-42e5-afb4-1e89d2c17a52": {
+          "id": "kpi_d45596ad-4ddb-42e5-afb4-1e89d2c17a52",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT (S.BASELINESTATUS) AS [BASELINED]\nFROM ORION.SCM.SERVERCONFIGURATION S\nWHERE S.BASELINESTATUS = '1'",
+                "dataFields": [
+                  {
+                    "id": "BASELINED",
+                    "label": "BASELINED",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT (S.BASELINESTATUS) AS [BASELINED]\nFROM ORION.SCM.SERVERCONFIGURATION S\nWHERE S.BASELINESTATUS = '1'",
+                    "dataFields": [
+                      {
+                        "id": "BASELINED",
+                        "label": "BASELINED",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "SUCCESFULLY BASELINED",
+              "backgroundColor": "var(--nui-color-semantic-ok)",
+              "units": ""
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "14e5a21f-d63e-46fa-a605-3d28a4964cbe",
+      "name": "SCM Systems",
+      "private": false
+    }
+  ],
+  "remove": null
+}
