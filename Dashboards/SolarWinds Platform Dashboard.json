@@ -1,0 +1,2043 @@
+{
+  "version": 1,
+  "dashboards": [
+    {
+      "widgets": [
+        {
+          "unique_key": "58d25922-8f8a-42c3-8d58-f7822b7b5310",
+          "location": {
+            "x": 0,
+            "y": 4,
+            "cols": 2,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "9db0f5c3-2949-44fd-8bd1-4ce0220eca08",
+          "location": {
+            "x": 0,
+            "y": 0,
+            "cols": 12,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "52a1a538-30ee-49c0-b73a-be2e8a6f346a",
+          "location": {
+            "x": 2,
+            "y": 4,
+            "cols": 3,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "45936580-5023-47ba-9acb-8c142c6f730a",
+          "location": {
+            "x": 0,
+            "y": 8,
+            "cols": 12,
+            "rows": 3
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "147f7ae9-b011-44e4-9a7b-0367cd856a42",
+          "location": {
+            "x": 5,
+            "y": 4,
+            "cols": 7,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "83c05540-3fe5-417a-b1e6-e254789f467c",
+          "location": {
+            "x": 0,
+            "y": 2,
+            "cols": 12,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "01fb333e-2d90-47cf-bdad-8801d8a183d6",
+          "location": {
+            "x": 0,
+            "y": 11,
+            "cols": 6,
+            "rows": 3
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "2c64c0cf-cd82-463c-991d-0c6b9ebe426a",
+          "location": {
+            "x": 0,
+            "y": 6,
+            "cols": 12,
+            "rows": 2
+          },
+          "reference": false
+        }
+      ],
+      "parent": null,
+      "feature": null,
+      "unique_key": "464c017b-c49e-4df6-90ee-984c9de38fbf",
+      "name": "SolarWinds Platform Dashboard",
+      "private": null
+    }
+  ],
+  "widgets": [
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Polling Use",
+            "subtitle": "SAM and NPM Useage Percentage",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_4f9dca89-940b-4994-849e-ef4340a81f6a",
+              "kpi_a2beac64-6397-4098-8082-23cddacd1a89"
+            ]
+          }
+        },
+        "kpi_4f9dca89-940b-4994-849e-ef4340a81f6a": {
+          "id": "kpi_4f9dca89-940b-4994-849e-ef4340a81f6a",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "select max(0+propertyvalue) as NPMUsage from orion.engineproperties where propertyname = 'Orion.Standard.Polling'",
+                "dataFields": [
+                  {
+                    "id": "NPMUsage",
+                    "label": "NPMUsage",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "select max(0+propertyvalue) as NPMUsage from orion.engineproperties where propertyname = 'Orion.Standard.Polling'",
+                    "dataFields": [
+                      {
+                        "id": "NPMUsage",
+                        "label": "NPMUsage",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 95,
+                  "warningThresholdValue": 90,
+                  "showThresholds": true,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Max NPM Usage",
+              "backgroundColor": "var(--nui-color-semantic-ok)",
+              "units": "%"
+            }
+          }
+        },
+        "kpi_a2beac64-6397-4098-8082-23cddacd1a89": {
+          "id": "kpi_a2beac64-6397-4098-8082-23cddacd1a89",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT max(0+propertyvalue) AS [SAMUsage]\nFROM orion.engineproperties\nWHERE propertyname = 'APM.Components.Polling'",
+                "dataFields": [
+                  {
+                    "id": "SAMUsage",
+                    "label": "SAMUsage",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT max(0+propertyvalue) AS [SAMUsage]\nFROM orion.engineproperties\nWHERE propertyname = 'APM.Components.Polling'",
+                    "dataFields": [
+                      {
+                        "id": "SAMUsage",
+                        "label": "SAMUsage",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 95,
+                  "warningThresholdValue": 90,
+                  "showThresholds": true,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "MAX SAM Usage",
+              "backgroundColor": "var(--nui-color-semantic-ok)",
+              "units": "%"
+            }
+          }
+        }
+      },
+      "subtitle": "SAM and NPM Useage Percentage",
+      "description": "",
+      "unique_key": "58d25922-8f8a-42c3-8d58-f7822b7b5310",
+      "name": "Polling Use",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Pollers",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT E.ServerName AS [Server Name]\n\t, E.IP AS [IP Address]\n\t, E.ServerType AS [Server Type]\n\t, CONCAT(scale.PropertyValue,'x') AS [Stacked Pollers]\n\t, NPM.PropertyValue AS [NPM Polling %]\n\t, E.Elements AS [Total Elements]\n\t, E.Nodes AS [Number of Nodes]\n\t, E.Interfaces AS [Total Interfaces]\n\t, E.Volumes AS [Total Volumes]\n\t, SAM.PropertyValue AS [SAM Polling %]\n\t, COMP.SAMComponents AS [Total SAM Components]\n\t, APPINS.AppInsightComponents AS [Total AppInsight Componets]\n\t, E.PollingCompletion AS [Polling Completion]\n\t, E.MinutesSinceKeepAlive\n\t, CASE\n\t\tWHEN PollingCompletion < 98 THEN 3\n\t\tWHEN PollingCompletion > 98 THEN 1\n\tEND AS [Polling Completion Icon]\n\t, CASE\n\t\tWHEN NPM.PropertyValue > 90 THEN 14\n\t\tWHEN NPM.PropertyValue >75 THEN 3\n\t\tELSE 1\n\tEND AS [NPM Polling Icon]\n\t, CASE\n\t\tWHEN SAM.PropertyValue > 90 THEN 14\n\t\tWHEN SAM.PropertyValue > 75 THEN 3\n\t\tELSE 1\n\tEND AS [SAM Polling Icon]\n\t, 'Orion/Admin/Details/Engines.aspx' AS [Sever Link]\nFROM Orion.Engines E\nLEFT JOIN Orion.EngineProperties NPM on E.EngineID = npm.EngineID and npm.PropertyName='Orion.Standard.Polling' \nLEFT JOIN Orion.EngineProperties SAM on E.EngineID = sam.EngineID and sam.PropertyName='APM.Components.Polling' \nLEFT JOIN Orion.EngineProperties scale on E.EngineID = scale.EngineID and scale.PropertyName='Scale Licenses' \nLEFT JOIN (select N.engineid,count(N.Applications.Components.ComponentID) as SAMComponents \nFROM Orion.Nodes N \nWHERE N.Applications.Template.Name NOT LIKE 'appinsight%' \nGROUP BY N.EngineID) comp on comp.engineid=e.EngineID \nLEFT JOIN (select N.engineid,count(N.Applications.Components.ComponentID) as AppInsightComponents \nFROM Orion.Nodes N \nWHERE N.Applications.Template.Name LIKE 'appinsight%' \nGROUP BY N.EngineID) appins on appins.engineid=e.EngineID ",
+                "dataFields": [
+                  {
+                    "id": "Server Name",
+                    "label": "Server Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "IP Address",
+                    "label": "IP Address",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Server Type",
+                    "label": "Server Type",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Stacked Pollers",
+                    "label": "Stacked Pollers",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "NPM Polling %",
+                    "label": "NPM Polling %",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Total Elements",
+                    "label": "Total Elements",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Number of Nodes",
+                    "label": "Number of Nodes",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Total Interfaces",
+                    "label": "Total Interfaces",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Total Volumes",
+                    "label": "Total Volumes",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "SAM Polling %",
+                    "label": "SAM Polling %",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Total SAM Components",
+                    "label": "Total SAM Components",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Total AppInsight Componets",
+                    "label": "Total AppInsight Componets",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Polling Completion",
+                    "label": "Polling Completion",
+                    "dataType": "System.Single"
+                  },
+                  {
+                    "id": "MinutesSinceKeepAlive",
+                    "label": "MinutesSinceKeepAlive",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Polling Completion Icon",
+                    "label": "Polling Completion Icon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "NPM Polling Icon",
+                    "label": "NPM Polling Icon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "SAM Polling Icon",
+                    "label": "SAM Polling Icon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Sever Link",
+                    "label": "Sever Link",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT E.ServerName AS [Server Name]\n\t, E.IP AS [IP Address]\n\t, E.ServerType AS [Server Type]\n\t, CONCAT(scale.PropertyValue,'x') AS [Stacked Pollers]\n\t, NPM.PropertyValue AS [NPM Polling %]\n\t, E.Elements AS [Total Elements]\n\t, E.Nodes AS [Number of Nodes]\n\t, E.Interfaces AS [Total Interfaces]\n\t, E.Volumes AS [Total Volumes]\n\t, SAM.PropertyValue AS [SAM Polling %]\n\t, COMP.SAMComponents AS [Total SAM Components]\n\t, APPINS.AppInsightComponents AS [Total AppInsight Componets]\n\t, E.PollingCompletion AS [Polling Completion]\n\t, E.MinutesSinceKeepAlive\n\t, CASE\n\t\tWHEN PollingCompletion < 98 THEN 3\n\t\tWHEN PollingCompletion > 98 THEN 1\n\tEND AS [Polling Completion Icon]\n\t, CASE\n\t\tWHEN NPM.PropertyValue > 90 THEN 14\n\t\tWHEN NPM.PropertyValue >75 THEN 3\n\t\tELSE 1\n\tEND AS [NPM Polling Icon]\n\t, CASE\n\t\tWHEN SAM.PropertyValue > 90 THEN 14\n\t\tWHEN SAM.PropertyValue > 75 THEN 3\n\t\tELSE 1\n\tEND AS [SAM Polling Icon]\n\t, 'Orion/Admin/Details/Engines.aspx' AS [Sever Link]\nFROM Orion.Engines E\nLEFT JOIN Orion.EngineProperties NPM on E.EngineID = npm.EngineID and npm.PropertyName='Orion.Standard.Polling' \nLEFT JOIN Orion.EngineProperties SAM on E.EngineID = sam.EngineID and sam.PropertyName='APM.Components.Polling' \nLEFT JOIN Orion.EngineProperties scale on E.EngineID = scale.EngineID and scale.PropertyName='Scale Licenses' \nLEFT JOIN (select N.engineid,count(N.Applications.Components.ComponentID) as SAMComponents \nFROM Orion.Nodes N \nWHERE N.Applications.Template.Name NOT LIKE 'appinsight%' \nGROUP BY N.EngineID) comp on comp.engineid=e.EngineID \nLEFT JOIN (select N.engineid,count(N.Applications.Components.ComponentID) as AppInsightComponents \nFROM Orion.Nodes N \nWHERE N.Applications.Template.Name LIKE 'appinsight%' \nGROUP BY N.EngineID) appins on appins.engineid=e.EngineID ",
+                    "dataFields": [
+                      {
+                        "id": "Server Name",
+                        "label": "Server Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "IP Address",
+                        "label": "IP Address",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Server Type",
+                        "label": "Server Type",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Stacked Pollers",
+                        "label": "Stacked Pollers",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "NPM Polling %",
+                        "label": "NPM Polling %",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Total Elements",
+                        "label": "Total Elements",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Number of Nodes",
+                        "label": "Number of Nodes",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Total Interfaces",
+                        "label": "Total Interfaces",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Total Volumes",
+                        "label": "Total Volumes",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "SAM Polling %",
+                        "label": "SAM Polling %",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Total SAM Components",
+                        "label": "Total SAM Components",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Total AppInsight Componets",
+                        "label": "Total AppInsight Componets",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Polling Completion",
+                        "label": "Polling Completion",
+                        "dataType": "System.Single"
+                      },
+                      {
+                        "id": "MinutesSinceKeepAlive",
+                        "label": "MinutesSinceKeepAlive",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Polling Completion Icon",
+                        "label": "Polling Completion Icon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "NPM Polling Icon",
+                        "label": "NPM Polling Icon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "SAM Polling Icon",
+                        "label": "SAM Polling Icon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Sever Link",
+                        "label": "Sever Link",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_23240155-a057-4390-83e6-bbe6dba83aad",
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "link": "Sever Link",
+                        "value": "Server Name"
+                      },
+                      "targetSelf": false
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Server Name"
+                },
+                {
+                  "id": "column_4cfcb111-48d2-4eca-8e04-b4689f8075b1",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "IP Address"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "IP Address"
+                },
+                {
+                  "id": "column_30a1d82b-bc19-44c9-9cde-c25a0a4b3cdf",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Server Type"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Server Type"
+                },
+                {
+                  "id": "column_45927ed1-1c32-4607-8baa-85bdf750ae72",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Stacked Pollers"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Stacked Pollers"
+                },
+                {
+                  "id": "column_45d27d7c-efc4-425e-b628-bbb497643ec2",
+                  "label": "NPM Polling Status",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "StatusFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "NPM Polling Icon"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_6f6e6c34-368d-4d86-9c70-71b29766b287",
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "NPM Polling %"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": "%"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "NPM Polling %"
+                },
+                {
+                  "id": "column_454577bd-e04b-48b7-8fe6-dbe9471bf010",
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Total Elements"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": ""
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Total Elements"
+                },
+                {
+                  "id": "column_245fba3a-a459-4dfb-bfff-276287a1a711",
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Number of Nodes"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": ""
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Number of Nodes"
+                },
+                {
+                  "id": "column_95da2919-3f18-40bd-ba23-5695a3eeeadb",
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Total Interfaces"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": ""
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Total Interfaces"
+                },
+                {
+                  "id": "column_cf18eeaa-b774-48f7-8e78-17ca3def5c98",
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Total Volumes"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": ""
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Total Volumes"
+                },
+                {
+                  "id": "column_a60de9cd-74f4-438a-b9da-d4823c7707c5",
+                  "label": "SAM Polling Status",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "StatusFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "SAM Polling Icon"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_3321e678-7c49-4416-86e0-ca1417234247",
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "SAM Polling %"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": "%"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "SAM Polling %"
+                },
+                {
+                  "id": "column_3bae9009-b75d-4e99-8e46-ba84d70852cc",
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Total SAM Components"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": ""
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Total SAM Components"
+                },
+                {
+                  "id": "column_e2e2cffe-cbe2-4282-a191-caab16bc4bda",
+                  "formatter": {
+                    "componentType": "SimpleNumberFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Total AppInsight Componets"
+                      },
+                      "prefixIcon": "",
+                      "suffixText": ""
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Total AppInsight Componets"
+                },
+                {
+                  "id": "column_e559f439-d59b-4ef7-8309-b10cb42f3178",
+                  "label": "Polling Completion Status",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "StatusFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Polling Completion Icon"
+                      }
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "",
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 28800,
+                "overrideDefaultSettings": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "9db0f5c3-2949-44fd-8bd1-4ce0220eca08",
+      "name": "Pollers",
+      "private": false
+    },
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Number of Active Alerts",
+            "subtitle": "By Severity",
+            "url": "/orion/netperfmon/alerts.aspx",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_eaab48b3-5d79-44ff-ab2f-9e377a14e687",
+              "kpi_babdb191-92e4-4222-9006-1d1d45f87eaf",
+              "kpi_e1f64a51-4a33-4116-9528-3f77a4919f0a"
+            ]
+          }
+        },
+        "kpi_eaab48b3-5d79-44ff-ab2f-9e377a14e687": {
+          "id": "kpi_eaab48b3-5d79-44ff-ab2f-9e377a14e687",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT ([AlertObjects].AlertConfigurations.Severity) AS [Severity]\nFROM Orion.AlertObjects AS [AlertObjects]\nWHERE [AlertObjects].AlertConfigurations.Severity = 2 --CRITICAL--\n AND [AlertObjects].AlertActive.AlertActiveID > 0",
+                "dataFields": [
+                  {
+                    "id": "Severity",
+                    "label": "Severity",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT ([AlertObjects].AlertConfigurations.Severity) AS [Severity]\nFROM Orion.AlertObjects AS [AlertObjects]\nWHERE [AlertObjects].AlertConfigurations.Severity = 2 --CRITICAL--\n AND [AlertObjects].AlertActive.AlertActiveID > 0",
+                    "dataFields": [
+                      {
+                        "id": "Severity",
+                        "label": "Severity",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 1,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "CRITICAL",
+              "backgroundColor": "var(--nui-color-semantic-critical)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_babdb191-92e4-4222-9006-1d1d45f87eaf": {
+          "id": "kpi_babdb191-92e4-4222-9006-1d1d45f87eaf",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT ([AlertObjects].AlertConfigurations.Severity) AS [Severity]\nFROM Orion.AlertObjects AS [AlertObjects]\nWHERE [AlertObjects].AlertConfigurations.Severity = 1 --Warning--\n AND [AlertObjects].AlertActive.AlertActiveID > 0",
+                "dataFields": [
+                  {
+                    "id": "Severity",
+                    "label": "Severity",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT ([AlertObjects].AlertConfigurations.Severity) AS [Severity]\nFROM Orion.AlertObjects AS [AlertObjects]\nWHERE [AlertObjects].AlertConfigurations.Severity = 1 --Warning--\n AND [AlertObjects].AlertActive.AlertActiveID > 0",
+                    "dataFields": [
+                      {
+                        "id": "Severity",
+                        "label": "Severity",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 10,
+                  "warningThresholdValue": 1,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Warning",
+              "backgroundColor": "var(--nui-color-semantic-warning)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_e1f64a51-4a33-4116-9528-3f77a4919f0a": {
+          "id": "kpi_e1f64a51-4a33-4116-9528-3f77a4919f0a",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT ([AlertObjects].AlertConfigurations.Severity) AS [Severity]\nFROM Orion.AlertObjects AS [AlertObjects]\nWHERE [AlertObjects].AlertConfigurations.Severity = 3 --SERIOUS--\n AND [AlertObjects].AlertActive.AlertActiveID > 0",
+                "dataFields": [
+                  {
+                    "id": "Severity",
+                    "label": "Severity",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT ([AlertObjects].AlertConfigurations.Severity) AS [Severity]\nFROM Orion.AlertObjects AS [AlertObjects]\nWHERE [AlertObjects].AlertConfigurations.Severity = 3 --SERIOUS--\n AND [AlertObjects].AlertActive.AlertActiveID > 0",
+                    "dataFields": [
+                      {
+                        "id": "Severity",
+                        "label": "Severity",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 0,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Serious",
+              "backgroundColor": "var(--nui-color-chart-one)",
+              "units": ""
+            }
+          }
+        }
+      },
+      "subtitle": "By Severity",
+      "description": "",
+      "unique_key": "52a1a538-30ee-49c0-b73a-be2e8a6f346a",
+      "name": "Number of Active Alerts",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Credential Details",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT\nn.caption AS [Node Name]\n, n.detailsurl AS [_linkfor_Node]\n, n.status AS [Node Status]\n, n.objectsubtype AS [Polling Method]\n, CASE\nWHEN n.objectsubtype IN ('ICMP', 'WMI') THEN 'None'\nELSE n.community\nEND AS [SNMP Credential]\n,'/Orion/Nodes/NodeProperties.aspx?Nodes=' + ToString(n.NodeID) as [_linkfor_SNMP Credential]\n, CASE\nWHEN n.objectsubtype='WMI'\nTHEN cn.Name\nELSE 'None'\nEND AS [WMI Credential]\n,'/Orion/Nodes/NodeProperties.aspx?Nodes=' + ToString(n.NodeID) as [_linkfor_WMI Credential]\n, CASE\nWHEN a.name IS null THEN 'None Assigned'\nELSE a.name\nEND AS [Application]\n, a.detailsurl AS [_linkfor_Application]\n, a.status AS [_IconFor_Application]\n, CASE \nWHEN aset.value='-3'\nTHEN 'Inherit From Node'\nWHEN aset.value IS null AND c.name IS NOT null THEN 'Set by Componet'\nWHEN a.name IS null THEN 'None Assigned'\nELSE ca.name END AS [Application Credential]\n,'/Orion/APM/Admin/Edit/EditApplication.aspx?id=' + tostring(a.applicationid) as [_linkfor_Application Credential] \n, CASE\nWHEN c.name IS null THEN 'None Assigned'\nELSE c.name\nEND AS [Componet]\n, c.detailsurl as [_linkfor_Component] \n, c.status AS [_IconFor_Component]\n,CASE\nWHEN a.ApplicationTemplateID in (8,9,10) THEN 'Set by Application' \nWHEN cs.value='-3' THEN 'Inherit From Node' \nWHEN c.name is null THEN 'None Assigned' \nelse cc.name end as [Component Credential] \n,'/Orion/APM/Admin/Edit/EditApplication.aspx?id=' + tostring(a.applicationid) as [_linkfor_Component Credential] \n\nFROM orion.nodes n \nleft join Orion.NodeSettings ns ON n.NodeID = ns.NodeID and settingname='WMICredential' \nleft join Orion.Credential cn ON ns.SettingValue = cn.ID \nleft join orion.apm.application a on n.nodeid=a.nodeid \nleft join Orion.APM.ApplicationSettings as aset on aset.applicationid=a.applicationid and (aset.key='CredentialSetId' or aset.key='SqlCredentialSetId') \nleft join Orion.Credential ca ON aset.Value = ca.ID \nleft join orion.apm.component c on c.applicationid=a.applicationid \nleft join orion.apm.componentsetting cs on cs.componentid=c.componentid and cs.key='__CredentialSetId' \nleft join orion.apm.componenttemplatesetting cts on cts.componenttemplateid=c.templateid and cts.key='__CredentialSetId' \nleft join Orion.Credential cc ON cs.Value = cc.ID or cc.id=cts.value\nWHERE n.objectsubtype IN ('WMI', 'SNMP')",
+                "dataFields": [
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "_linkfor_Node",
+                    "label": "_linkfor_Node",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Node Status",
+                    "label": "Node Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Polling Method",
+                    "label": "Polling Method",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "SNMP Credential",
+                    "label": "SNMP Credential",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "_linkfor_SNMP Credential",
+                    "label": "_linkfor_SNMP Credential",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "WMI Credential",
+                    "label": "WMI Credential",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "_linkfor_WMI Credential",
+                    "label": "_linkfor_WMI Credential",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Application",
+                    "label": "Application",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "_linkfor_Application",
+                    "label": "_linkfor_Application",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "_IconFor_Application",
+                    "label": "_IconFor_Application",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Application Credential",
+                    "label": "Application Credential",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "_linkfor_Application Credential",
+                    "label": "_linkfor_Application Credential",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Componet",
+                    "label": "Componet",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "_linkfor_Component",
+                    "label": "_linkfor_Component",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "_IconFor_Component",
+                    "label": "_IconFor_Component",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Component Credential",
+                    "label": "Component Credential",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "_linkfor_Component Credential",
+                    "label": "_linkfor_Component Credential",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT\nn.caption AS [Node Name]\n, n.detailsurl AS [_linkfor_Node]\n, n.status AS [Node Status]\n, n.objectsubtype AS [Polling Method]\n, CASE\nWHEN n.objectsubtype IN ('ICMP', 'WMI') THEN 'None'\nELSE n.community\nEND AS [SNMP Credential]\n,'/Orion/Nodes/NodeProperties.aspx?Nodes=' + ToString(n.NodeID) as [_linkfor_SNMP Credential]\n, CASE\nWHEN n.objectsubtype='WMI'\nTHEN cn.Name\nELSE 'None'\nEND AS [WMI Credential]\n,'/Orion/Nodes/NodeProperties.aspx?Nodes=' + ToString(n.NodeID) as [_linkfor_WMI Credential]\n, CASE\nWHEN a.name IS null THEN 'None Assigned'\nELSE a.name\nEND AS [Application]\n, a.detailsurl AS [_linkfor_Application]\n, a.status AS [_IconFor_Application]\n, CASE \nWHEN aset.value='-3'\nTHEN 'Inherit From Node'\nWHEN aset.value IS null AND c.name IS NOT null THEN 'Set by Componet'\nWHEN a.name IS null THEN 'None Assigned'\nELSE ca.name END AS [Application Credential]\n,'/Orion/APM/Admin/Edit/EditApplication.aspx?id=' + tostring(a.applicationid) as [_linkfor_Application Credential] \n, CASE\nWHEN c.name IS null THEN 'None Assigned'\nELSE c.name\nEND AS [Componet]\n, c.detailsurl as [_linkfor_Component] \n, c.status AS [_IconFor_Component]\n,CASE\nWHEN a.ApplicationTemplateID in (8,9,10) THEN 'Set by Application' \nWHEN cs.value='-3' THEN 'Inherit From Node' \nWHEN c.name is null THEN 'None Assigned' \nelse cc.name end as [Component Credential] \n,'/Orion/APM/Admin/Edit/EditApplication.aspx?id=' + tostring(a.applicationid) as [_linkfor_Component Credential] \n\nFROM orion.nodes n \nleft join Orion.NodeSettings ns ON n.NodeID = ns.NodeID and settingname='WMICredential' \nleft join Orion.Credential cn ON ns.SettingValue = cn.ID \nleft join orion.apm.application a on n.nodeid=a.nodeid \nleft join Orion.APM.ApplicationSettings as aset on aset.applicationid=a.applicationid and (aset.key='CredentialSetId' or aset.key='SqlCredentialSetId') \nleft join Orion.Credential ca ON aset.Value = ca.ID \nleft join orion.apm.component c on c.applicationid=a.applicationid \nleft join orion.apm.componentsetting cs on cs.componentid=c.componentid and cs.key='__CredentialSetId' \nleft join orion.apm.componenttemplatesetting cts on cts.componenttemplateid=c.templateid and cts.key='__CredentialSetId' \nleft join Orion.Credential cc ON cs.Value = cc.ID or cc.id=cts.value\nWHERE n.objectsubtype IN ('WMI', 'SNMP')",
+                    "dataFields": [
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "_linkfor_Node",
+                        "label": "_linkfor_Node",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Node Status",
+                        "label": "Node Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Polling Method",
+                        "label": "Polling Method",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "SNMP Credential",
+                        "label": "SNMP Credential",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "_linkfor_SNMP Credential",
+                        "label": "_linkfor_SNMP Credential",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "WMI Credential",
+                        "label": "WMI Credential",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "_linkfor_WMI Credential",
+                        "label": "_linkfor_WMI Credential",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Application",
+                        "label": "Application",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "_linkfor_Application",
+                        "label": "_linkfor_Application",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "_IconFor_Application",
+                        "label": "_IconFor_Application",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Application Credential",
+                        "label": "Application Credential",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "_linkfor_Application Credential",
+                        "label": "_linkfor_Application Credential",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Componet",
+                        "label": "Componet",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "_linkfor_Component",
+                        "label": "_linkfor_Component",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "_IconFor_Component",
+                        "label": "_IconFor_Component",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Component Credential",
+                        "label": "Component Credential",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "_linkfor_Component Credential",
+                        "label": "_linkfor_Component Credential",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_50a8a978-b13f-4082-8e47-77d4a803d77d",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Node Status",
+                        "vendor": null,
+                        "link": "_linkfor_Node",
+                        "value": "Node Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                },
+                {
+                  "id": "column_4553815f-bff8-4f7d-8b7e-5a5610b8b725",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Polling Method"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Polling Method"
+                },
+                {
+                  "id": "column_157d53de-1203-4bda-b0f7-c77eb61264b8",
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "SNMP Credential",
+                        "link": "_linkfor_SNMP Credential"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "SNMP Credential"
+                },
+                {
+                  "id": "column_e0a37dea-0ce9-4bd9-a22e-246681d7a1d0",
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "WMI Credential",
+                        "link": "_linkfor_WMI Credential"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "WMI Credential"
+                },
+                {
+                  "id": "column_cef34876-7d23-49bb-be7f-0cf29bfd9925",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "_IconFor_Application",
+                        "vendor": null,
+                        "link": "_linkfor_Application",
+                        "value": "Application"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Application"
+                },
+                {
+                  "id": "column_db2b8a0d-b408-48f6-80d1-7684c28e2069",
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Application Credential",
+                        "link": "_linkfor_Application Credential"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Application Credential"
+                },
+                {
+                  "id": "column_1ca85360-deae-448c-82d2-b79a7c45807e",
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "_IconFor_Component",
+                        "vendor": null,
+                        "link": "_linkfor_Component",
+                        "value": "Componet"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Componet"
+                },
+                {
+                  "id": "column_4ad99f5d-64b8-4d7e-869b-914dcd1dd9ef",
+                  "label": "Component Credential",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Component Credential"
+                      }
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_4553815f-bff8-4f7d-8b7e-5a5610b8b725",
+                "descendantSorting": true
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "45936580-5023-47ba-9acb-8c142c6f730a",
+      "name": "Credential Details",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Licensing",
+            "subtitle": "",
+            "url": "/Orion/Admin/Details/ModulesDetailsHost.aspx",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT l.ProductName\n,\tCASE\n\t\tWHEN ElementType = 'OLM.OLMNodes'\n\t\tTHEN 'Log Analyzer'\n        WHEN ElementType = 'UDT.Ports'\n        THEN 'UDT Ports'\n\t\tELSE ELementType\n\tEND AS [License Name]\n, ElementCount\n, \tCASE\n\t\tWHEN AvailableCount = '2147483647' THEN  'Unlimited'\n\t\tELSE TOSTRING(AvailableCount)\n\tEND AS [Available Licenses]\n, \tCASE\n\t\tWHEN MaxCount = '2147483647' THEN  'Unlimited'\n\t\tELSE TOSTRING(MaxCount)\n    END AS [Number of Licenses]\n, ROUND(Saturation, 0) AS [Total Saturation]\n, \tCASE\n\t\tWHEN MINUTEDIFF(l.MaintenanceExpiresOn, GETUTCDATE()) > 262800 THEN 3\n\t\tWHEN MINUTEDIFF(l.MaintenanceExpiresOn, GETUTCDATE()) > 131400 THEN 13\n\t\tELSE 1\n\tEND AS [License Status]\n, l.MaintenanceExpiresOn\nFROM Orion.LicenseSaturation ls\nJOIN Orion.Licensing.Licenses l ON l.ProductName = CASE\n    WHEN ls.ElementType IN ('Nodes', 'Interfaces', 'Volumes') THEN 'NPM'\n    WHEN ls.ElementType = 'IP Addresses' THEN 'IPAM'\n    WHEN ls.ElementType = 'OLM.OLMNodes' THEN 'LM'\n    WHEN ls.ElementType = 'SCM Nodes' then 'SCM'\n    WHEN ls.ElementType = 'SAM Components' then 'SAM'\n    WHEN ls.ElementType = 'NCM Nodes' then 'NCM'\n    WHEN ls.ElementType = 'Transactions' then 'WPM'\n    WHEN ls.ElementType = 'IPSLA Sites' then 'VNQM'\n    WHEN ls.ElementType = 'UDT.Ports' then 'UDT'\nEND",
+                "dataFields": [
+                  {
+                    "id": "ProductName",
+                    "label": "ProductName",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "License Name",
+                    "label": "License Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "ElementCount",
+                    "label": "ElementCount",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Available Licenses",
+                    "label": "Available Licenses",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Number of Licenses",
+                    "label": "Number of Licenses",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Total Saturation",
+                    "label": "Total Saturation",
+                    "dataType": "System.Double"
+                  },
+                  {
+                    "id": "License Status",
+                    "label": "License Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "MaintenanceExpiresOn",
+                    "label": "MaintenanceExpiresOn",
+                    "dataType": "System.DateTime"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT l.ProductName\n,\tCASE\n\t\tWHEN ElementType = 'OLM.OLMNodes'\n\t\tTHEN 'Log Analyzer'\n        WHEN ElementType = 'UDT.Ports'\n        THEN 'UDT Ports'\n\t\tELSE ELementType\n\tEND AS [License Name]\n, ElementCount\n, \tCASE\n\t\tWHEN AvailableCount = '2147483647' THEN  'Unlimited'\n\t\tELSE TOSTRING(AvailableCount)\n\tEND AS [Available Licenses]\n, \tCASE\n\t\tWHEN MaxCount = '2147483647' THEN  'Unlimited'\n\t\tELSE TOSTRING(MaxCount)\n    END AS [Number of Licenses]\n, ROUND(Saturation, 0) AS [Total Saturation]\n, \tCASE\n\t\tWHEN MINUTEDIFF(l.MaintenanceExpiresOn, GETUTCDATE()) > 262800 THEN 3\n\t\tWHEN MINUTEDIFF(l.MaintenanceExpiresOn, GETUTCDATE()) > 131400 THEN 13\n\t\tELSE 1\n\tEND AS [License Status]\n, l.MaintenanceExpiresOn\nFROM Orion.LicenseSaturation ls\nJOIN Orion.Licensing.Licenses l ON l.ProductName = CASE\n    WHEN ls.ElementType IN ('Nodes', 'Interfaces', 'Volumes') THEN 'NPM'\n    WHEN ls.ElementType = 'IP Addresses' THEN 'IPAM'\n    WHEN ls.ElementType = 'OLM.OLMNodes' THEN 'LM'\n    WHEN ls.ElementType = 'SCM Nodes' then 'SCM'\n    WHEN ls.ElementType = 'SAM Components' then 'SAM'\n    WHEN ls.ElementType = 'NCM Nodes' then 'NCM'\n    WHEN ls.ElementType = 'Transactions' then 'WPM'\n    WHEN ls.ElementType = 'IPSLA Sites' then 'VNQM'\n    WHEN ls.ElementType = 'UDT.Ports' then 'UDT'\nEND",
+                    "dataFields": [
+                      {
+                        "id": "ProductName",
+                        "label": "ProductName",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "License Name",
+                        "label": "License Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "ElementCount",
+                        "label": "ElementCount",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Available Licenses",
+                        "label": "Available Licenses",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Number of Licenses",
+                        "label": "Number of Licenses",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Total Saturation",
+                        "label": "Total Saturation",
+                        "dataType": "System.Double"
+                      },
+                      {
+                        "id": "License Status",
+                        "label": "License Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "MaintenanceExpiresOn",
+                        "label": "MaintenanceExpiresOn",
+                        "dataType": "System.DateTime"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_793a4255-4a90-4614-b03b-2e3097a2c585",
+                  "label": "ProductName",
+                  "isActive": false,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "ProductName"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_68f9c851-707d-4293-ad2c-aea3257e742a",
+                  "label": "Status",
+                  "isActive": true,
+                  "width": 100,
+                  "formatter": {
+                    "componentType": "StatusFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "License Status"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_9a73cec0-724b-40ff-bec4-b2cd1ce03d55",
+                  "label": "Element Name",
+                  "isActive": true,
+                  "width": 135,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "License Name"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_d65fb232-5cda-4f2e-a1ee-49852ceecd91",
+                  "label": "Element Count",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "ElementCount"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_689c83bc-31d0-47eb-aeb8-4da1f371783d",
+                  "label": "Available Licenses",
+                  "isActive": true,
+                  "width": 150,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Available Licenses"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_882b9044-390f-4ffe-8a12-483e28eca8ac",
+                  "label": "Number of Licenses",
+                  "isActive": true,
+                  "width": 150,
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Number of Licenses"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "column_c25ed397-cf91-42cc-95d5-03f32341a81d",
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Total Saturation",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.CpuLoad",
+                      "visualization": "barChart"
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Total Saturation"
+                },
+                {
+                  "id": "column_fcdbaa77-da80-4faa-9b12-042c46e840e5",
+                  "label": "Maintenance Expires On",
+                  "isActive": true,
+                  "width": 175,
+                  "formatter": {
+                    "componentType": "DatetimeFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "MaintenanceExpiresOn"
+                      },
+                      "option": "0",
+                      "replaceDate": true
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "",
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "147f7ae9-b011-44e4-9a7b-0367cd856a42",
+      "name": "Licensing",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Orion Node Performance",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT\n---names server role within SolarWinds Environment---\nCASE\n\tWHEN serv.HostName IS NOT null THEN serv.ServerType\n\tWHEN e.ip IS NOT null THEN e.ServerType\n\tWHEN env.SQLServer IS NOT null THEN 'SQL Database'\n\tWHEN dpa.DisplayName IS NOT null THEN 'DPA Server'\n\tWHEN vm.settingvalue IS NOT null THEN 'VMAN'\n\tWHEN pm.settingvalue IS NOT null THEN 'Patch Manager'\n\tELSE ''\nEND AS [Server Type]\n\t, caption AS [Server Name]\n\t, n.Status AS [Server Status]\n\t, n.detailsurl as [_linkfor_Server Name]\n\t, IP_address\n\t, CPULOAD AS [CPUStatusIcon]\n\t, n.PercentMemoryUsed AS [MemoryUsed]\n\t, n.ResponseTime\n\t, n.PercentLoss AS [Packets Loss]\n\nFROM orion.nodes n \n\tLEFT JOIN orion.OrionServers serv on n.nodeid like serv.nodeid --or serv.hostname like n.caption \n\tLEFT JOIN orion.engines e on n.IP_Address = e.IP \n\tLEFT JOIN orion.Environment env on env.SqlServer like n.Caption + '%' or n.caption like env.sqlserver + '%' or env.sqlserver like n.ip_address+',%\\%' or env.sqlserver like n.ip_address \n\tLEFT JOIN orion.dpa.DpaServer dpa on dpa.displayname like n.Caption+'%' or dpa.displayname like '%'+n.IP_Address+'%' \n\tLEFT JOIN orion.WebSettings pm on pm.SettingName='PM-DataGridServerHost' and pm.SettingValue = n.IP \n\tLEFT JOIN orion.WebSettings vm on vm.SettingName='VManAddress' and vm.SettingValue = n.IP_Address \n\tLEFT JOIN (SELECT count(NodeID) as [CPU Count], nodeid \nFROM Orion.CPUMultiLoadCurrent \n\nGROUP BY nodeid) cpu on cpu.nodeid=n.nodeid \n \nWHERE \n\tserv.HostName is not null \n\tOR e.ip is not null \n\tOR env.SqlServer is not null \n\tOR dpa.DisplayName is not null \n\tOR vm.settingvalue is not null \n\tOR pm.settingvalue is not null",
+                "dataFields": [
+                  {
+                    "id": "Server Type",
+                    "label": "Server Type",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Server Name",
+                    "label": "Server Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Server Status",
+                    "label": "Server Status",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "_linkfor_Server Name",
+                    "label": "_linkfor_Server Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "IP_address",
+                    "label": "IP_address",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "CPUStatusIcon",
+                    "label": "CPUStatusIcon",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "MemoryUsed",
+                    "label": "MemoryUsed",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "ResponseTime",
+                    "label": "ResponseTime",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Packets Loss",
+                    "label": "Packets Loss",
+                    "dataType": "System.Double"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT\n---names server role within SolarWinds Environment---\nCASE\n\tWHEN serv.HostName IS NOT null THEN serv.ServerType\n\tWHEN e.ip IS NOT null THEN e.ServerType\n\tWHEN env.SQLServer IS NOT null THEN 'SQL Database'\n\tWHEN dpa.DisplayName IS NOT null THEN 'DPA Server'\n\tWHEN vm.settingvalue IS NOT null THEN 'VMAN'\n\tWHEN pm.settingvalue IS NOT null THEN 'Patch Manager'\n\tELSE ''\nEND AS [Server Type]\n\t, caption AS [Server Name]\n\t, n.Status AS [Server Status]\n\t, n.detailsurl as [_linkfor_Server Name]\n\t, IP_address\n\t, CPULOAD AS [CPUStatusIcon]\n\t, n.PercentMemoryUsed AS [MemoryUsed]\n\t, n.ResponseTime\n\t, n.PercentLoss AS [Packets Loss]\n\nFROM orion.nodes n \n\tLEFT JOIN orion.OrionServers serv on n.nodeid like serv.nodeid --or serv.hostname like n.caption \n\tLEFT JOIN orion.engines e on n.IP_Address = e.IP \n\tLEFT JOIN orion.Environment env on env.SqlServer like n.Caption + '%' or n.caption like env.sqlserver + '%' or env.sqlserver like n.ip_address+',%\\%' or env.sqlserver like n.ip_address \n\tLEFT JOIN orion.dpa.DpaServer dpa on dpa.displayname like n.Caption+'%' or dpa.displayname like '%'+n.IP_Address+'%' \n\tLEFT JOIN orion.WebSettings pm on pm.SettingName='PM-DataGridServerHost' and pm.SettingValue = n.IP \n\tLEFT JOIN orion.WebSettings vm on vm.SettingName='VManAddress' and vm.SettingValue = n.IP_Address \n\tLEFT JOIN (SELECT count(NodeID) as [CPU Count], nodeid \nFROM Orion.CPUMultiLoadCurrent \n\nGROUP BY nodeid) cpu on cpu.nodeid=n.nodeid \n \nWHERE \n\tserv.HostName is not null \n\tOR e.ip is not null \n\tOR env.SqlServer is not null \n\tOR dpa.DisplayName is not null \n\tOR vm.settingvalue is not null \n\tOR pm.settingvalue is not null",
+                    "dataFields": [
+                      {
+                        "id": "Server Type",
+                        "label": "Server Type",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Server Name",
+                        "label": "Server Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Server Status",
+                        "label": "Server Status",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "_linkfor_Server Name",
+                        "label": "_linkfor_Server Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "IP_address",
+                        "label": "IP_address",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "CPUStatusIcon",
+                        "label": "CPUStatusIcon",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "MemoryUsed",
+                        "label": "MemoryUsed",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "ResponseTime",
+                        "label": "ResponseTime",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Packets Loss",
+                        "label": "Packets Loss",
+                        "dataType": "System.Double"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_64c34580-04f1-4dca-95dd-c70b5c9be36b",
+                  "label": "Node Name",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "EntityLinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "status": "Server Status",
+                        "vendor": null,
+                        "link": "_linkfor_Server Name",
+                        "value": "Server Name"
+                      },
+                      "iconFormat": "status",
+                      "entityIcon": null
+                    }
+                  }
+                },
+                {
+                  "id": "column_ed4046b0-8414-4ff7-84f3-4d9903122742",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "IP_address"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "IP_address"
+                },
+                {
+                  "id": "column_66d5911a-60ad-4f57-bdda-7b76f07d1fcd",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Server Type"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Server Type"
+                },
+                {
+                  "id": "column_7c290eff-692a-4a66-b567-c7dbdbc934fa",
+                  "label": "CPU Load",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "CPUStatusIcon",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.CpuLoad",
+                      "visualization": "barChart"
+                    }
+                  }
+                },
+                {
+                  "id": "column_3b215a42-0973-4d59-b6ce-185619d873b5",
+                  "label": "Memory Used",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "MemoryUsed",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.PercentMemoryUsed",
+                      "visualization": "barChart"
+                    }
+                  }
+                },
+                {
+                  "id": "column_5a9e7822-ea72-4580-a2c4-43f749a413af",
+                  "label": "Response Time",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "ResponseTime",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.ResponseTime",
+                      "visualization": "barChart"
+                    }
+                  }
+                },
+                {
+                  "id": "column_d3610940-f201-4eb1-9744-daf9d97cd446",
+                  "label": "Packet Loss",
+                  "isActive": true,
+                  "formatter": {
+                    "componentType": "ThresholdFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Packets Loss",
+                        "instanceId": "",
+                        "siteId": ""
+                      },
+                      "thresholdName": "Nodes.Stats.PercentLoss",
+                      "visualization": "barChart"
+                    }
+                  }
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "column_64c34580-04f1-4dca-95dd-c70b5c9be36b",
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "83c05540-3fe5-417a-b1e6-e254789f467c",
+      "name": "Orion Node Performance",
+      "private": false
+    },
+    {
+      "type": "table",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Credential Lookup",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "table": {
+          "providers": {
+            "dataSource": {
+              "providerId": "TableSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT n.Caption AS [Node Name]\n, n.detailsurl AS [_linkfor_Node Name]\n, n.ip_address AS [IP Address]\n, c.Name AS [WMI/SNMPv3 Credential Name]\n, n.Community AS [SNMPv2 Community]\n, 'Edit' AS [Edit]\n, '/Orion/Nodes/NodeProperties.aspx?Nodes=' + ToString(n.NodeID) AS [_LinkFor_Edit]\n, '/Orion/images/nodemgmt_art/icons/icon_edit.gif' as [_IconFor_Edit] \n\nFROM Orion.Nodes n\nLEFT JOIN Orion.NodeSettings ns ON n.NodeID = ns.NodeID and ns.SettingName like '%Credential%' \nLEFT JOIN Orion.Credential c ON ns.SettingValue = c.ID \n \nWHERE n.objectsubtype IN ('WMI', 'SNMP')",
+                "dataFields": [
+                  {
+                    "id": "Node Name",
+                    "label": "Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "_linkfor_Node Name",
+                    "label": "_linkfor_Node Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "IP Address",
+                    "label": "IP Address",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "WMI/SNMPv3 Credential Name",
+                    "label": "WMI/SNMPv3 Credential Name",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "SNMPv2 Community",
+                    "label": "SNMPv2 Community",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "Edit",
+                    "label": "Edit",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "_LinkFor_Edit",
+                    "label": "_LinkFor_Edit",
+                    "dataType": "System.String"
+                  },
+                  {
+                    "id": "_IconFor_Edit",
+                    "label": "_IconFor_Edit",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT n.Caption AS [Node Name]\n, n.detailsurl AS [_linkfor_Node Name]\n, n.ip_address AS [IP Address]\n, c.Name AS [WMI/SNMPv3 Credential Name]\n, n.Community AS [SNMPv2 Community]\n, 'Edit' AS [Edit]\n, '/Orion/Nodes/NodeProperties.aspx?Nodes=' + ToString(n.NodeID) AS [_LinkFor_Edit]\n, '/Orion/images/nodemgmt_art/icons/icon_edit.gif' as [_IconFor_Edit] \n\nFROM Orion.Nodes n\nLEFT JOIN Orion.NodeSettings ns ON n.NodeID = ns.NodeID and ns.SettingName like '%Credential%' \nLEFT JOIN Orion.Credential c ON ns.SettingValue = c.ID \n \nWHERE n.objectsubtype IN ('WMI', 'SNMP')",
+                    "dataFields": [
+                      {
+                        "id": "Node Name",
+                        "label": "Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "_linkfor_Node Name",
+                        "label": "_linkfor_Node Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "IP Address",
+                        "label": "IP Address",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "WMI/SNMPv3 Credential Name",
+                        "label": "WMI/SNMPv3 Credential Name",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "SNMPv2 Community",
+                        "label": "SNMPv2 Community",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "Edit",
+                        "label": "Edit",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "_LinkFor_Edit",
+                        "label": "_LinkFor_Edit",
+                        "dataType": "System.String"
+                      },
+                      {
+                        "id": "_IconFor_Edit",
+                        "label": "_IconFor_Edit",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "columns": [
+                {
+                  "id": "column_cac79aba-f07c-4261-a955-7063818c7647",
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Node Name",
+                        "link": "_linkfor_Node Name"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Node Name"
+                },
+                {
+                  "id": "column_2025429d-e245-4879-bbeb-c1bae6551120",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "IP Address"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "IP Address"
+                },
+                {
+                  "id": "column_2a162218-a51d-4448-89b7-c4afc83bcd6a",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "WMI/SNMPv3 Credential Name"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "WMI/SNMPv3 Credential Name"
+                },
+                {
+                  "id": "column_c8b36d13-5bd4-4c85-80a7-eec57979dbf6",
+                  "formatter": {
+                    "componentType": "RawFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "SNMPv2 Community"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "SNMPv2 Community"
+                },
+                {
+                  "id": "column_5b8c5aa9-8d1b-46c5-ac15-9f9e9d93bb37",
+                  "formatter": {
+                    "componentType": "LinkFormatterComponent",
+                    "properties": {
+                      "dataFieldIds": {
+                        "value": "Edit",
+                        "link": "_LinkFor_Edit"
+                      }
+                    }
+                  },
+                  "isActive": true,
+                  "label": "Edit"
+                }
+              ],
+              "sorterConfiguration": {
+                "sortBy": "",
+                "descendantSorting": ""
+              },
+              "hasVirtualScroll": true,
+              "searchConfiguration": {
+                "enabled": true
+              }
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "01fb333e-2d90-47cf-bdad-8801d8a183d6",
+      "name": "Credential Lookup",
+      "private": false
+    },
+    {
+      "type": "proportional",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Alerts per Day",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "chart": {
+          "providers": {
+            "dataSource": {
+              "providerId": "ProportionalSwqlDatasourceService",
+              "properties": {
+                "dataFields": [
+                  {
+                    "id": "Alerts",
+                    "label": "Alerts",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "date",
+                    "label": "date",
+                    "dataType": "System.String"
+                  }
+                ],
+                "swql": "SELECT COUNT([AH].AlertHistoryID) AS [Alerts]\n , SUBSTRING(TOSTRING(DATETRUNC('day', [AH].Timestamp)), 1, 6) AS [date]\nFROM Orion.AlertHistory AS [AH]\nWHERE DAYDIFF([AH].Timestamp, GETDATE()) < 30\nGROUP BY DATETRUNC('day', [AH].Timestamp)\nORDER BY DATETRUNC('day', [AH].Timestamp)",
+                "categoryField": "date",
+                "valueField": "Alerts",
+                "dataFormat": "custom",
+                "iconMappingField": "",
+                "colorMappingField": "",
+                "type": "hand-edit",
+                "editor": {}
+              }
+            },
+            "adapter": {
+              "providerId": "NOVA_DATASOURCE_ADAPTER",
+              "properties": {
+                "componentId": "chart",
+                "propertyPath": "widgetData",
+                "dataSource": {
+                  "properties": {
+                    "dataFields": [
+                      {
+                        "id": "Alerts",
+                        "label": "Alerts",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "date",
+                        "label": "date",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "swql": "SELECT COUNT([AH].AlertHistoryID) AS [Alerts]\n , SUBSTRING(TOSTRING(DATETRUNC('day', [AH].Timestamp)), 1, 6) AS [date]\nFROM Orion.AlertHistory AS [AH]\nWHERE DAYDIFF([AH].Timestamp, GETDATE()) < 30\nGROUP BY DATETRUNC('day', [AH].Timestamp)\nORDER BY DATETRUNC('day', [AH].Timestamp)",
+                    "categoryField": "date",
+                    "valueField": "Alerts",
+                    "dataFormat": "custom",
+                    "iconMappingField": "",
+                    "colorMappingField": "",
+                    "type": "hand-edit",
+                    "editor": {}
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "chartOptions": {
+                "type": "VerticalBarChart",
+                "legendPlacement": "None",
+                "legendFormatter": {
+                  "componentType": "GenericValueFormatterComponent"
+                }
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "2c64c0cf-cd82-463c-991d-0c6b9ebe426a",
+      "name": "Alerts per Day",
+      "private": false
+    }
+  ],
+  "remove": null
+}
