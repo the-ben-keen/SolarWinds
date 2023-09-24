@@ -1,0 +1,14 @@
+SELECT
+	N.Caption AS [Server]
+	, N.DetailsURL AS [Node Details]
+	, N.Status AS [Node Status]
+	, CPON.Status AS [Assignment Status]
+	, CPS.Status AS [Poller Status]
+	, CPA.CurrentValue AS [Poller Assignment Current Value]
+FROM Orion.NPM.CustomPollerStatus CPS
+LEFT JOIN Orion.NPM.CustomPollerStatusOnNode CPON
+ON CPS.CustomPollerAssignmentID = CPON.CustomPollerAssignmentID
+LEFT JOIN Orion.NPM.CustomPollerAssignment CPA
+ON CPON.CustomPollerAssignmentID = CPA.CustomPollerAssignmentID
+LEFT JOIN Orion.Nodes N
+ON CPON.NodeID = N.NodeID
