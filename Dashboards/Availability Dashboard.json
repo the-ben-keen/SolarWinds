@@ -1,0 +1,1030 @@
+{
+  "version": 1,
+  "dashboards": [
+    {
+      "widgets": [
+        {
+          "unique_key": "c0a389e4-d122-4177-8ac1-c60048aed42b",
+          "location": {
+            "x": 6,
+            "y": 2,
+            "cols": 4,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "c97ebc34-856d-49a9-b609-38f93adb7195",
+          "location": {
+            "x": 0,
+            "y": 0,
+            "cols": 3,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "6b2e9e9d-0be0-46fd-9f1b-d5383549497c",
+          "location": {
+            "x": 3,
+            "y": 2,
+            "cols": 3,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "72b9efaa-2b06-48e5-a6fb-30e9173d1190",
+          "location": {
+            "x": 10,
+            "y": 0,
+            "cols": 2,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "81695e9f-3313-4055-8962-9c88a6da570b",
+          "location": {
+            "x": 5,
+            "y": 0,
+            "cols": 3,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "549e6433-87df-49f1-9572-9b59197c4fcd",
+          "location": {
+            "x": 0,
+            "y": 2,
+            "cols": 3,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "83c485be-64db-4441-babe-efab15a17773",
+          "location": {
+            "x": 8,
+            "y": 0,
+            "cols": 2,
+            "rows": 2
+          },
+          "reference": false
+        },
+        {
+          "unique_key": "b2332027-25d2-46dd-b3df-6c3f6240eeb8",
+          "location": {
+            "x": 3,
+            "y": 0,
+            "cols": 2,
+            "rows": 2
+          },
+          "reference": false
+        }
+      ],
+      "parent": null,
+      "feature": null,
+      "unique_key": "a8b7ee71-ce79-4924-8959-63f8c6b24605",
+      "name": " Availability Dashboard",
+      "private": null
+    }
+  ],
+  "widgets": [
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Volumes",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_3a67b921-3a69-47e3-8ce8-3ee5b8741da7",
+              "kpi_bda1966c-3648-4469-b612-374b5561852f"
+            ]
+          }
+        },
+        "kpi_3a67b921-3a69-47e3-8ce8-3ee5b8741da7": {
+          "id": "kpi_3a67b921-3a69-47e3-8ce8-3ee5b8741da7",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT(v.volumeID) AS [COUNT]\nFROM Orion.Volumes v \nWHERE v.VolumeTypeID = 4",
+                "dataFields": [
+                  {
+                    "id": "COUNT",
+                    "label": "COUNT",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT(v.volumeID) AS [COUNT]\nFROM Orion.Volumes v \nWHERE v.VolumeTypeID = 4",
+                    "dataFields": [
+                      {
+                        "id": "COUNT",
+                        "label": "COUNT",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Total Volumes Monitored",
+              "backgroundColor": "var(--nui-color-chart-six)",
+              "units": "Fixed Disks"
+            }
+          }
+        },
+        "kpi_bda1966c-3648-4469-b612-374b5561852f": {
+          "id": "kpi_bda1966c-3648-4469-b612-374b5561852f",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT(E.EventID) AS [Events]\nFROM Orion.Events E\nWHERE E.EventType = 202\nAND E.EventTime >= AddDay( -31, GETUTCDATE())",
+                "dataFields": [
+                  {
+                    "id": "Events",
+                    "label": "Events",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT(E.EventID) AS [Events]\nFROM Orion.Events E\nWHERE E.EventType = 202\nAND E.EventTime >= AddDay( -31, GETUTCDATE())",
+                    "dataFields": [
+                      {
+                        "id": "Events",
+                        "label": "Events",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Added in Last 30 Days",
+              "backgroundColor": "var(--nui-color-chart-four)",
+              "units": ""
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "c0a389e4-d122-4177-8ac1-c60048aed42b",
+      "name": "Volumes",
+      "private": false
+    },
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Server Availabilty",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_f3901384-b3ea-444a-8e1a-7281c6d5c3f6",
+              "kpi_47a10c9f-0854-46d3-bdc6-23291e1ccb36",
+              "kpi_6260f58c-9de3-4353-88a5-9098931e011a"
+            ]
+          }
+        },
+        "kpi_f3901384-b3ea-444a-8e1a-7281c6d5c3f6": {
+          "id": "kpi_f3901384-b3ea-444a-8e1a-7281c6d5c3f6",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT TOSTRING(ROUND(AVG(r.Availability), 1) )+' %' AS [Avg Availability]\nFROM Orion.ResponseTime r\nWHERE r.DateTime >= AddDay( -31, GETUTCDATE())",
+                "dataFields": [
+                  {
+                    "id": "Avg Availability",
+                    "label": "Avg Availability",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT TOSTRING(ROUND(AVG(r.Availability), 1) )+' %' AS [Avg Availability]\nFROM Orion.ResponseTime r\nWHERE r.DateTime >= AddDay( -31, GETUTCDATE())",
+                    "dataFields": [
+                      {
+                        "id": "Avg Availability",
+                        "label": "Avg Availability",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 50,
+                  "warningThresholdValue": 75,
+                  "showThresholds": true,
+                  "reversedThresholds": true
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Last 30 Days",
+              "backgroundColor": "var(--nui-color-semantic-ok)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_47a10c9f-0854-46d3-bdc6-23291e1ccb36": {
+          "id": "kpi_47a10c9f-0854-46d3-bdc6-23291e1ccb36",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT TOSTRING(ROUND(AVG(r.Availability), 1) )+' %' AS [Avg Availability]\nFROM Orion.ResponseTime r\nWHERE r.DateTime >= AddDay( -60, GETUTCDATE())",
+                "dataFields": [
+                  {
+                    "id": "Avg Availability",
+                    "label": "Avg Availability",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT TOSTRING(ROUND(AVG(r.Availability), 1) )+' %' AS [Avg Availability]\nFROM Orion.ResponseTime r\nWHERE r.DateTime >= AddDay( -60, GETUTCDATE())",
+                    "dataFields": [
+                      {
+                        "id": "Avg Availability",
+                        "label": "Avg Availability",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Last 60 Days",
+              "backgroundColor": "var(--nui-color-semantic-ok)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_6260f58c-9de3-4353-88a5-9098931e011a": {
+          "id": "kpi_6260f58c-9de3-4353-88a5-9098931e011a",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT TOSTRING(ROUND(AVG(r.Availability), 1) )+' %' AS [Avg Availability]\nFROM Orion.ResponseTime r\nWHERE r.DateTime >= AddDay( -365, GETUTCDATE())",
+                "dataFields": [
+                  {
+                    "id": "Avg Availability",
+                    "label": "Avg Availability",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT TOSTRING(ROUND(AVG(r.Availability), 1) )+' %' AS [Avg Availability]\nFROM Orion.ResponseTime r\nWHERE r.DateTime >= AddDay( -365, GETUTCDATE())",
+                    "dataFields": [
+                      {
+                        "id": "Avg Availability",
+                        "label": "Avg Availability",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Last 365 Days",
+              "backgroundColor": "var(--nui-color-semantic-ok)",
+              "units": ""
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "c97ebc34-856d-49a9-b609-38f93adb7195",
+      "name": "Server Availabilty",
+      "private": false
+    },
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Applications Monitored",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_963a06dd-7816-4368-abc8-9d9f72c67835"
+            ]
+          }
+        },
+        "kpi_963a06dd-7816-4368-abc8-9d9f72c67835": {
+          "id": "kpi_963a06dd-7816-4368-abc8-9d9f72c67835",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT(ApplicationID) AS [App Count]\nFROM Orion.APM.Application",
+                "dataFields": [
+                  {
+                    "id": "App Count",
+                    "label": "App Count",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT(ApplicationID) AS [App Count]\nFROM Orion.APM.Application",
+                    "dataFields": [
+                      {
+                        "id": "App Count",
+                        "label": "App Count",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Total",
+              "backgroundColor": "var(--nui-color-chart-one)",
+              "units": ""
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "6b2e9e9d-0be0-46fd-9f1b-d5383549497c",
+      "name": "Applications Monitored",
+      "private": false
+    },
+    {
+      "type": "proportional",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Servers by OS",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "chart": {
+          "providers": {
+            "dataSource": {
+              "providerId": "ProportionalSwqlDatasourceService",
+              "properties": {
+                "dataFields": [
+                  {
+                    "id": "Quanity",
+                    "label": "Quanity",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Node Vendor",
+                    "label": "Node Vendor",
+                    "dataType": "System.String"
+                  }
+                ],
+                "swql": "SELECT COUNT (N.NodeID) AS Quanity\n, CASE WHEN N.Vendor = 'net-snmp'\nTHEN 'Linux'\nELSE N.Vendor\nEND AS [Node Vendor]\nFROM Orion.Nodes AS N\nWHERE N.IsServer = False\nAND N.Vendor LIKE 'Juniper%'\nOR N.Vendor LIKE 'Meraki%'\nOR N.Vendor LIKE 'Cisco%'\nGROUP BY N.Vendor\nORDER BY N.Vendor",
+                "categoryField": "Node Vendor",
+                "valueField": "Quanity",
+                "dataFormat": "custom",
+                "iconMappingField": "",
+                "colorMappingField": "",
+                "linkMappingField": "",
+                "type": "hand-edit",
+                "editor": {}
+              }
+            },
+            "adapter": {
+              "providerId": "NOVA_DATASOURCE_ADAPTER",
+              "properties": {
+                "componentId": "chart",
+                "propertyPath": "widgetData",
+                "dataSource": {
+                  "properties": {
+                    "dataFields": [
+                      {
+                        "id": "Quanity",
+                        "label": "Quanity",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Node Vendor",
+                        "label": "Node Vendor",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "swql": "SELECT COUNT (N.NodeID) AS Quanity\n, CASE WHEN N.Vendor = 'net-snmp'\nTHEN 'Linux'\nELSE N.Vendor\nEND AS [Node Vendor]\nFROM Orion.Nodes AS N\nWHERE N.IsServer = False\nAND N.Vendor LIKE 'Juniper%'\nOR N.Vendor LIKE 'Meraki%'\nOR N.Vendor LIKE 'Cisco%'\nGROUP BY N.Vendor\nORDER BY N.Vendor",
+                    "categoryField": "Node Vendor",
+                    "valueField": "Quanity",
+                    "dataFormat": "custom",
+                    "iconMappingField": "",
+                    "colorMappingField": "",
+                    "linkMappingField": "",
+                    "type": "hand-edit",
+                    "editor": {}
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "chartOptions": {
+                "type": "DonutChart",
+                "legendPlacement": "Right",
+                "legendFormatter": {
+                  "componentType": "GenericValueFormatterComponent"
+                }
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "72b9efaa-2b06-48e5-a6fb-30e9173d1190",
+      "name": "Servers by OS",
+      "private": false
+    },
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Number of Servers",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_1c7c15cb-5e88-41bf-8db1-bbf5f444ce66",
+              "kpi_a2c818cf-e030-4467-b5b4-4832150d2e72"
+            ]
+          }
+        },
+        "kpi_1c7c15cb-5e88-41bf-8db1-bbf5f444ce66": {
+          "id": "kpi_1c7c15cb-5e88-41bf-8db1-bbf5f444ce66",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT(E.EventID) AS [Events]\nFROM Orion.Events E\nWHERE E.EventType = 9\nAND E.EventTime >= AddDay( -31, GETUTCDATE())",
+                "dataFields": [
+                  {
+                    "id": "Events",
+                    "label": "Events",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT(E.EventID) AS [Events]\nFROM Orion.Events E\nWHERE E.EventType = 9\nAND E.EventTime >= AddDay( -31, GETUTCDATE())",
+                    "dataFields": [
+                      {
+                        "id": "Events",
+                        "label": "Events",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 1,
+                  "warningThresholdValue": null,
+                  "showThresholds": false,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Added in Last 30 days",
+              "backgroundColor": "var(--nui-color-semantic-ok)",
+              "units": ""
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        },
+        "kpi_a2c818cf-e030-4467-b5b4-4832150d2e72": {
+          "id": "kpi_a2c818cf-e030-4467-b5b4-4832150d2e72",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT(N.NodeID) AS [Node Count]\nFROM Orion.Nodes N",
+                "dataFields": [
+                  {
+                    "id": "Node Count",
+                    "label": "Node Count",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT(N.NodeID) AS [Node Count]\nFROM Orion.Nodes N",
+                    "dataFields": [
+                      {
+                        "id": "Node Count",
+                        "label": "Node Count",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Total be monitored",
+              "backgroundColor": "var(--nui-color-bg-secondary)",
+              "units": ""
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "81695e9f-3313-4055-8962-9c88a6da570b",
+      "name": "Number of Servers",
+      "private": false
+    },
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Application Availability",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_7417456c-003b-4437-929a-b3a71aecb974",
+              "kpi_58562801-9a05-4c84-a814-59da6a08df56",
+              "kpi_5e5f5420-ad99-4f76-91b9-3b36ab55a5f5"
+            ]
+          }
+        },
+        "kpi_7417456c-003b-4437-929a-b3a71aecb974": {
+          "id": "kpi_7417456c-003b-4437-929a-b3a71aecb974",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT TOSTRING(ROUND(AVG(s.PercentAvailability), 1) ) +' %' AS [Avg Availability] \nFROM Orion.APM.ApplicationStatus s\nWHERE s.TimeStamp >= AddDay( -31, GETUTCDATE())",
+                "dataFields": [
+                  {
+                    "id": "Avg Availability",
+                    "label": "Avg Availability",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT TOSTRING(ROUND(AVG(s.PercentAvailability), 1) ) +' %' AS [Avg Availability] \nFROM Orion.APM.ApplicationStatus s\nWHERE s.TimeStamp >= AddDay( -31, GETUTCDATE())",
+                    "dataFields": [
+                      {
+                        "id": "Avg Availability",
+                        "label": "Avg Availability",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 50,
+                  "warningThresholdValue": 80,
+                  "showThresholds": true,
+                  "reversedThresholds": true
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Last 30 Days",
+              "backgroundColor": "var(--nui-color-semantic-ok)",
+              "units": ""
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        },
+        "kpi_58562801-9a05-4c84-a814-59da6a08df56": {
+          "id": "kpi_58562801-9a05-4c84-a814-59da6a08df56",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT TOSTRING(ROUND(AVG(s.PercentAvailability), 1) ) +' %' AS [Avg Availability] \nFROM Orion.APM.ApplicationStatus s\nWHERE s.TimeStamp >= AddDay( -60, GETUTCDATE())",
+                "dataFields": [
+                  {
+                    "id": "Avg Availability",
+                    "label": "Avg Availability",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT TOSTRING(ROUND(AVG(s.PercentAvailability), 1) ) +' %' AS [Avg Availability] \nFROM Orion.APM.ApplicationStatus s\nWHERE s.TimeStamp >= AddDay( -60, GETUTCDATE())",
+                    "dataFields": [
+                      {
+                        "id": "Avg Availability",
+                        "label": "Avg Availability",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 50,
+                  "warningThresholdValue": 80,
+                  "showThresholds": true,
+                  "reversedThresholds": true
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Last 60 Days",
+              "backgroundColor": "var(--nui-color-semantic-ok)",
+              "units": ""
+            }
+          }
+        },
+        "kpi_5e5f5420-ad99-4f76-91b9-3b36ab55a5f5": {
+          "id": "kpi_5e5f5420-ad99-4f76-91b9-3b36ab55a5f5",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT TOSTRING(ROUND(AVG(s.PercentAvailability), 1) ) +' %' AS [Avg Availability] \nFROM Orion.APM.ApplicationStatus s\nWHERE s.TimeStamp >= AddDay( -365, GETUTCDATE())",
+                "dataFields": [
+                  {
+                    "id": "Avg Availability",
+                    "label": "Avg Availability",
+                    "dataType": "System.String"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT TOSTRING(ROUND(AVG(s.PercentAvailability), 1) ) +' %' AS [Avg Availability] \nFROM Orion.APM.ApplicationStatus s\nWHERE s.TimeStamp >= AddDay( -365, GETUTCDATE())",
+                    "dataFields": [
+                      {
+                        "id": "Avg Availability",
+                        "label": "Avg Availability",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Last 365 Days",
+              "backgroundColor": "var(--nui-color-semantic-ok)",
+              "units": ""
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "549e6433-87df-49f1-9572-9b59197c4fcd",
+      "name": "Application Availability",
+      "private": false
+    },
+    {
+      "type": "proportional",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Servers by OS",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "chart": {
+          "providers": {
+            "dataSource": {
+              "providerId": "ProportionalSwqlDatasourceService",
+              "properties": {
+                "dataFields": [
+                  {
+                    "id": "Quanity",
+                    "label": "Quanity",
+                    "dataType": "System.Int32"
+                  },
+                  {
+                    "id": "Node Vendor",
+                    "label": "Node Vendor",
+                    "dataType": "System.String"
+                  }
+                ],
+                "swql": "SELECT COUNT (N.NodeID) AS Quanity\n, CASE WHEN N.Vendor = 'net-snmp'\nTHEN 'Linux'\nELSE N.Vendor\nEND AS [Node Vendor]\nFROM Orion.Nodes AS N\nWHERE N.IsServer = True\nGROUP BY N.Vendor\nORDER BY N.Vendor",
+                "categoryField": "Node Vendor",
+                "valueField": "Quanity",
+                "dataFormat": "custom",
+                "iconMappingField": "",
+                "colorMappingField": "",
+                "linkMappingField": "",
+                "type": "hand-edit",
+                "editor": {}
+              }
+            },
+            "adapter": {
+              "providerId": "NOVA_DATASOURCE_ADAPTER",
+              "properties": {
+                "componentId": "chart",
+                "propertyPath": "widgetData",
+                "dataSource": {
+                  "properties": {
+                    "dataFields": [
+                      {
+                        "id": "Quanity",
+                        "label": "Quanity",
+                        "dataType": "System.Int32"
+                      },
+                      {
+                        "id": "Node Vendor",
+                        "label": "Node Vendor",
+                        "dataType": "System.String"
+                      }
+                    ],
+                    "swql": "SELECT COUNT (N.NodeID) AS Quanity\n, CASE WHEN N.Vendor = 'net-snmp'\nTHEN 'Linux'\nELSE N.Vendor\nEND AS [Node Vendor]\nFROM Orion.Nodes AS N\nWHERE N.IsServer = True\nGROUP BY N.Vendor\nORDER BY N.Vendor",
+                    "categoryField": "Node Vendor",
+                    "valueField": "Quanity",
+                    "dataFormat": "custom",
+                    "iconMappingField": "",
+                    "colorMappingField": "",
+                    "linkMappingField": "",
+                    "type": "hand-edit",
+                    "editor": {}
+                  }
+                }
+              }
+            }
+          },
+          "properties": {
+            "configuration": {
+              "chartOptions": {
+                "type": "DonutChart",
+                "legendPlacement": "Right",
+                "legendFormatter": {
+                  "componentType": "GenericValueFormatterComponent"
+                }
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "83c485be-64db-4441-babe-efab15a17773",
+      "name": "Servers by OS",
+      "private": false
+    },
+    {
+      "type": "kpi",
+      "configuration": {
+        "header": {
+          "properties": {
+            "title": "Number of Outages",
+            "subtitle": "",
+            "url": "",
+            "description": "",
+            "collapsible": false,
+            "collapsed": true
+          }
+        },
+        "tiles": {
+          "properties": {
+            "nodes": [
+              "kpi_e0956e60-6cde-4fb3-90fb-63efdcd27730"
+            ]
+          }
+        },
+        "kpi_e0956e60-6cde-4fb3-90fb-63efdcd27730": {
+          "id": "kpi_e0956e60-6cde-4fb3-90fb-63efdcd27730",
+          "providers": {
+            "dataSource": {
+              "providerId": "KpiSwqlDatasourceService",
+              "properties": {
+                "swql": "SELECT COUNT(E.EventID) AS [Events] FROM Orion.Events E \nWHERE E.EventType = 1 \nAND E.EventTime >= AddDay( -31, GETUTCDATE())",
+                "dataFields": [
+                  {
+                    "id": "Events",
+                    "label": "Events",
+                    "dataType": "System.Int32"
+                  }
+                ],
+                "type": "hand-edit"
+              }
+            },
+            "adapter": {
+              "properties": {
+                "dataSource": {
+                  "properties": {
+                    "swql": "SELECT COUNT(E.EventID) AS [Events] FROM Orion.Events E \nWHERE E.EventType = 1 \nAND E.EventTime >= AddDay( -31, GETUTCDATE())",
+                    "dataFields": [
+                      {
+                        "id": "Events",
+                        "label": "Events",
+                        "dataType": "System.Int32"
+                      }
+                    ],
+                    "type": "hand-edit"
+                  }
+                },
+                "thresholds": {
+                  "criticalThresholdValue": 1,
+                  "warningThresholdValue": null,
+                  "showThresholds": true,
+                  "reversedThresholds": false
+                }
+              }
+            }
+          },
+          "properties": {
+            "widgetData": {
+              "label": "Last 30 Days",
+              "backgroundColor": "var(--nui-color-semantic-ok)",
+              "units": ""
+            }
+          }
+        },
+        "/": {
+          "providers": {
+            "refresher": {
+              "properties": {
+                "enabled": true,
+                "interval": 45,
+                "overrideDefaultSettings": false
+              }
+            }
+          }
+        }
+      },
+      "subtitle": "",
+      "description": "",
+      "unique_key": "b2332027-25d2-46dd-b3df-6c3f6240eeb8",
+      "name": "Number of Outages",
+      "private": false
+    }
+  ],
+  "remove": null
+}
