@@ -1,14 +1,12 @@
-SELECT
-	N.Caption AS [Server]
-	, N.DetailsURL AS [Node Details]
-	, N.Status AS [Node Status]
-	, CPON.Status AS [Assignment Status]
-	, CPS.Status AS [Poller Status]
-	, CPA.CurrentValue AS [Poller Assignment Current Value]
-FROM Orion.NPM.CustomPollerStatus CPS
-LEFT JOIN Orion.NPM.CustomPollerStatusOnNode CPON
-ON CPS.CustomPollerAssignmentID = CPON.CustomPollerAssignmentID
-LEFT JOIN Orion.NPM.CustomPollerAssignment CPA
-ON CPON.CustomPollerAssignmentID = CPA.CustomPollerAssignmentID
-LEFT JOIN Orion.Nodes N
-ON CPON.NodeID = N.NodeID
+ ${SQL:SELECT a.CurrentValue, b.CurrentValue, a.NodeID, b.NodeID, a.CustomPollerOID, b.custompolleroid, a.CustomPollerName
+FROM CustomPollerAssignmentView a, CustomPollerAssignmentView b
+where
+                a.CustomPollerOID = '1.3.6.1.4.1.2682.1.2.5.1.5.99.1.1.7'
+                and
+                b.custompolleroid = '1.3.6.1.4.1.2682.1.2.5.1.6.99.1.1.7'
+    and
+    a.nodeid = b.nodeid
+    and
+    b.CurrentValue = 'Alarm'
+                and
+                a.nodeid = ${NodeID}}
