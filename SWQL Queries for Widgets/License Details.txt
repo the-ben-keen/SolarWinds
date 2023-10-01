@@ -1,0 +1,36 @@
+SELECT l.ProductName
+,	CASE
+		WHEN ElementType = 'OLM.OLMNodes'
+		THEN 'Log Analyzer'
+        WHEN ElementType = 'UDT.Ports'
+        THEN 'UDT Ports'
+		ELSE ELementType
+	END AS [License Name]
+, ElementCount
+, 	CASE
+		WHEN AvailableCount = '2147483647' THEN  'Unlimited'
+		ELSE TOSTRING(AvailableCount)
+	END AS [Available Licenses]
+, 	CASE
+		WHEN MaxCount = '2147483647' THEN  'Unlimited'
+		ELSE TOSTRING(MaxCount)
+    END AS [Number of Licenses]
+, ROUND(Saturation, 0) AS [Total Saturation]
+, 	CASE
+		WHEN MINUTEDIFF(l.MaintenanceExpiresOn, GETUTCDATE()) > 262800 THEN 3
+		WHEN MINUTEDIFF(l.MaintenanceExpiresOn, GETUTCDATE()) > 131400 THEN 13
+		ELSE 1
+	END AS [License Status]
+, l.MaintenanceExpiresOn
+FROM Orion.LicenseSaturation ls
+JOIN Orion.Licensing.Licenses l ON l.ProductName = CASE
+    WHEN ls.ElementType IN ('Nodes', 'Interfaces', 'Volumes') THEN 'NPM'
+    WHEN ls.ElementType = 'IP Addresses' THEN 'IPAM'
+    WHEN ls.ElementType = 'OLM.OLMNodes' THEN 'LM'
+    WHEN ls.ElementType = 'SCM Nodes' then 'SCM'
+    WHEN ls.ElementType = 'SAM Components' then 'SAM'
+    WHEN ls.ElementType = 'NCM Nodes' then 'NCM'
+    WHEN ls.ElementType = 'Transactions' then 'WPM'
+    WHEN ls.ElementType = 'IPSLA Sites' then 'VNQM'
+    WHEN ls.ElementType = 'UDT.Ports' then 'UDT'
+END
