@@ -4,7 +4,7 @@
     {
       "widgets": [
         {
-          "unique_key": "8850476e-e938-4c09-be75-72f02421899c",
+          "unique_key": "d808e716-ed6b-4bc3-bc0a-078baafd4949",
           "location": {
             "x": 0,
             "y": 0,
@@ -761,7 +761,7 @@
       },
       "subtitle": "",
       "description": "",
-      "unique_key": "8850476e-e938-4c09-be75-72f02421899c",
+      "unique_key": "d808e716-ed6b-4bc3-bc0a-078baafd4949",
       "name": "Pollers",
       "private": false
     },
@@ -1091,6 +1091,8 @@
                 },
                 {
                   "id": "column_ed4046b0-8414-4ff7-84f3-4d9903122742",
+                  "label": "IP Address",
+                  "isActive": true,
                   "formatter": {
                     "componentType": "RawFormatterComponent",
                     "properties": {
@@ -1098,9 +1100,7 @@
                         "value": "IP_address"
                       }
                     }
-                  },
-                  "isActive": true,
-                  "label": "IP_address"
+                  }
                 },
                 {
                   "id": "column_66d5911a-60ad-4f57-bdda-7b76f07d1fcd",
