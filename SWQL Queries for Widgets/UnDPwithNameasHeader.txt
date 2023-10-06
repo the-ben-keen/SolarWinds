@@ -1,0 +1,30 @@
+SELECT
+	a.Caption AS [Server Name]
+	, a.Status AS [Server Status]
+	, a.DetailsURL AS [Server Details]
+	, a.CustomPollerAssignmentOnNode.Status AS [System Status]
+	, TOSTRING(b.CustomPollerAssignmentOnNode.CurrentValue) + '%' AS [Battery Charge]
+	, c.CustomPollerAssignmentOnNode.CurrentValue AS [Model]
+	, CASE 
+		WHEN d.CustomPollerAssignmentOnNode.Status != 1
+		THEN 'FAILED'
+		ELSE 'PASSED'
+	END AS [Test Results]
+	, d.CustomPollerAssignmentOnNode.Status AS [Test Results]
+	, TOSTRING(e.CustomPollerAssignmentOnNode.CurrentValue) + 'minutes' AS [Minutes Remaining]
+	, f.CustomPollerAssignmentOnNode.Status AS [Battery Status]
+	, TOSTRING(g.CustomPollerAssignmentOnNode.CurrentValue) + ' %' AS [Charge Remaining]
+FROM Orion.Nodes a, Orion.Nodes b, Orion.Nodes c, Orion.Nodes d, Orion.Nodes e, Orion.Nodes f, Orion.Nodes g
+WHERE a.NodeID = b.NodeID 
+AND b.NodeID = c.NodeID
+AND c.NodeID = d.NodeID
+AND d.NodeID = e.NodeID
+AND e.NodeID = f.NodeID
+AND f.NodeID = g.NodeID
+AND a.CustomPollerAssignmentOnNode.DisplayName LIKE 'SystemStatus%'
+AND b.CustomPollerAssignmentOnNode.DisplayName LIKE 'BatteryPercentageCharge%'
+AND c.CustomPollerAssignmentOnNode.DisplayName LIKE 'LiebertModel%'
+AND d.CustomPollerAssignmentOnNode.DisplayName LIKE 'BatteryTestResult%'
+AND e.CustomPollerAssignmentOnNode.DisplayName LIKE 'EstimatedMinutesRemaining%'
+AND f.CustomPollerAssignmentOnNode.DisplayName LIKE 'upsBatteryStatus%'
+AND g.CustomPollerAssignmentOnNode.DisplayName LIKE 'upsEstimatedChargeRemaining%'
