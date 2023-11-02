@@ -1,30 +1,47 @@
 SELECT
-	a.Caption AS [Server Name]
-	, a.Status AS [Server Status]
-	, a.DetailsURL AS [Server Details]
-	, a.CustomPollerAssignmentOnNode.Status AS [System Status]
-	, TOSTRING(b.CustomPollerAssignmentOnNode.CurrentValue) + '%' AS [Battery Charge]
-	, c.CustomPollerAssignmentOnNode.CurrentValue AS [Model]
+	[Node].Caption AS [UPS Name]
+	, [Node].DetailsURL AS [UPS Details]
+	, [Node].Status AS [UPS Status]
+	, [Node].IPAddress AS [UPS IP Address]
+	, [Node].NextPoll AS [Next Poll At]
+	, [Node].CustomPollerLastStatisticsPoll AS [Last Custom Pollers Synced]
+	, TOSTRING(ROUND([Node].SystemUpTime/60/60/24, 1)) + ' days' AS [Up Time]
+	, [CP1].Status AS [System Status]
+	, TOSTRING([CP2].CurrentValue) + '%' AS [Battery Charge]
+	, [CP3].CurrentValue AS [Model]
 	, CASE 
-		WHEN d.CustomPollerAssignmentOnNode.Status != 1
+		WHEN [CP4].Status != 1
 		THEN 'FAILED'
 		ELSE 'PASSED'
 	END AS [Test Results]
-	, d.CustomPollerAssignmentOnNode.Status AS [Test Results]
-	, TOSTRING(e.CustomPollerAssignmentOnNode.CurrentValue) + 'minutes' AS [Minutes Remaining]
-	, f.CustomPollerAssignmentOnNode.Status AS [Battery Status]
-	, TOSTRING(g.CustomPollerAssignmentOnNode.CurrentValue) + ' %' AS [Charge Remaining]
-FROM Orion.Nodes a, Orion.Nodes b, Orion.Nodes c, Orion.Nodes d, Orion.Nodes e, Orion.Nodes f, Orion.Nodes g
-WHERE a.NodeID = b.NodeID 
-AND b.NodeID = c.NodeID
-AND c.NodeID = d.NodeID
-AND d.NodeID = e.NodeID
-AND e.NodeID = f.NodeID
-AND f.NodeID = g.NodeID
-AND a.CustomPollerAssignmentOnNode.DisplayName LIKE 'SystemStatus%'
-AND b.CustomPollerAssignmentOnNode.DisplayName LIKE 'BatteryPercentageCharge%'
-AND c.CustomPollerAssignmentOnNode.DisplayName LIKE 'LiebertModel%'
-AND d.CustomPollerAssignmentOnNode.DisplayName LIKE 'BatteryTestResult%'
-AND e.CustomPollerAssignmentOnNode.DisplayName LIKE 'EstimatedMinutesRemaining%'
-AND f.CustomPollerAssignmentOnNode.DisplayName LIKE 'upsBatteryStatus%'
-AND g.CustomPollerAssignmentOnNode.DisplayName LIKE 'upsEstimatedChargeRemaining%'
+	, [CP4].Status AS [Test Icon]
+	, TOSTRING([CP5].CurrentValue) + ' minutes' AS [Minutes Remaining]
+	, CASE 
+		WHEN [CP6].Status != 1
+		THEN 'BAD'
+		ELSE 'OK'
+	END AS [Battery Status]
+	, [CP6].Status AS [Battery Status Icon]
+	, TOSTRING([CP7].CurrentValue) + ' %' AS [Charge Remaining]
+FROM Orion.Nodes [Node]
+LEFT JOIN Orion.NPM.CustomPollerAssignmentOnNode AS [CP1]
+ON [Node].NodeID = [CP1].NodeID
+LEFT JOIN Orion.NPM.CustomPollerAssignmentOnNode AS [CP2]
+ON [Node].NodeID = [CP2].NodeID
+LEFT JOIN Orion.NPM.CustomPollerAssignmentOnNode AS [CP3]
+ON [Node].NodeID = [CP3].NodeID
+LEFT JOIN Orion.NPM.CustomPollerAssignmentOnNode AS [CP4]
+ON [Node].NodeID = [CP4].NodeID
+LEFT JOIN Orion.NPM.CustomPollerAssignmentOnNode AS [CP5]
+ON [Node].NodeID = [CP5].NodeID
+LEFT JOIN Orion.NPM.CustomPollerAssignmentOnNode AS [CP6]
+ON [Node].NodeID = [CP6].NodeID
+LEFT JOIN Orion.NPM.CustomPollerAssignmentOnNode AS [CP7]
+ON [Node].NodeID = [CP7].NodeID
+WHERE [CP1].DisplayName = 'SystemStatus'
+AND [CP2].DisplayName = 'BatteryPercentageCharge'
+AND [CP3].DisplayName = 'LiebertModel'
+AND [CP4].DisplayName = 'BatteryTestResult'
+AND [CP5].DisplayName = 'EstimatedMinutesRemaining'
+AND [CP6].DisplayName = 'upsBatteryStatus'
+AND [CP7].DisplayName = 'upsEstimatedChargeRemaining'

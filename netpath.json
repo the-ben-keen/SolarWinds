@@ -1,0 +1,291 @@
+{
+    "version": 1,
+    "dashboards": [{
+            "widgets": [{
+                    "unique_key": "b5772fa5-7635-4a6e-a887-0e8b3df56c73",
+                    "location": {
+                        "x": 0,
+                        "y": 0,
+                        "cols": 12,
+                        "rows": 3
+                    },
+                    "reference": false
+                }
+            ],
+            "parent": null,
+            "feature": null,
+            "unique_key": "c06b17e9-35d8-477d-8b7d-6130521de477",
+            "name": "NetPath Summary",
+            "private": null
+        }
+    ],
+    "widgets": [{
+            "type": "table",
+            "configuration": {
+                "header": {
+                    "properties": {
+                        "title": "NetPath Results",
+                        "subtitle": "Averages over last 24 hours",
+                        "url": "",
+                        "description": "Shows a summary of NetPath Info",
+                        "collapsible": false,
+                        "collapsed": true
+                    }
+                },
+                "table": {
+                    "providers": {
+                        "dataSource": {
+                            "providerId": "TableSwqlDatasourceService",
+                            "properties": {
+                                "swql": "SELECT [SA].ProbeName AS [Source]\n ,[SA].Status\n ,ToLocal([SA].LastProbeTime) AS LastProbeTime\n ,[SA].ServiceName AS [Destination]\n ,[si].shortdescription\n ,[SA].DetailsUrl AS [_LinkFor_Destination]\n ,CONCAT('/Orion/images/StatusIcons/Small-', [SI].IconPostfix, '.gif') AS [_IconFor_Destination] -- This is the status for the most recent poll only\n ,round(t2.LastLatency,1) as [LastLatency(ms)]\n --, ROUND([Tests].MinLatency, 1) AS [MinLatency(ms)]\n --, ROUND([Tests].AvgLatency, 1) AS [AvgLatency(ms)]\n --, ROUND([Tests].MaxLatency, 1) AS [MaxLatency(ms)]\n , CONCAT(ROUND([Tests].MinLatency, 1), ' / ', ROUND([Tests].AvgLatency, 1), ' / ', ROUND([Tests].MaxLatency, 1) ) AS [Min/Avg/Max Latency (ms)]\n ,round(t2.LastPacketLoss,1) as [LastPacketLoss(%)]\n --, ROUND([Tests].MinPacketLoss, 1) AS [MinPacketLoss(%)]\n --, ROUND([Tests].AvgPacketLoss, 1) AS [AvgPacketLoss(%)]\n --, ROUND([Tests].MaxPacketLoss, 1) AS [MaxPacketLoss(%)]\n , CONCAT(ROUND([Tests].MinPacketLoss, 1), ' / ', ROUND([Tests].AvgPacketLoss, 1), ' / ', ROUND([Tests].MaxPacketLoss, 1) ) AS [Min/Avg/Max Packet Loss (%)]\nFROM Orion.NetPath.ServiceAssignments AS [SA]\nINNER JOIN Orion.StatusInfo AS [SI]\n ON [SA].Status = [SI].StatusID\nINNER JOIN (\n SELECT EndpointServiceID\n , ProbeID\n , MIN(Rtt) AS MinLatency\n , AVG(Rtt) AS AvgLatency\n , MAX(Rtt) AS MaxLatency\n , MIN(PacketLoss) AS MinPacketLoss\n , AVG(PacketLoss) AS AvgPacketLoss\n , MAX(PacketLoss) AS MaxPacketLoss\n FROM Orion.NetPath.Tests\n WHERE ExecutedAt >= GETUTCDATE() - 1 -- ExecutedAt is stored in UTC, so we use 'GETUTCDATE() - 1' to get last 24 hours only\n GROUP BY EndpointServiceID, ProbeID\n) AS [Tests]\nON [Tests].ProbeID = [SA].ProbeID\nAND [Tests].EndpointServiceID = [SA].EndpointServiceID\n\nINNER JOIN (SELECT sa.servicename,\ntests.EndpointServiceID\n , tests.ProbeID\n , tests.Rtt AS LastLatency\n , tests.PacketLoss AS LastPacketLoss\n,tests.executedat\n FROM Orion.NetPath.Tests as [tests]\njoin Orion.NetPath.ServiceAssignments AS [SA]\n\nON [Tests].ProbeID = [SA].ProbeID\nAND [Tests].EndpointServiceID = [SA].EndpointServiceID\ninner join (select max(executedat) as maxtime, tests.EndpointServiceID,tests.ProbeID from Orion.NetPath.Tests\ngroup by tests.EndpointServiceID,tests.ProbeID) t1 on t1.maxtime = tests.ExecutedAt and t1.EndpointServiceID = tests.EndpointServiceID and t1.probeid = tests.ProbeID\n) t2 ON [Tests].ProbeID = [t2].ProbeID\nAND [Tests].EndpointServiceID = [t2].EndpointServiceID\n\nWHERE --[SA].ServiceName = 'Office 365' -- This is the NetPath Service Name as displayed on your NetPath summary page\n --AND\n [SA].Enabled = 'True'\nORDER BY [LastPacketLoss(%)] desc, [LastLatency(ms)] desc, [SA].[Destination]",
+                                "dataFields": [{
+                                        "id": "Source",
+                                        "label": "Source",
+                                        "dataType": "System.String"
+                                    }, {
+                                        "id": "Status",
+                                        "label": "Status",
+                                        "dataType": "System.Int32"
+                                    }, {
+                                        "id": "LastProbeTime",
+                                        "label": "LastProbeTime",
+                                        "dataType": "System.DateTime"
+                                    }, {
+                                        "id": "Destination",
+                                        "label": "Destination",
+                                        "dataType": "System.String"
+                                    }, {
+                                        "id": "shortdescription",
+                                        "label": "shortdescription",
+                                        "dataType": "System.String"
+                                    }, {
+                                        "id": "_LinkFor_Destination",
+                                        "label": "_LinkFor_Destination",
+                                        "dataType": "System.String"
+                                    }, {
+                                        "id": "_IconFor_Destination",
+                                        "label": "_IconFor_Destination",
+                                        "dataType": "System.String"
+                                    }, {
+                                        "id": "LastLatency(ms)",
+                                        "label": "LastLatency(ms)",
+                                        "dataType": "System.Double"
+                                    }, {
+                                        "id": "Min/Avg/Max Latency (ms)",
+                                        "label": "Min/Avg/Max Latency (ms)",
+                                        "dataType": "System.String"
+                                    }, {
+                                        "id": "LastPacketLoss(%)",
+                                        "label": "LastPacketLoss(%)",
+                                        "dataType": "System.Double"
+                                    }, {
+                                        "id": "Min/Avg/Max Packet Loss (%)",
+                                        "label": "Min/Avg/Max Packet Loss (%)",
+                                        "dataType": "System.String"
+                                    }
+                                ],
+                                "type": "hand-edit"
+                            }
+                        },
+                        "adapter": {
+                            "properties": {
+                                "dataSource": {
+                                    "properties": {
+                                        "swql": "SELECT [SA].ProbeName AS [Source]\n ,[SA].Status\n ,ToLocal([SA].LastProbeTime) AS LastProbeTime\n ,[SA].ServiceName AS [Destination]\n ,[si].shortdescription\n ,[SA].DetailsUrl AS [_LinkFor_Destination]\n ,CONCAT('/Orion/images/StatusIcons/Small-', [SI].IconPostfix, '.gif') AS [_IconFor_Destination] -- This is the status for the most recent poll only\n ,round(t2.LastLatency,1) as [LastLatency(ms)]\n --, ROUND([Tests].MinLatency, 1) AS [MinLatency(ms)]\n --, ROUND([Tests].AvgLatency, 1) AS [AvgLatency(ms)]\n --, ROUND([Tests].MaxLatency, 1) AS [MaxLatency(ms)]\n , CONCAT(ROUND([Tests].MinLatency, 1), ' / ', ROUND([Tests].AvgLatency, 1), ' / ', ROUND([Tests].MaxLatency, 1) ) AS [Min/Avg/Max Latency (ms)]\n ,round(t2.LastPacketLoss,1) as [LastPacketLoss(%)]\n --, ROUND([Tests].MinPacketLoss, 1) AS [MinPacketLoss(%)]\n --, ROUND([Tests].AvgPacketLoss, 1) AS [AvgPacketLoss(%)]\n --, ROUND([Tests].MaxPacketLoss, 1) AS [MaxPacketLoss(%)]\n , CONCAT(ROUND([Tests].MinPacketLoss, 1), ' / ', ROUND([Tests].AvgPacketLoss, 1), ' / ', ROUND([Tests].MaxPacketLoss, 1) ) AS [Min/Avg/Max Packet Loss (%)]\nFROM Orion.NetPath.ServiceAssignments AS [SA]\nINNER JOIN Orion.StatusInfo AS [SI]\n ON [SA].Status = [SI].StatusID\nINNER JOIN (\n SELECT EndpointServiceID\n , ProbeID\n , MIN(Rtt) AS MinLatency\n , AVG(Rtt) AS AvgLatency\n , MAX(Rtt) AS MaxLatency\n , MIN(PacketLoss) AS MinPacketLoss\n , AVG(PacketLoss) AS AvgPacketLoss\n , MAX(PacketLoss) AS MaxPacketLoss\n FROM Orion.NetPath.Tests\n WHERE ExecutedAt >= GETUTCDATE() - 1 -- ExecutedAt is stored in UTC, so we use 'GETUTCDATE() - 1' to get last 24 hours only\n GROUP BY EndpointServiceID, ProbeID\n) AS [Tests]\nON [Tests].ProbeID = [SA].ProbeID\nAND [Tests].EndpointServiceID = [SA].EndpointServiceID\n\nINNER JOIN (SELECT sa.servicename,\ntests.EndpointServiceID\n , tests.ProbeID\n , tests.Rtt AS LastLatency\n , tests.PacketLoss AS LastPacketLoss\n,tests.executedat\n FROM Orion.NetPath.Tests as [tests]\njoin Orion.NetPath.ServiceAssignments AS [SA]\n\nON [Tests].ProbeID = [SA].ProbeID\nAND [Tests].EndpointServiceID = [SA].EndpointServiceID\ninner join (select max(executedat) as maxtime, tests.EndpointServiceID,tests.ProbeID from Orion.NetPath.Tests\ngroup by tests.EndpointServiceID,tests.ProbeID) t1 on t1.maxtime = tests.ExecutedAt and t1.EndpointServiceID = tests.EndpointServiceID and t1.probeid = tests.ProbeID\n) t2 ON [Tests].ProbeID = [t2].ProbeID\nAND [Tests].EndpointServiceID = [t2].EndpointServiceID\n\nWHERE --[SA].ServiceName = 'Office 365' -- This is the NetPath Service Name as displayed on your NetPath summary page\n --AND\n [SA].Enabled = 'True'\nORDER BY [LastPacketLoss(%)] desc, [LastLatency(ms)] desc, [SA].[Destination]",
+                                        "dataFields": [{
+                                                "id": "Source",
+                                                "label": "Source",
+                                                "dataType": "System.String"
+                                            }, {
+                                                "id": "Status",
+                                                "label": "Status",
+                                                "dataType": "System.Int32"
+                                            }, {
+                                                "id": "LastProbeTime",
+                                                "label": "LastProbeTime",
+                                                "dataType": "System.DateTime"
+                                            }, {
+                                                "id": "Destination",
+                                                "label": "Destination",
+                                                "dataType": "System.String"
+                                            }, {
+                                                "id": "shortdescription",
+                                                "label": "shortdescription",
+                                                "dataType": "System.String"
+                                            }, {
+                                                "id": "_LinkFor_Destination",
+                                                "label": "_LinkFor_Destination",
+                                                "dataType": "System.String"
+                                            }, {
+                                                "id": "_IconFor_Destination",
+                                                "label": "_IconFor_Destination",
+                                                "dataType": "System.String"
+                                            }, {
+                                                "id": "LastLatency(ms)",
+                                                "label": "LastLatency(ms)",
+                                                "dataType": "System.Double"
+                                            }, {
+                                                "id": "Min/Avg/Max Latency (ms)",
+                                                "label": "Min/Avg/Max Latency (ms)",
+                                                "dataType": "System.String"
+                                            }, {
+                                                "id": "LastPacketLoss(%)",
+                                                "label": "LastPacketLoss(%)",
+                                                "dataType": "System.Double"
+                                            }, {
+                                                "id": "Min/Avg/Max Packet Loss (%)",
+                                                "label": "Min/Avg/Max Packet Loss (%)",
+                                                "dataType": "System.String"
+                                            }
+                                        ],
+                                        "type": "hand-edit"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "properties": {
+                        "configuration": {
+                            "columns": [{
+                                    "id": "column_7399d40e-07d4-4bf0-9286-83fc41c9e6bd",
+                                    "label": "Current Status",
+                                    "isActive": true,
+                                    "formatter": {
+                                        "componentType": "RawFormatterComponent",
+                                        "properties": {
+                                            "dataFieldIds": {
+                                                "value": "shortdescription"
+                                            }
+                                        }
+                                    }
+                                }, {
+                                    "id": "column_38865910-2e22-4622-b277-8cae1fc76f23",
+                                    "formatter": {
+                                        "componentType": "EntityLinkFormatterComponent",
+                                        "properties": {
+                                            "dataFieldIds": {
+                                                "status": "Status",
+                                                "vendor": null,
+                                                "link": "_LinkFor_Destination",
+                                                "value": "Source"
+                                            },
+                                            "iconFormat": "entityTypeWithStatus",
+                                            "entityIcon": "network-path"
+                                        }
+                                    },
+                                    "isActive": true,
+                                    "label": "Source"
+                                }, {
+                                    "id": "column_2a2aafdb-9a9f-4d60-a7a5-4c84801bf062",
+                                    "formatter": {
+                                        "componentType": "LinkFormatterComponent",
+                                        "properties": {
+                                            "dataFieldIds": {
+                                                "value": "Destination",
+                                                "link": "_LinkFor_Destination"
+                                            }
+                                        }
+                                    },
+                                    "isActive": true,
+                                    "label": "Destination"
+                                }, {
+                                    "id": "column_c04f3dc9-668d-4815-b3c4-4a690e2dee85",
+                                    "label": "Last Latency",
+                                    "isActive": true,
+                                    "width": 250,
+                                    "formatter": {
+                                        "componentType": "ThresholdFormatterComponent",
+                                        "properties": {
+                                            "dataFieldIds": {
+                                                "value": "LastLatency(ms)",
+                                                "instanceId": "",
+                                                "siteId": ""
+                                            },
+                                            "thresholdName": "Nodes.Stats.ResponseTime",
+                                            "visualization": "barChart"
+                                        }
+                                    }
+                                }, {
+                                    "id": "column_4c8ec2a4-970b-45b3-96b8-61a9b90c4370",
+                                    "formatter": {
+                                        "componentType": "RawFormatterComponent",
+                                        "properties": {
+                                            "dataFieldIds": {
+                                                "value": "Min/Avg/Max Latency (ms)"
+                                            }
+                                        }
+                                    },
+                                    "isActive": true,
+                                    "label": "Min/Avg/Max Latency (ms)"
+                                }, {
+                                    "id": "column_82e7e68d-fcc7-49b8-a567-ccafb1cdd38e",
+                                    "label": "Last Packet Loss(%)",
+                                    "isActive": true,
+                                    "formatter": {
+                                        "componentType": "RawFormatterComponent",
+                                        "properties": {
+                                            "dataFieldIds": {
+                                                "value": "LastPacketLoss(%)"
+                                            }
+                                        }
+                                    }
+                                }, {
+                                    "id": "column_c45593db-14b0-4dec-9875-29e49f3fc790",
+                                    "formatter": {
+                                        "componentType": "RawFormatterComponent",
+                                        "properties": {
+                                            "dataFieldIds": {
+                                                "value": "Min/Avg/Max Packet Loss (%)"
+                                            }
+                                        }
+                                    },
+                                    "isActive": true,
+                                    "label": "Min/Avg/Max Packet Loss (%)"
+                                }, {
+                                    "id": "column_0ae811d4-8c6e-4e8c-b981-ce225fb6f272",
+                                    "label": "Last Probe Time",
+                                    "isActive": true,
+                                    "formatter": {
+                                        "componentType": "DatetimeFormatterComponent",
+                                        "properties": {
+                                            "dataFieldIds": {
+                                                "value": "LastProbeTime"
+                                            },
+                                            "option": "0",
+                                            "replaceDate": true
+                                        }
+                                    }
+                                }
+                            ],
+                            "sorterConfiguration": {
+                                "sortBy": "column_82e7e68d-fcc7-49b8-a567-ccafb1cdd38e",
+                                "descendantSorting": true
+                            },
+                            "hasVirtualScroll": true,
+                            "searchConfiguration": {
+                                "enabled": false
+                            }
+                        }
+                    }
+                },
+                "/": {
+                    "providers": {
+                        "refresher": {
+                            "properties": {
+                                "enabled": true,
+                                "interval": 90,
+                                "overrideDefaultSettings": true
+                            }
+                        }
+                    }
+                }
+            },
+            "subtitle": "Averages over last 24 hours",
+            "description": "Shows a summary of NetPath Info",
+            "unique_key": "b5772fa5-7635-4a6e-a887-0e8b3df56c73",
+            "name": "NetPath Results",
+            "private": false
+        }
+    ],
+    "remove": null
+}
