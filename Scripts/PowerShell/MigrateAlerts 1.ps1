@@ -46,9 +46,9 @@ if (!(Get-Module | where-object {$_.Name -eq "SWISPowerShell"})) {
 # END PSModules #
 
 # Variables Orion #
-$SourceHost = '192.168.50.106'
-$SourceUser = 'admin'
-$SourcePass = 'IbdAvIT#2022!'
+$SourceHost = '[Host IP]'
+$SourceUser = '[UserID]'
+$SourcePass = '[ComplexPassword]'
 $SourceCred = New-Object -typename System.Management.Automation.PSCredential -argumentlist @($SourceUser,(ConvertTo-SecureString -String $SourcePass -AsPlainText -Force))
 
 $destinationHost = '192.168.2.200'
