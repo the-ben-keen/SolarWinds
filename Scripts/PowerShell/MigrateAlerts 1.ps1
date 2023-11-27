@@ -51,9 +51,9 @@ $SourceUser = '[UserID]'
 $SourcePass = '[ComplexPassword]'
 $SourceCred = New-Object -typename System.Management.Automation.PSCredential -argumentlist @($SourceUser,(ConvertTo-SecureString -String $SourcePass -AsPlainText -Force))
 
-$destinationHost = '192.168.2.200'
-$DestinationUser = 'admin'
-$DestinationPass = 'ITresor0815!'
+$destinationHost = '[DestinationHostIP]'
+$DestinationUser = '[UserID]'
+$DestinationPass = '[ComplexPassword]'
 $DestinationCred = New-Object -typename System.Management.Automation.PSCredential -argumentlist @($DestinationUser,(ConvertTo-SecureString -String $DestinationPass -AsPlainText -Force))
 
 # Global Variables #
