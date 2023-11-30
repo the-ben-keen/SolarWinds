@@ -1,6 +1,3 @@
--------
--- Importer
---------
 <#------------- FUNCTIONS -------------#>
 Function Set-SwisConnection {  
     Param(  

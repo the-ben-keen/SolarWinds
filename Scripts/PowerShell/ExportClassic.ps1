@@ -1,7 +1,3 @@
----
--- Exporter
-----
-
 <#------------- FUNCTIONS -------------#>
 Function Set-SwisConnection {  
     Param(  
